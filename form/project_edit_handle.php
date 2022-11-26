@@ -26,7 +26,7 @@ if(isset($_POST["name"])){
     $query = "UPDATE item SET create_by='$create_by',type='$type',name='$name',base='$base',issue='$issue',status='$status',
     note='$note', update_at='$update_at' WHERE id = '$id'";
     if(mysqli_query($connect,$query)){ 
-    header("Location: http://localhost/dean/index.php");
+    header("Location: http://10.2.2.11/dean/index.php");
     }
     else{
         echo 'Cập nhập Đề Án thất bại';

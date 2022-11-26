@@ -2,7 +2,7 @@
 session_start();
 if(!isset($_SESSION["username"]))
 {
-    header("location: http://localhost/dean/login.php");  
+    header("location: http://10.2.2.11/dean/login.php");  
 }
 $display_name = $_SESSION["display_name"];
 $leve = $_SESSION["level"];
@@ -66,9 +66,9 @@ $leve = $_SESSION["level"];
                   <li><a><i class="fa fa-home"></i> DANH SÁCH ĐỀ ÁN <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="project_list.php">Danh sách đề án</a></li>
-                      <li><a href="#">Đề án đã được duyệt</a></li>
-                      <li><a href="#">Đề án đang chờ duyệt</a></li>
-                      <li><a href="#">Đề án không được duyệt</a></li>
+                      <li><a href="project_list_chapthuan.php">Đề án đã được duyệt</a></li>
+                      <li><a href="project_list_khoitao.php">Đề án đang chờ duyệt</a></li>
+                      <li><a href="project_list_tuchoi.php">Đề án không được duyệt</a></li>
                     </ul>
                   </li>
                  

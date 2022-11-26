@@ -65,7 +65,7 @@
         'paging': 'true',
         'order': [],
         'ajax': {
-          'url': 'project_fetch_data.php',
+          'url': 'project_fetch_data_tuchoi.php',
           'type': 'post',
         },
         "aoColumnDefs": [{

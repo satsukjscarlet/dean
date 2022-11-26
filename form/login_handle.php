@@ -22,20 +22,20 @@ if(isset($_POST['username'])){
                 $_SESSION["level"] = $row["level"];
                 $_SESSION["email"] = $row["email"];
                 $_SESSION["display_name"] = $row["display_name"];
-                header("Location: http://localhost/dean/index.php");
+                header("Location: http://10.2.2.11/dean/index.php");
             } else {
                 echo '<script>alert("Bạn nhập sai mật khẩu")</script>';
                 echo 'Bạn nhập sai mật khẩu, Bạn cần đăng nhập lại ';
-                echo '<a class="login" href="http://localhost/dean/login.php">Trở lại đăng nhập</a>';
+                echo '<a class="login" href="http://10.2.2.11/dean/login.php">Trở lại đăng nhập</a>';
             }
     }
     else{
         echo '<script>alert("Bạn nhập sai thông tin tài khoản")</script>';
         echo 'Bạn nhập sai thông tin tài khoản, Bạn cần đăng nhập lại ';
-        echo '<a class="login" href="http://localhost/dean/login.php">Trở lại đăng nhập</a>';
+        echo '<a class="login" href="http://10.2.2.11/dean/login.php">Trở lại đăng nhập</a>';
     }
 }else{
-    header("Location: http://localhost/dean/login.php");
+    header("Location: http://10.2.2.11/dean/login.php");
 }
 
 
@@ -74,7 +74,7 @@ if(isset($_POST['username'])){
 //  $str = md5($password);
 //  $hashed_password = password_hash($str, PASSWORD_DEFAULT);
 //  echo $hashed_password;
-//  $connuser = new mysqli('localhost', 'root', '', 'datxe');
+//  $connuser = new mysqli('10.2.2.11', 'root', '', 'datxe');
 
 //  $sql = "Select *from mrbs_users where username = $username";
 //  $result = $connuser->query($sql)->fetch_assoc();

@@ -25,7 +25,7 @@ if(isset($_POST["employeeNumber"])){
     VALUES ('$level', '$employeeNumber','$display_name',
     '$password', '$email', '$employeeNumber', '$jobTitle', '$department', '$create_at')";
     if(mysqli_query($connect,$query)){
-    header("Location: http://localhost/dean/index.php");
+    header("Location: http://10.2.2.11/dean/index.php");
     }
     else{
         echo 'Thêm thành viên thất bại';
@@ -37,7 +37,7 @@ if(isset($_POST["employeeNumber"])){
 //  $str = md5($password);
 //  $hashed_password = password_hash($str, PASSWORD_DEFAULT);
 //  echo $hashed_password;
-//  $connuser = new mysqli('localhost', 'root', '', 'datxe');
+//  $connuser = new mysqli('10.2.2.11', 'root', '', 'datxe');
 
 //  $sql = "Select *from mrbs_users where username = $username";
 //  $result = $connuser->query($sql)->fetch_assoc();

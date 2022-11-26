@@ -3,7 +3,7 @@ session_start();
 session_destroy();
 if(isset($_SESSION["username"]))
 {
-    header("location:http://localhost/dean/index.php");
+    header("location:http://10.2.2.11/dean/index.php");
 }
 ?>
 

@@ -1,5 +1,5 @@
 <script src="js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function(){
     var maxField = 10; //Input fields increment limitation
     var addButton = $('.add_button'); //Add button selector
@@ -24,7 +24,7 @@ $(document).ready(function(){
         x--; //Decrement field counter
     });
 });
-</script>
+</script> -->
 <?php 
 $username = $_SESSION["username"];
 $display_name = $_SESSION["display_name"];
@@ -81,7 +81,7 @@ $email = $_SESSION["email"];
       <textarea class="form-control" aria-label="With textarea" name = "note"></textarea>
     </div>
     
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label>Nhân viên tham gia:</label>
       <div class="field_wrapper">
             <div>
@@ -89,7 +89,7 @@ $email = $_SESSION["email"];
             <a href="javascript:void(0);" class="add_button" title="Add field"><i class="fa fa-plus"></i></a>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <input type ="submit" class = "btn btn-block btn-info" value="KHỞI TẠO" />
   </form>

@@ -4,7 +4,7 @@ $id = $_GET["sid"];
 $sql = "SELECT * FROM item WHERE id='$id' LIMIT 1";
 $query = mysqli_query($con,$sql);
 $row = mysqli_fetch_assoc($query);
-
+$name = $row['name']
 ?>
 
 
@@ -56,13 +56,28 @@ $email = $_SESSION["email"];
     <div class="form-group">
       <label>Tên Đề Án:</label>
       <input type="text" name = "name" class="form-control" placeholder="Bạn cần nhập thông tin" required="" 
-      <?php echo 'value = "'.$row['name'].'"' ?> />
+      <?php echo 'value = "'.$row['name'].'"' ?> 
+      <?php 
+        if($level != 3){
+          if($username != $row['create_by'] || $row['status'] != "Khởi Tạo"){         
+            echo "disabled";
+          }
+        }         
+      ?>/>
     </div>
 
     <div class="form-group">
         <label>Loại đề án:</label>
         <br/>
-        <select class="custom-select" id="type" name="type" <?php echo 'value = "'.$row['type'].'"' ?>>
+        <select class="custom-select" id="type" name="type" <?php echo 'value = "'.$row['type'].'"' ?>
+        <?php 
+        if($level != 3){
+          if($username != $row['create_by'] || $row['status'] != "Khởi Tạo"){         
+            echo "disabled";
+          }
+        }         
+        ?>
+        >
             <option <?php if($row['type'] == 'Ý Tưởng') echo"selected"; ?> value="Ý Tưởng">Ý Tưởng</option>
             <option <?php if($row['type'] == 'Cải Tiến') echo"selected"; ?> value="Cải Tiến">Cải Tiến</option>
             <option <?php if($row['type'] == 'Sáng Kiến') echo"selected"; ?> value="Sáng Kiến">Sáng Kiến</option>
@@ -92,17 +107,41 @@ $email = $_SESSION["email"];
     
     <div class="form-group">
       <label>Cơ sở thực hiện:</label>
-      <textarea class="form-control" aria-label="With textarea" name = "base"><?php echo $row['base']; ?></textarea>
+      <textarea class="form-control" aria-label="With textarea" name = "base"
+      <?php 
+        if($level != 3){
+          if($username != $row['create_by'] || $row['status'] != "Khởi Tạo"){         
+            echo "disabled";
+          }
+        }         
+      ?>
+      ><?php echo $row['base']; ?></textarea>
     </div>
 
     <div class="form-group">
       <label>Vấn đề còn tồn tại khi chưa áp dụng ý tưởng/cải tiến/Sáng Kiến/đề tài:</label>
-      <textarea class="form-control" aria-label="With textarea" name = "issue"><?php echo $row['issue']; ?></textarea>
+      <textarea class="form-control" aria-label="With textarea" name = "issue"
+      
+      <?php 
+        if($level != 3){
+          if($username != $row['create_by'] || $row['status'] != "Khởi Tạo"){         
+            echo "disabled";
+          }
+        }         
+      ?>><?php echo $row['issue']; ?></textarea>
     </div>
 
     <div class="form-group">
       <label>Ghi chú:</label>
-      <textarea class="form-control" aria-label="With textarea" name = "note"><?php echo $row['note']; ?></textarea>
+      <textarea class="form-control" aria-label="With textarea" name = "note"
+      <?php 
+        if($level != 3){
+          if($username != $row['create_by'] || $row['status'] != "Khởi Tạo"){         
+            echo "disabled";
+          }
+        }         
+      ?>
+      ><?php echo $row['note']; ?></textarea>
     </div>
     <input type ="submit" class = "btn btn-block btn-info" value="CẬP NHẬP" 
     <?php 
@@ -125,7 +164,7 @@ $email = $_SESSION["email"];
     <div class="row">
       <div class="container">
       <div class="btnAdd">
-          <a href="user_add.php"  class="btn btn-success btn-sm"
+          <a href="project_user_add_form.php?sid=<?php echo $id?>"  class="btn btn-success btn-sm"
           <?php 
            if($level != 3){
             if($username != $row['create_by'] || $row['status'] != "Khởi Tạo"){         
@@ -135,180 +174,54 @@ $email = $_SESSION["email"];
           ?>
           >THÊM NHÂN VIÊN</a>
         </div>
-        <div class="row">
-          <div class="col-md-0"></div>
-          <div class="col-md-12">
-            <table id="example" class="table">
-              <thead>
-                <th>Id</th>
-                <th>Mã nhân viên</th>
-                <th>Tên hiển thị</th>
-                <th>Email</th>
-                <th>Chức vụ</th>
-                <th>Phòng ban</th>
-                <th>Options</th>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-          </div>
-          <div class="col-md-0"></div>
-        </div>
+        <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Mã nhân viên</th>
+        <th>Tên hiển thị</th>
+        <th>Email</th>
+        <th>Chức danh</th>
+        <th>Phòng ban</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>   
+    <?php
+      $sql1 = "SELECT users.id, users.employeeNumber, users.display_name, users.email,users.jobTitle, users.department 
+      FROM users INNER JOIN user_item ON users.employeeNumber = user_item.employeeNumber 
+      where user_item.item_name = '$name';";
+      $result1 = $con->query($sql1);
+  
+   
+      if ($result1->num_rows > 0) {
+        // Load dữ liệu lên website
+        while($r = mysqli_fetch_assoc($result1)) 
+        {
+          ?>
+          <tr>
+            <td><?php echo $r['id']; ?></td>
+            <td><?php echo $r['employeeNumber']; ?></td>
+            <td><?php echo $r['display_name']; ?></td>
+            <td><?php echo $r['email']; ?></td>
+            <td><?php echo $r['jobTitle']; ?></td>
+            <td><?php echo $r['department']; ?></td>
+            <td><a href="form/project_user_delete_handle.php?item_id=<?php echo $row['id']; ?>,<?php echo $r['employeeNumber']; ?>" class ="btn btn-danger" <?php 
+             if($level != 3){
+              if($username != $row['create_by'] || $row['status'] != "Khởi Tạo"){         
+                echo "hidden";
+              }
+            }         
+            ?>>Xóa</a></td>
+        <?php
+        }
+        } else {
+        echo "0 Có nhân viên tham gia";
+        }
+        $con->close();
+          ?>
+   </tbody>
+  </table>
       </div>
     </div>
   </div>
-  <script src="js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-  <!-- <script src="js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
-  <script type="text/javascript" src="js/dt-1.10.25datatables.min.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      var username = <?php echo json_encode($_SESSION["username"]) ?>;
-      var level = <?php echo json_encode($_SESSION["level"]) ?>;
-      var create_by = <?php echo json_encode($row['create_by']) ?>;
-      var status = <?php echo json_encode($row['status']) ?>;
-      if(level != 3){
-
-        if(username != create_by|| status != "Khởi Tạo"){
-        $('#example').DataTable({
-        "fnCreatedRow": function(nRow, aData, iDataIndex) {
-          $(nRow).attr('id', aData[0]);
-        },
-        "language": {
-            "sProcessing":   "Đang xử lý...",
-            "sLengthMenu":   "Xem _MENU_ mục",
-            "sZeroRecords":  "Không tìm thấy dòng nào phù hợp",
-            "sInfo":         "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-            "sInfoEmpty":    "Đang xem 0 đến 0 trong tổng số 0 mục",
-            "sInfoFiltered": "(được lọc từ _MAX_ mục)",
-            "sInfoPostFix":  "",
-            "sSearch":       "Tìm:",
-            "sUrl":          "",
-            "oPaginate": {
-                "sFirst":    "Đầu",
-                "sPrevious": "Trước",
-                "sNext":     "Tiếp",
-                "sLast":     "Cuối"
-            }
-        },
-        "processing": true, // tiền xử lý trước
-        "aLengthMenu": [[10, 20, 50], [10, 20, 50]], // danh sách số trang trên 1 lần hiển thị bảng
-        'serverSide': 'true',
-        'processing': 'true',
-        'paging': 'true',
-        'order': [],
-        'ajax': {
-          'url': 'project_user_fetch_data_employee.php',
-          'type': 'post',
-        },
-        "aoColumnDefs": [{
-            "bSortable": false,
-            "aTargets": [6]
-          },
-
-        ]
-      });
-      }else
-      
-      {
-        console.log(2);
-        $('#example').DataTable({
-        "fnCreatedRow": function(nRow, aData, iDataIndex) {
-          $(nRow).attr('id', aData[0]);
-        },
-        "language": {
-            "sProcessing":   "Đang xử lý...",
-            "sLengthMenu":   "Xem _MENU_ mục",
-            "sZeroRecords":  "Không tìm thấy dòng nào phù hợp",
-            "sInfo":         "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-            "sInfoEmpty":    "Đang xem 0 đến 0 trong tổng số 0 mục",
-            "sInfoFiltered": "(được lọc từ _MAX_ mục)",
-            "sInfoPostFix":  "",
-            "sSearch":       "Tìm:",
-            "sUrl":          "",
-            "oPaginate": {
-                "sFirst":    "Đầu",
-                "sPrevious": "Trước",
-                "sNext":     "Tiếp",
-                "sLast":     "Cuối"
-            }
-        },
-        "processing": true, // tiền xử lý trước
-        "aLengthMenu": [[10, 20, 50], [10, 20, 50]], // danh sách số trang trên 1 lần hiển thị bảng
-        'serverSide': 'true',
-        'processing': 'true',
-        'paging': 'true',
-        'order': [],
-        'ajax': {
-          'url': 'project_user_fetch_data_admin.php',
-          'type': 'post',
-        },
-        "aoColumnDefs": [{
-            "bSortable": false,
-            "aTargets": [6]
-          },
-
-        ]
-      });
-      }
-      }else
-      {
-        console.log(3);
-        $('#example').DataTable({
-        "fnCreatedRow": function(nRow, aData, iDataIndex) {
-          $(nRow).attr('id', aData[0]);
-        },
-        "language": {
-            "sProcessing":   "Đang xử lý...",
-            "sLengthMenu":   "Xem _MENU_ mục",
-            "sZeroRecords":  "Không tìm thấy dòng nào phù hợp",
-            "sInfo":         "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-            "sInfoEmpty":    "Đang xem 0 đến 0 trong tổng số 0 mục",
-            "sInfoFiltered": "(được lọc từ _MAX_ mục)",
-            "sInfoPostFix":  "",
-            "sSearch":       "Tìm:",
-            "sUrl":          "",
-            "oPaginate": {
-                "sFirst":    "Đầu",
-                "sPrevious": "Trước",
-                "sNext":     "Tiếp",
-                "sLast":     "Cuối"
-            }
-        },
-        "processing": true, // tiền xử lý trước
-        "aLengthMenu": [[10, 20, 50], [10, 20, 50]], // danh sách số trang trên 1 lần hiển thị bảng
-        'serverSide': 'true',
-        'processing': 'true',
-        'paging': 'true',
-        'order': [],
-        'ajax': {
-          'url': 'project_user_fetch_data_admin.php',
-          'type': 'post',
-        },
-        "aoColumnDefs": [{
-            "bSortable": false,
-            "aTargets": [6]
-          },
-
-        ]
-      });
-      }
-      // console.log(status);
-    });
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-<!-- 123 -->
-
-
-
-
-

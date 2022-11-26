@@ -1,10 +1,8 @@
 <?php include('connection.php');
-$sid = $_GET["sid"];
+
 $output= array();
-$sql = "SELECT users.id, users.username, users.display_name, users.email,users.jobTitle, users.department 
-FROM users INNER JOIN user_item ON users.employeeNumber = user_item.employeeNumber 
-where user_item.item_name = '$sid';";
-echo($sid);
+$sql = "SELECT * FROM users ";
+
 $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
 
@@ -19,30 +17,30 @@ $columns = array(
 
 if(isset($_POST['search']['value']))
 {
-	// $search_value = $_POST['search']['value'];
-	// $sql .= " WHERE username like '%".$search_value."%'";
-	// $sql .= " OR email like '%".$search_value."%'";
+	$search_value = $_POST['search']['value'];
+	$sql .= " WHERE username like '%".$search_value."%'";
+	$sql .= " OR email like '%".$search_value."%'";
 	// $sql .= " OR mobile like '%".$search_value."%'";
 	// $sql .= " OR city like '%".$search_value."%'";
 }
 
-// if(isset($_POST['order']))
-// {
-// 	$column_name = $_POST['order'][0]['column'];
-// 	$order = $_POST['order'][0]['dir'];
-// 	$sql .= " ORDER BY ".$columns[$column_name]." ".$order."";
-// }
-// else
-// {
-// 	$sql .= " ORDER BY id desc";
-// }
+if(isset($_POST['order']))
+{
+	$column_name = $_POST['order'][0]['column'];
+	$order = $_POST['order'][0]['dir'];
+	$sql .= " ORDER BY ".$columns[$column_name]." ".$order."";
+}
+else
+{
+	$sql .= " ORDER BY id desc";
+}
 
-// if($_POST['length'] != -1)
-// {
-// 	$start = $_POST['start'];
-// 	$length = $_POST['length'];
-// 	$sql .= " LIMIT  ".$start.", ".$length;
-// }	
+if($_POST['length'] != -1)
+{
+	$start = $_POST['start'];
+	$length = $_POST['length'];
+	$sql .= " LIMIT  ".$start.", ".$length;
+}	
 
 $query = mysqli_query($con,$sql);
 $count_rows = mysqli_num_rows($query);
@@ -56,7 +54,8 @@ while($row = mysqli_fetch_assoc($query))
     $sub_array[] = $row['email'];
 	$sub_array[] = $row['jobTitle'];
 	$sub_array[] = $row['department'];
-	$sub_array[] = '</a>  <a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-danger btn-sm deleteBtn" >Xóa</a>';
+	$sub_array[] = '<a href="javascript:void();" data-id="'
+	.$row['id'].'"  class="btn btn-info btn-sm editbtn" >Chọn</a>  <a href="javascript:void();" data-id="';
 	$data[] = $sub_array;
 }
 
