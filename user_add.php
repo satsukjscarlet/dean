@@ -11,8 +11,13 @@
       style="display: flex;"
        >
 
-
-      <?php require 'form\usersform.php';?>
+       <?php 
+      if(isset($_GET['sid'])){
+        require 'form\usersform_edit.php';
+      }else{
+        require 'form\usersform.php';
+      }   
+      ?>
       
       
       </div>  

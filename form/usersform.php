@@ -1,4 +1,4 @@
-
+<script src="js/jquery-3.6.0.min.js"></script>
 <div class="container">
   <h2>Tạo tài khoản</h2>
   <form action = "form/adduser_handle.php" method = "post">
@@ -43,23 +43,23 @@
       <label>Phòng Ban:</label>
       <br/>
       <select class="custom-select" name="department" value="NSCL">
-        <option selected value="NSCL">NSCL</option>
-        <option value="CNCL">CNCL</option>
-        <option value="DVKH">DVKH</option>
-        <option value="KTNB">KTNB</option>
-        <option value="MKT">MKT</option>
-        <option value="NCPT">NCPT</option>
-        <option value="NMCK">NMCK</option>
-        <option value="NMPE">NMPE</option>
-        <option value="NMPT1">NMPT1</option>
-        <option value="NMPT2">NMPT2</option>
-        <option value="NMPVC">NMPVC</option>
-        <option value="PTTT1">PTTT1</option>
-        <option value="PTTT2">PTTT2</option>
-        <option value="QLDA">QLDA</option>
-        <option value="TCKT">TCKT</option>
-        <option value="VT">VT</option>
-        <option value="VPCT">VPCT</option>
+        <option selected value="NSCL">Nhân sự chiến lược</option>
+        <option value="CNCL">Công nghệ chất lượng</option>
+        <option value="DVKH">Dịch vụ khách hàng</option>
+        <option value="KTNB">Kế toán nội bộ</option>
+        <option value="MKT">Marketing</option>
+        <option value="NCPT">Nghiên cứu phát triển</option>
+        <option value="NMCK">Nhà máy cơ khí</option>
+        <option value="NMPE">Nhà máy PE</option>
+        <option value="NMPT1">Nhà máy phụ tùng 1</option>
+        <option value="NMPT2">Nhà máy phụ tùng 2</option>
+        <option value="NMPVC">Nhà máy PVC</option>
+        <option value="PTTT1">Phát triển thị trường 1</option>
+        <option value="PTTT2">Phát triển thị trường 2</option>
+        <option value="QLDA">Quản lý dự án</option>
+        <option value="TCKT">Tài chính kế toán</option>
+        <option value="VT">Vật tư</option>
+        <option value="VPCT">Văn phòng công ty</option>
     </select>
     </div>
     <div class="form-group">

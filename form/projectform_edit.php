@@ -65,11 +65,11 @@ $email = $_SESSION["email"];
         }         
       ?>/>
     </div>
-
+<!-- type -->
     <div class="form-group">
-        <label>Loại đề án:</label>
+        <label>Phòng ban xác nhận, hoặc từ chối:</label>
         <br/>
-        <select class="custom-select" id="type" name="type" <?php echo 'value = "'.$row['type'].'"' ?>
+        <select class="custom-select" id="type" name="type" <?php echo 'value = "'.$row['deparment_approve'].'"' ?>
         <?php 
         if($level != 3){
           if($username != $row['create_by'] || $row['status'] != "Khởi Tạo"){         
@@ -78,15 +78,14 @@ $email = $_SESSION["email"];
         }         
         ?>
         >
-            <option <?php if($row['type'] == 'Ý Tưởng') echo"selected"; ?> value="Ý Tưởng">Ý Tưởng</option>
-            <option <?php if($row['type'] == 'Cải Tiến') echo"selected"; ?> value="Cải Tiến">Cải Tiến</option>
-            <option <?php if($row['type'] == 'Sáng Kiến') echo"selected"; ?> value="Sáng Kiến">Sáng Kiến</option>
-            <option <?php if($row['type'] == 'Đề Tài') echo"selected"; ?> value="Đề Tài">Đề Tài</option>
+          <option <?php if($row['type'] == '0') echo"selected"; ?> value="0">Chờ xác nhận</option>
+            <option <?php if($row['type'] == '1') echo"selected"; ?> value="1">Xác nhận</option>
+            <option <?php if($row['type'] == '2') echo"selected"; ?> value="2">Từ chối</option>
         </select>
     </div>
-
+<!-- type -->
     <div class="form-group">
-        <label>Trạng thái:</label>
+        <label>Lãnh đạo phê duyệt:</label>
         <br/>
         <select class="custom-select <?php 
         if($row['status'] == 'Chấp Thuận') 
@@ -95,8 +94,7 @@ $email = $_SESSION["email"];
         }elseif($row['status'] == 'Từ Chối') 
         { 
           echo "bg-danger text-white";
-        }
-        
+        } 
         ?>            
         " name="status" <?php if($level == 1) {echo "disabled";} else{ echo 'value = "'.$row['status'].'"';} ?>>
             <option <?php if($row['status'] == 'Khởi Tạo') echo"selected"; ?>  value="Khởi Tạo">Khởi Tạo</option>
@@ -110,7 +108,7 @@ $email = $_SESSION["email"];
       <textarea class="form-control" aria-label="With textarea" name = "base"
       <?php 
         if($level != 3){
-          if($username != $row['create_by'] || $row['status'] != "Khởi Tạo"){         
+          if($username != $row['create_by'] || $row['status'] != "Khởi Tạo"){  
             echo "disabled";
           }
         }         
@@ -130,6 +128,27 @@ $email = $_SESSION["email"];
         }         
       ?>><?php echo $row['issue']; ?></textarea>
     </div>
+    <!-- giatien -->
+    <div class="form-group">
+        <label>Chi Thưởng:</label>
+        <br/>
+        <select class="custom-select" id="reward" name="reward" <?php echo 'value = "'.$row['reward'].'"' ?>
+        <?php 
+        if($level != 3){
+            echo "disabled";
+          }         
+        ?>
+        >
+            <option <?php if($row['reward'] == '') echo"selected"; ?> value="">0 VND</option>
+            <option <?php if($row['reward'] == '100000') echo"selected"; ?> value="100000 ">100.000 VND</option>
+            <option <?php if($row['reward'] == '120000') echo"selected"; ?> value="120000">120.000 VND</option>
+            <option <?php if($row['reward'] == '150000') echo"selected"; ?> value="150000">150.000 VND</option>
+            <option <?php if($row['reward'] == '180000') echo"selected"; ?> value="180000">180.000 VND</option>
+            <option <?php if($row['reward'] == '200000') echo"selected"; ?> value="200000">200.000 VND</option>
+        </select>
+    </div>
+    <!-- giatien -->
+
 
     <div class="form-group">
       <label>Ghi chú:</label>

@@ -2,7 +2,7 @@
 session_start();
 if(!isset($_SESSION["username"]))
 {
-    header("location: http://10.2.2.11/dean/login.php");  
+    header("location: http://localhost/dean/login.php");  
 }
 $id_item = $_GET["sid"];
 ?>

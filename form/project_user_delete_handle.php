@@ -12,7 +12,8 @@ $name = $row['name'];
 
 $sql2 = "DELETE FROM user_item WHERE item_name='$name' And employeeNumber = '$employeeNumber' LIMIT 1";
 if(mysqli_query($con,$sql2)){ 
-    header("Location: http://10.2.2.11/dean/index.php");
+    $url = "Location: http://localhost/dean/project_add.php?sid=".$item_id;
+    header($url);
     }
     else{
         echo 'Xóa nhân viên thất bại';

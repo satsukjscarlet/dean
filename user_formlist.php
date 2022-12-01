@@ -101,6 +101,14 @@
         ]
       });
     });
+    $('#example').on('click', '.editbtn ', function(event) {
+      var table = $('#example').DataTable();
+      var trid = $(this).closest('tr').attr('id');
+      // console.log(selectedRow);
+      var id = $(this).data('id');
+      var username = <?php echo json_encode($_SESSION["username"]) ?>;
+      window.location = "user_add.php?sid="+id;
+    });
     // $(document).on('submit', '#addUser', function(e) {
     //   e.preventDefault();
     //   var city = $('#addCityField').val();
@@ -201,38 +209,35 @@
     //   })
     // });
 
-    // $(document).on('click', '.deleteBtn', function(event) {
-    //   var table = $('#example').DataTable();
-    //   event.preventDefault();
-    //   var id = $(this).data('id');
-    //   if (confirm("Are you sure want to delete this User ? ")) {
-    //     $.ajax({
-    //       url: "delete_user.php",
-    //       data: {
-    //         id: id
-    //       },
-    //       type: "post",
-    //       success: function(data) {
-    //         var json = JSON.parse(data);
-    //         status = json.status;
-    //         if (status == 'success') {
-    //           //table.fnDeleteRow( table.$('#' + id)[0] );
-    //           //$("#example tbody").find(id).remove();
-    //           //table.row($(this).closest("tr")) .remove();
-    //           $("#" + id).closest('tr').remove();
-    //         } else {
-    //           alert('Failed');
-    //           return;
-    //         }
-    //       }
-    //     });
-    //   } else {
-    //     return null;
-    //   }
-
-
-
-    // })
+    $(document).on('click', '.deleteBtn', function(event) {
+      var table = $('#example').DataTable();
+      event.preventDefault();
+      var id = $(this).data('id');
+      if (confirm("Xác nhận xóa tài khoản ? ")) {
+        $.ajax({
+          url: "delete_user.php",
+          data: {
+            id: id
+          },
+          type: "post",
+          success: function(data) {
+            var json = JSON.parse(data);
+            status = json.status;
+            if (status == 'success') {
+              //table.fnDeleteRow( table.$('#' + id)[0] );
+              //$("#example tbody").find(id).remove();
+              //table.row($(this).closest("tr")) .remove();
+              $("#" + id).closest('tr').remove();
+            } else {
+              alert('Failed');
+              return;
+            }
+          }
+        });
+      } else {
+        return null;
+      }
+    })
   </script>
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

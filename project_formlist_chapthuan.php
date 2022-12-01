@@ -2,7 +2,7 @@
 
 
   <div class="container-fluid">
-    <h1 class="text-center">DANH SÁCH ĐỀ ÁN</h1>
+    <h1 class="text-center">DANH SÁCH ĐỀ ÁN ĐƯỢC CHẤP THUẬN</h1>
     <div class="row">
       <div class="container">
       <div class="btnAdd">
@@ -15,12 +15,13 @@
               <thead>
                 <th>Id</th>
                 <th>Người tạo</th>
-                <th>Loại</th>
                 <th>Tên đề án</th>
+                <th>Tên người tạo</th>
+                <th>Phòng ban</th>
+                <th>Khối</th>
                 <th>Trạng thái</th>
-                <th>Ghi chú</th>
                 <th>Thời gian tạo</th>
-                <th>Options</th>
+                <th>Thông tin</th>
               </thead>
               <tbody>
               </tbody>
@@ -70,7 +71,7 @@
         },
         "aoColumnDefs": [{
             "bSortable": false,
-            "aTargets": [7]
+            "aTargets": [8]
           },
         ]
       });

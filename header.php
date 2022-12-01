@@ -2,10 +2,10 @@
 session_start();
 if(!isset($_SESSION["username"]))
 {
-    header("location: http://10.2.2.11/dean/login.php");  
+    header("location: http://localhost/dean/login.php");  
 }
 $display_name = $_SESSION["display_name"];
-$leve = $_SESSION["level"];
+$level = $_SESSION["level"];
 ?>
 
 <!DOCTYPE html>
@@ -16,9 +16,9 @@ $leve = $_SESSION["level"];
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="images/favicon.ico" type="image/ico" />
+	  <!-- <link rel="icon" href="images/favicon.ico" type="image/ico" /> -->
 
-    <title>Quản lý đề án </title>
+    <title>QUẢN LÝ ĐỀ ÁN</title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -41,6 +41,7 @@ $leve = $_SESSION["level"];
     <link rel="stylesheet" type="text/css" href="css/datatables-1.10.25.min.css" />
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"> -->
   <link rel="stylesheet" type="text/css" href="build/css/jquery.databases.min.css"/>
+  <script src="js/jquery-3.6.0.min.js"></script>
   </head>
 
   <body class="nav-md">
@@ -50,17 +51,18 @@ $leve = $_SESSION["level"];
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
               <a href="index.php" class="site_title">
-              <!-- <img class="img-fluid" src="https://dichvuvpct.nhuatienphong.vn/image/logo2.png" alt="logo">  -->
-                <span>Quản lý đề án</span></a>
+                <span>QUẢN LÝ ĐỀ ÁN</span>
+                <!-- <img class="img-fluid" src="https://dichvuvpct.nhuatienphong.vn/image/logo2.png" alt="logo"> -->
+              </a>
             </div>
 
             <div class="clearfix"></div>          
             <br />
-
+            <img class="img-fluid  ounded mx-auto d-block" src="https://dichvuvpct.nhuatienphong.vn/image/logo2.png" alt="logo" width="200" height="200" > 
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-              <img class="img-fluid" src="https://dichvuvpct.nhuatienphong.vn/image/logo2.png" alt="logo"> 
+             
                 <ul class="nav side-menu">
                 <li><a href="project_add.php"><i class="fa fa-pencil-square-o"></i> TẠO MỚI ĐỀ ÁN </a>
                   <li><a><i class="fa fa-home"></i> DANH SÁCH ĐỀ ÁN <span class="fa fa-chevron-down"></span></a>
@@ -73,7 +75,7 @@ $leve = $_SESSION["level"];
                   </li>
                  
                   <li <?php 
-                  if($leve == 1){
+                  if($level == 1){
                     echo "hidden";
                   } 
                   ?>>
@@ -122,6 +124,7 @@ $leve = $_SESSION["level"];
               <nav class="nav navbar-nav">
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
+                <img class="img-fluid" src="https://dichvuvpct.nhuatienphong.vn/image/logo2.png" alt="logo" width="50" height="50"  />
                   <a><?php echo $display_name; ?></a>
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
                   </a>
