@@ -1,6 +1,4 @@
-<?php 
-require 'header.php';
-?>
+<?php require 'header.php';?>
 
 
 
@@ -13,12 +11,11 @@ require 'header.php';
       style="display: flex;"
        >
 
-
-      <?php 
+       <?php 
       if(isset($_GET['sid'])){
-        require 'form\projectform_edit.php';
+        require 'user\user_edit_form.php';
       }else{
-        require 'form\projectform.php';
+        require 'user\user_add_form.php';
       }   
       ?>
       

@@ -24,7 +24,7 @@
     <div class="row">
       <div class="container">
       <div class="btnAdd">
-          <a href="user_add.php"  class="btn btn-success btn-sm">THÊM MỚI TÀI KHOẢN</a>
+          <a href="user_add_screen.php"  class="btn btn-success btn-sm">THÊM MỚI TÀI KHOẢN</a>
         </div>
         <div class="row">
           <div class="col-md-0"></div>
@@ -37,7 +37,7 @@
                 <th>Email</th>
                 <th>Chức vụ</th>
                 <th>Phòng ban</th>
-                <th>Options</th>
+                <th>Tùy chọn</th>
                 <!-- <th>City</th>
                 <th>Options</th> -->
               </thead>
@@ -90,7 +90,7 @@
         'paging': 'true',
         'order': [],
         'ajax': {
-          'url': 'user_fetch_data.php',
+          'url': 'user/user_fetch_data.php',
           'type': 'post',
         },
         "aoColumnDefs": [{
@@ -107,7 +107,7 @@
       // console.log(selectedRow);
       var id = $(this).data('id');
       var username = <?php echo json_encode($_SESSION["username"]) ?>;
-      window.location = "user_add.php?sid="+id;
+      window.location = "user_add_screen.php?sid="+id;
     });
     // $(document).on('submit', '#addUser', function(e) {
     //   e.preventDefault();

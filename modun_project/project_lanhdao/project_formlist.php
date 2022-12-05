@@ -1,4 +1,8 @@
-<?php require('connection.php'); ?>
+<?php $con  = mysqli_connect('localhost','root','','dean');
+if(mysqli_connect_errno())
+{
+    echo 'Database Connection Error';
+} ?>
 
 
   <div class="container-fluid">
@@ -34,9 +38,9 @@
   </div>
   <!-- Optional JavaScript; choose one of the two! -->
   <!-- Option 1: Bootstrap Bundle with Popper -->
-  <script src="js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+  <script src="../../js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
   <!-- <script src="js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
-  <script type="text/javascript" src="js/dt-1.10.25datatables.min.js"></script>
+  <script type="text/javascript" src="../../js/dt-1.10.25datatables.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
       $('#example').DataTable({

@@ -13,7 +13,7 @@ $row = mysqli_fetch_assoc($query);
 
 <div class="container">
   <h2>Tạo tài khoản</h2>
-  <form action = "form/user_edit_handle.php" method = "post">
+  <form action = "user/user_edit.php" method = "post">
   <input type="hidden" name="id" id="id" <?php echo 'value = "'.$row['id'].'"' ?>>
     <div class="form-group">
       <label>Tên Hiển Thị:</label>

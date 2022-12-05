@@ -38,6 +38,7 @@
   <!-- <script src="js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
   <script type="text/javascript" src="js/dt-1.10.25datatables.min.js"></script>
   <script type="text/javascript">
+    
     $(document).ready(function() {
       $('#example').DataTable({
         "fnCreatedRow": function(nRow, aData, iDataIndex) {

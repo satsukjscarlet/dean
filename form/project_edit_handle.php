@@ -20,7 +20,7 @@ if(isset($_POST["name"])){
     $row3 = mysqli_fetch_assoc($query3);
     $create_by_old = $row3['create_by'];
     $name_old = $row3['name'];
-    $type_old = $row3['type'];
+    // $type_old = $row3['type'];
     $base_old = $row3['base'];
     $issue_old = $row3['issue'];
     $note_old = $row3['note'];
@@ -33,7 +33,7 @@ if(isset($_POST["name"])){
     
 
     $create_by = $_POST["create_by"];
-    $type = $_POST["type"];
+    // $type = $_POST["type"];
     $name = mysqli_real_escape_string($con, $_POST['name']);
     $base = mysqli_real_escape_string($con, $_POST['base']);
     $issue = mysqli_real_escape_string($con, $_POST['issue']);
@@ -49,11 +49,11 @@ if(isset($_POST["name"])){
     if(isset($_POST["reward"]) && $_POST["reward"] != "")
     {
         $reward = $_POST["reward"];
-        $query = "UPDATE item SET create_by='$create_by',type='$type',name='$name',reward = '$reward',base='$base',issue='$issue',status='$status',
+        $query = "UPDATE item SET create_by='$create_by',name='$name',reward = '$reward',base='$base',issue='$issue',status='$status',
         note='$note', update_at='$update_at' WHERE id = '$id'";
     }else
     {
-        $query = "UPDATE item SET create_by='$create_by',type='$type',name='$name',base='$base',issue='$issue',status='$status',
+        $query = "UPDATE item SET create_by='$create_by',name='$name',base='$base',issue='$issue',status='$status',
         note='$note', update_at='$update_at' WHERE id = '$id'";
     }
   
@@ -61,15 +61,15 @@ if(isset($_POST["name"])){
         
         $noidungthu = file_get_contents("mail_temp_editproject.txt");
         $noidungthu = str_replace(
-            [ '{update_name}','{create_by}', '{tieu_de}','{type}','{base}','{issue}','{note}','{thoigiankt}'
-            ,'{create_by_old}','{tieu_de_old}','{type_old}','{base_old}','{issue_old}','{note_old}', '{thoigiankt_old}'
+            [ '{update_name}','{create_by}', '{tieu_de}','{base}','{issue}','{note}','{thoigiankt}'
+            ,'{create_by_old}','{tieu_de_old}','{base_old}','{issue_old}','{note_old}', '{thoigiankt_old}'
             ],
-            [ "$update_name", "$create_by", "$name", "$type", 
+            [ "$update_name", "$create_by", "$name", 
             "$base",
             "$issue",
             "$note",
             "$update_at",
-            "$create_by_old", "$name_old", "$type_old", 
+            "$create_by_old", "$name_old", 
             "$base_old",
             "$issue_old",
             "$note_old",                 

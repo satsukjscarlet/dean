@@ -1,4 +1,6 @@
-<?php require 'header.php';?>
+<?php 
+require 'header.php';
+?>
 
 
 
@@ -12,7 +14,13 @@
        >
 
 
-      <?php require 'user/user_form_list.php';?>
+      <?php 
+      if(isset($_GET['sid'])){
+        require 'form\projectform_edit.php';
+      }else{
+        require 'modun_project/project/project_add_form.php';
+      }   
+      ?>
       
       
       </div>  

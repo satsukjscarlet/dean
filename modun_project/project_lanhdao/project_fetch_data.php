@@ -1,7 +1,11 @@
-<?php include('connection.php');
+<?php $con  = mysqli_connect('localhost','root','','dean');
+if(mysqli_connect_errno())
+{
+    echo 'Database Connection Error';
+}
 session_start();
 $output= array();
-$sql = "SELECT * FROM item ";
+$sql = "SELECT * FROM item where department_approve = 1";
 
 $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
@@ -20,11 +24,12 @@ $columns = array(
 if(isset($_POST['search']['value']))
 {
 	$search_value = $_POST['search']['value'];
-	$sql .= " WHERE create_by like '%".$search_value."%'";
-	$sql .= " OR type like '%".$search_value."%'";
-	$sql .= " OR name like '%".$search_value."%'";
-	$sql .= " OR status like '%".$search_value."%'";
-	$sql .= " OR create_at like '%".$search_value."%'";
+	$sql .= " AND create_by like '%".$search_value."%'";
+	$sql .= " OR (name like '%".$search_value."%' AND status = 'Chấp Thuận')";
+	$sql .= " OR (display_name like '%".$search_value."%' AND status = 'Chấp Thuận')";
+	$sql .= " OR (department like '%".$search_value."%' AND status = 'Chấp Thuận')";
+	$sql .= " OR (status like '%".$search_value."%' AND status = 'Chấp Thuận')";
+	$sql .= " OR (create_at like '%".$search_value."%' AND status = 'Chấp Thuận')";
 }
 
 if(isset($_POST['order']))

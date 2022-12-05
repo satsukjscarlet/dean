@@ -1,27 +1,26 @@
-<?php include('connection.php');
+<?php include('../connection.php');
 
 $output= array();
-$sql = "SELECT * FROM users ";
+$sql = "SELECT * FROM category ";
 
 $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
 
 $columns = array(
 	0 => 'id',
-	1 => 'username',
-	2 => 'display_name',
-	3 => 'email',
-	4 => 'jobTitle',
-    5 => 'department',
+	1 => 'name',
+	2 => 'note',
+	3 => 'create_by',
+	4 => 'create_at',
 );
 
 if(isset($_POST['search']['value']))
 {
 	$search_value = $_POST['search']['value'];
-	$sql .= " WHERE username like '%".$search_value."%'";
-	$sql .= " OR email like '%".$search_value."%'";
-	// $sql .= " OR mobile like '%".$search_value."%'";
-	// $sql .= " OR city like '%".$search_value."%'";
+	$sql .= " WHERE name like '%".$search_value."%'";
+	$sql .= " OR note like '%".$search_value."%'";
+	$sql .= " OR create_by like '%".$search_value."%'";
+	$sql .= " OR create_at like '%".$search_value."%'";
 }
 
 if(isset($_POST['order']))
@@ -49,14 +48,13 @@ while($row = mysqli_fetch_assoc($query))
 {
 	$sub_array = array();
 	$sub_array[] = $row['id'];
-	$sub_array[] = $row['username'];
-	$sub_array[] = $row['display_name'];
-    $sub_array[] = $row['email'];
-	$sub_array[] = $row['jobTitle'];
-	$sub_array[] = $row['department'];
-	$sub_array[] = '<a href="javascript:void();" data-id="'
-	.$row['id'].'"  class="btn btn-info btn-sm editbtn" >Cập nhập</a>  <a href="javascript:void();" data-id="'
-	.$row['id'].'"  class="btn btn-danger btn-sm deleteBtn" >Xóa</a>';
+	$sub_array[] = $row['name'];
+	$sub_array[] = $row['note'];
+    $sub_array[] = $row['create_by'];
+	$sub_array[] = $row['create_at'];
+	$sub_array[] = 
+	'<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-info btn-sm editbtn" >Cập nhập</a> 
+	 <a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-danger btn-sm deleteBtn" >Xóa</a>';
 	$data[] = $sub_array;
 }
 

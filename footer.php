@@ -1,7 +1,7 @@
  <!-- footer content -->
  <footer>
           <div class="pull-right">
-          <a href="https://nhuatienphong.vn/">CÔNG TY CỔ PHẦN NHỰA THIẾU NIÊN TIỀN PHONG</a>
+          <!-- <a href="https://nhuatienphong.vn/">CÔNG TY CỔ PHẦN NHỰA THIẾU NIÊN TIỀN PHONG</a> -->
           </div>
           <div class="clearfix"></div>
         </footer>

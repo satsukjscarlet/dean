@@ -26,6 +26,7 @@ $(document).ready(function(){
 });
 </script> -->
 <?php 
+require('connection.php');
 $username = $_SESSION["username"];
 $display_name = $_SESSION["display_name"];
 $leve = $_SESSION["level"];
@@ -35,28 +36,34 @@ $email = $_SESSION["email"];
   <h2>TẠO ĐỀ ÁN, Ý TƯỞNG</h2>
   <form action = "form/addproject_handle.php" method = "post">
 
-    <!-- <div class="form-group">
-      <label>Được tạo bởi:</label>
-      <input type="text" name = "create_by" class="form-control" placeholder="Username" <?php echo 'value = "'.$username.'"' ?> disabled/>
-    </div> -->
-
     <div class="form-group">
       <label>Tên Đề Án:</label>
       <input type="text" name = "name" class="form-control" placeholder="Bạn cần nhập thông tin" required="" />
     </div>
 
     <div class="form-group">
-        <label>Loại đề án:</label>
+        <label>Lĩnh Vực:</label>
         <br/>
-        <select class="custom-select" id="type" name="type" value = 'Ý Tưởng'>
-        <option selected value="Ý Tưởng">Ý Tưởng</option>
-            <!-- <option value="Cải Tiến">Cải Tiến</option>
-            <option value="Sáng Kiến">Sáng Kiến</option>
-            <option value="Đề Tài">Đề Tài</option> -->
+        <select class="custom-select" name="status">
+            <!-- <option value = "">Chọn lĩnh vực</option> -->
+            <?php
+            $sql = "select *from category";
+            $result = mysqli_query($con, $sql);
+            if (mysqli_num_rows($result) > 0) 
+            {
+              while($row = mysqli_fetch_array($result)){
+                ?>
+
+              <option value="<?php echo $row["id"] ?>"><?php echo $row["name"] ?></option>
+
+                <?php
+              }
+            }
+            ?>
         </select>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label>Trạng thái:</label>
         <br/>
         <select class="custom-select" name="status" value = 'Khởi Tạo' disabled>
@@ -64,21 +71,16 @@ $email = $_SESSION["email"];
             <option value="Chấp Thuận">Chấp Thuận</option>
             <option value="Từ Chối">Từ Chối</option>
         </select>
-    </div>
+    </div> -->
     
     <div class="form-group">
-      <label>Cơ sở thực hiện:</label>
+      <label>Cơ sở thực trạng:</label>
       <textarea class="form-control" aria-label="With textarea" name = "base"></textarea>
     </div>
 
     <div class="form-group">
-      <label>Vấn đề còn tồn tại khi chưa áp dụng ý tưởng/cải tiến/Sáng Kiến/đề tài:</label>
+      <label>Ý tưởng, đề xuất:</label>
       <textarea class="form-control" aria-label="With textarea" name = "issue"></textarea>
-    </div>
-
-    <div class="form-group">
-      <label>Ghi chú:</label>
-      <textarea class="form-control" aria-label="With textarea" name = "note"></textarea>
     </div>
     
     <!-- <div class="form-group">

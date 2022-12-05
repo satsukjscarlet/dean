@@ -1,4 +1,4 @@
-<?php require 'header.php';?>
+<?php require '../../header.php';?>
 
 
 
@@ -11,13 +11,8 @@
       style="display: flex;"
        >
 
-       <?php 
-      if(isset($_GET['sid'])){
-        require 'form\usersform_edit.php';
-      }else{
-        require 'form\usersform.php';
-      }   
-      ?>
+
+      <?php require 'project_formlist.php';?>
       
       
       </div>  
@@ -26,5 +21,5 @@
 
 
 
-<?php require 'footer.php';?>
+<?php require '../../footer.php';?>
        

@@ -27,7 +27,8 @@ if(isset($_SESSION["username"]))
     <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- Animate.css -->
     <link href="vendors/animate.css/animate.min.css" rel="stylesheet">
-
+    
+    <H1 class="text-center">CÔNG TY CỔ PHẦN NHỰA THIẾU NIÊN TIỀN PHONG</H1>
     <!-- Custom Theme Style -->
     <link href="build/css/custom.min.css" rel="stylesheet">
   </head>
@@ -37,13 +38,14 @@ if(isset($_SESSION["username"]))
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
+         
             <form action = "form/login_handle.php" method = "post">
               <h1>ĐĂNG NHẬP</h1>
               <div>
-                <input type="text" name = "username" class="form-control" placeholder="Username" required="" />
+                <input type="text" name = "username" class="form-control" placeholder="Tài Khoản" required="" />
               </div>
               <div>
-                <input type="password" name = "password" class="form-control" placeholder="Password" required="" />
+                <input type="password" name = "password" class="form-control" placeholder="Mật Khẩu" required="" />
               </div>
               <div style ="padding-right: 180px;">
                 <input type ="submit" class = "btn btn-block btn-info" value="Đăng nhập" />
@@ -58,7 +60,7 @@ if(isset($_SESSION["username"]))
                   <a href="#signup" class="to_register"> Tạo tài khoản </a>
                 </p> -->              
                   <h1> HỆ THỐNG QUẢN LÝ ĐỀ ÁN</h1>
-                  <p>CÔNG TY CỔ PHẦN NHỰA THIẾU NIÊN TIỀN PHONG</p>
+                 
                 </div>
               </div>
             </form>

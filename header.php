@@ -64,10 +64,11 @@ $level = $_SESSION["level"];
               <div class="menu_section">
              
                 <ul class="nav side-menu">
-                <li><a href="project_add.php"><i class="fa fa-pencil-square-o"></i> TẠO MỚI ĐỀ ÁN </a>
+                <li><a href="project_add_screen.php"><i class="fa fa-pencil-square-o"></i> TẠO MỚI ĐỀ ÁN </a>
                   <li><a><i class="fa fa-home"></i> DANH SÁCH ĐỀ ÁN <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="project_list.php">Danh sách đề án</a></li>
+                      <li><a href="project_list.php">Đề án được xác nhận</a></li>
                       <li><a href="project_list_chapthuan.php">Đề án đã được duyệt</a></li>
                       <li><a href="project_list_khoitao.php">Đề án đang chờ duyệt</a></li>
                       <li><a href="project_list_tuchoi.php">Đề án không được duyệt</a></li>

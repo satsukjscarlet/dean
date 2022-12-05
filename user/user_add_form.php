@@ -1,7 +1,7 @@
 <script src="js/jquery-3.6.0.min.js"></script>
 <div class="container">
   <h2>Tạo tài khoản</h2>
-  <form action = "form/adduser_handle.php" method = "post">
+  <form action = "user/user_add.php" method = "post">
     <div class="form-group">
       <label>Tên Hiển Thị:</label>
       <input type="text" name = "display_name" class="form-control" placeholder="Bạn cần nhập thông tin" required="" />

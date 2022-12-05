@@ -27,11 +27,6 @@
 <td>{tieu_de_old}</td>
 </tr>
 <tr>
-<td>Loại đề án: </td>
-<td>{type}</td>
-<td>{type_old}</td>
-</tr>
-<tr>
 <td>Cơ sở thực hiện: </td>
 <td>{base}</td>
 <td>{base_old}</td>

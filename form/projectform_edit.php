@@ -8,7 +8,6 @@ $name = $row['name']
 ?>
 
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -65,25 +64,26 @@ $email = $_SESSION["email"];
         }         
       ?>/>
     </div>
-<!-- type -->
+
+<!-- department_approve -->
     <div class="form-group">
         <label>Phòng ban xác nhận, hoặc từ chối:</label>
         <br/>
-        <select class="custom-select" id="type" name="type" <?php echo 'value = "'.$row['deparment_approve'].'"' ?>
+        <select class="custom-select" id="type" name="type" 
         <?php 
-        if($level != 3){
-          if($username != $row['create_by'] || $row['status'] != "Khởi Tạo"){         
-            echo "disabled";
-          }
-        }         
+        if($level != 3)
+          {         
+            echo " disabled";
+          }    
         ?>
+         <?php echo 'value = "'.$row['department_approve'].'" ' ?>      
         >
-          <option <?php if($row['type'] == '0') echo"selected"; ?> value="0">Chờ xác nhận</option>
-            <option <?php if($row['type'] == '1') echo"selected"; ?> value="1">Xác nhận</option>
-            <option <?php if($row['type'] == '2') echo"selected"; ?> value="2">Từ chối</option>
+          <option <?php if($row['department_approve'] == '0') echo"selected"; ?> value="0">Chờ xác nhận</option>
+            <option <?php if($row['department_approve'] == '1') echo"selected"; ?> value="1">Xác nhận</option>
+            <option <?php if($row['department_approve'] == '2') echo"selected"; ?> value="2">Từ chối</option>
         </select>
     </div>
-<!-- type -->
+<!-- department_approve -->
     <div class="form-group">
         <label>Lãnh đạo phê duyệt:</label>
         <br/>
@@ -96,7 +96,7 @@ $email = $_SESSION["email"];
           echo "bg-danger text-white";
         } 
         ?>            
-        " name="status" <?php if($level == 1) {echo "disabled";} else{ echo 'value = "'.$row['status'].'"';} ?>>
+        " name="status" <?php if($level != 3) {echo "disabled";} else{ echo 'value = "'.$row['status'].'"';} ?>>
             <option <?php if($row['status'] == 'Khởi Tạo') echo"selected"; ?>  value="Khởi Tạo">Khởi Tạo</option>
             <option <?php if($row['status'] == 'Chấp Thuận') echo"selected"; ?> value="Chấp Thuận">Chấp Thuận</option>
             <option <?php if($row['status'] == 'Từ Chối') echo"selected"; ?> value="Từ Chối">Từ Chối</option>
@@ -133,11 +133,7 @@ $email = $_SESSION["email"];
         <label>Chi Thưởng:</label>
         <br/>
         <select class="custom-select" id="reward" name="reward" <?php echo 'value = "'.$row['reward'].'"' ?>
-        <?php 
-        if($level != 3){
-            echo "disabled";
-          }         
-        ?>
+        disabled
         >
             <option <?php if($row['reward'] == '') echo"selected"; ?> value="">0 VND</option>
             <option <?php if($row['reward'] == '100000') echo"selected"; ?> value="100000 ">100.000 VND</option>
