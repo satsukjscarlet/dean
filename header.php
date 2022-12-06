@@ -88,7 +88,20 @@ $level = $_SESSION["level"];
                       <!-- <li><a href="general_elements.html">Tài khoản</a></li> -->
                       <li><a href="#">Đổi mật khẩu</a></li>
                     </ul>
-                 
+                  </li>
+
+                  <li
+                  <?php 
+                  if($level == 1){
+                    echo "hidden";
+                  } 
+                  ?>
+                  ><a><i class="fa fa-plus"></i> DANH MỤC <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="category_list.php">Lĩnh vực</a></li>
+                    </ul>
+                  </li>
+
                 </ul>
               </div>
             </div>

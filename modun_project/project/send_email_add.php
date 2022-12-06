@@ -1,8 +1,8 @@
 <?php
 function GuiMail($email_receive,$name_reveive, $noidungthu, $emailcc){   
-    require "../PHPMailer-master/src/PHPMailer.php"; 
-    require "../PHPMailer-master/src/SMTP.php"; 
-    require '../PHPMailer-master/src/Exception.php'; 
+    require "../../PHPMailer-master/src/PHPMailer.php"; 
+    require "../../PHPMailer-master/src/SMTP.php"; 
+    require '../../PHPMailer-master/src/Exception.php'; 
     $mail = new PHPMailer\PHPMailer\PHPMailer(true);//true:enables exceptions
     try {
         $mail->SMTPDebug = 0; //0,1,2: chế độ debug. khi chạy ngon thì chỉnh lại 0 nhé

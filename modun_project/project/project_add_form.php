@@ -1,40 +1,17 @@
 <script src="js/jquery-3.6.0.min.js"></script>
-<!-- <script type="text/javascript">
-$(document).ready(function(){
-    var maxField = 10; //Input fields increment limitation
-    var addButton = $('.add_button'); //Add button selector
-    var wrapper = $('.field_wrapper'); //Input field wrapper
-    var fieldHTML = 
-    '<div><input type="text" required="" placeholder="Bạn cần nhập mã nhân viên" name="field_name[]" value=""/> <a href="javascript:void(0);" class="remove_button"><i class="fa fa-minus style:"></i></a></div>'; //New input field html 
-    var x = 1; //Initial field counter is 1
-    
-    //Once add button is clicked
-    $(addButton).click(function(){
-        //Check maximum number of input fields
-        if(x < maxField){ 
-            x++; //Increment field counter
-            $(wrapper).append(fieldHTML); //Add field html
-        }
-    });
-    
-    //Once remove button is clicked
-    $(wrapper).on('click', '.remove_button', function(e){
-        e.preventDefault();
-        $(this).parent('div').remove(); //Remove field html
-        x--; //Decrement field counter
-    });
-});
-</script> -->
+<script type="text/javascript">
+</script>
 <?php 
 require('connection.php');
 $username = $_SESSION["username"];
 $display_name = $_SESSION["display_name"];
 $leve = $_SESSION["level"];
 $email = $_SESSION["email"];
+$username_id = $_SESSION["username_id"];
 ?>
 <div class="container">
   <h2>TẠO ĐỀ ÁN, Ý TƯỞNG</h2>
-  <form action = "form/addproject_handle.php" method = "post">
+  <form action = "modun_project/project/project_add_handle.php" method = "post">
 
     <div class="form-group">
       <label>Tên Đề Án:</label>
@@ -44,8 +21,8 @@ $email = $_SESSION["email"];
     <div class="form-group">
         <label>Lĩnh Vực:</label>
         <br/>
-        <select class="custom-select" name="status">
-            <!-- <option value = "">Chọn lĩnh vực</option> -->
+        <select class="custom-select" name="field" required="">
+            <option value = "">Chọn lĩnh vực</option>
             <?php
             $sql = "select *from category";
             $result = mysqli_query($con, $sql);
@@ -63,24 +40,23 @@ $email = $_SESSION["email"];
         </select>
     </div>
 
-    <!-- <div class="form-group">
-        <label>Trạng thái:</label>
+    <div class="form-group">
+        <label>Đề án được tạo bởi:</label>
         <br/>
-        <select class="custom-select" name="status" value = 'Khởi Tạo' disabled>
-            <option selected value="Khởi Tạo">Khởi Tạo</option>
-            <option value="Chấp Thuận">Chấp Thuận</option>
-            <option value="Từ Chối">Từ Chối</option>
+        <select class="custom-select" name="employee" value = '<?php echo $username_id; ?>'>
+            <option selected value="<?php echo $username_id; ?>"><?php echo $display_name ?></option>
+            <option value="cancel">Cho người khác</option>
         </select>
-    </div> -->
+    </div>
     
     <div class="form-group">
       <label>Cơ sở thực trạng:</label>
-      <textarea class="form-control" aria-label="With textarea" name = "base"></textarea>
+      <textarea class="form-control" aria-label="With textarea" name = "base" required=""></textarea>
     </div>
 
     <div class="form-group">
       <label>Ý tưởng, đề xuất:</label>
-      <textarea class="form-control" aria-label="With textarea" name = "issue"></textarea>
+      <textarea class="form-control" aria-label="With textarea" name = "issue" required=""></textarea>
     </div>
     
     <!-- <div class="form-group">

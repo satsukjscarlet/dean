@@ -1,6 +1,4 @@
-<?php 
-require 'header.php';
-?>
+<?php require 'header.php';?>
 
 
 
@@ -14,13 +12,7 @@ require 'header.php';
        >
 
 
-      <?php 
-      if(isset($_GET['sid'])){
-        require 'modun_project/project/project_edit_form_nhanvien.php';
-      }else{
-        require 'modun_project/project/project_add_form.php';
-      }   
-      ?>
+      <?php require 'category/category_form_list.php';?>
       
       
       </div>  
