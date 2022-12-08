@@ -3,7 +3,7 @@
 
 <H2 style="background-color:none;">Công ty CP Nhựa Thiếu Niên Tiền Phong - Hệ thống đăng ký đề án</H2>
 
-<p>Một đề án mới cần được duyệt đã được tạo bởi {create_by}: đây là chi tiết</p>
+<p>Một đề án mới cần được duyệt đã được tạo bởi tài khoản {create_by}: đây là chi tiết</p>
 <a href="#">Chờ xác nhận</a>
 <table>
 <tbody>
@@ -18,6 +18,10 @@
 <tr>
 <td>Loại đề án: </td>
 <td>{type}</td>
+</tr>
+<tr>
+<td>Trạng thái đề án: </td>
+<td>{status}</td>
 </tr>
 <tr>
 <td>Cơ sở thực hiện: </td>

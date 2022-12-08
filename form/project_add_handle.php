@@ -57,8 +57,8 @@ if(isset($_POST["name"])){
         
         $noidungthu = file_get_contents("mail_temp_addproject.txt");
         $noidungthu = str_replace(
-            [ '{create_by}', '{tieu_de}','{type}','{base}','{issue}','{note}','{employee}','{thoigiankt}'],
-            ["$create_by", "$name", "$type", 
+            [ '{create_by}', '{tieu_de}','{type}','{status}','{base}','{issue}','{note}','{employee}','{thoigiankt}'],
+            ["$create_by", "$name", "$type", "$status", 
             "$base",
             "$issue",
             "$note",                 

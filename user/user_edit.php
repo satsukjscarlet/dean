@@ -21,14 +21,29 @@ if(isset($_POST["employeeNumber"])){
     $department = $_POST['department'];
     date_default_timezone_set("Asia/Ho_Chi_Minh");
     $update_at = date("Y-m-d H:i:s");
+
+    //Thêm khối
+    if($department == 'NMPE' || $department == 'NMPVC'|| $department == 'NMPT1'|| $department == 'NMPT2'){
+        $block = "SX";
+    }elseif($department == 'NCPT'|| $department == 'NMCK'){
+        $block = "KT";
+    }elseif($department == 'VPCT'|| $department == 'NSCL'){
+        $block = "NC";
+    }elseif($department == 'MKT'|| $department == 'PTTT1'|| $department == 'PTTT2'|| $department == 'DVKH'|| $department == 'VT'){
+        $block = "KD";
+    }else
+    {
+        $block = "TC";
+    }
+
     if($_POST['password'] != ""){
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $query = "UPDATE users SET level='$level',username='$username',password='$password',display_name='$display_name', 
-        email='$email',employeeNumber='$employeeNumber',jobTitle='$jobTitle',department='$department',
+        email='$email',employeeNumber='$employeeNumber',jobTitle='$jobTitle',department='$department', block = '$block',
         update_at='$update_at' WHERE id = $id";
     }else{
         $query = "UPDATE users SET level='$level',username='$username',display_name='$display_name', 
-        email='$email',employeeNumber='$employeeNumber',jobTitle='$jobTitle',department='$department',
+        email='$email',employeeNumber='$employeeNumber',jobTitle='$jobTitle',department='$department',block = '$block',
         update_at='$update_at' WHERE id = $id";
     }
 

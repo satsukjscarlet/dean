@@ -48,3 +48,4 @@
 <td>{thoigiankt_old}</td>
 </tr>
 </tbody>
+</table>

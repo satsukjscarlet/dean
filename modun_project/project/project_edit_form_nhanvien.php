@@ -177,7 +177,7 @@ function checkuserhidden(){
             <td><?php echo $r['email']; ?></td>
             <td><?php echo $r['jobTitle']; ?></td>
             <td><?php echo $r['department']; ?></td>
-            <td><a href="form/project_user_delete_handle.php?item_id=<?php echo $row['id']; ?>,<?php echo $r['employeeNumber']; ?>" class ="btn btn-danger" <?php 
+            <td><a href="modun_project/project/project_user_delete_handle.php?item_id=<?php echo $row['id']; ?>,<?php echo $r['id']; ?>" class ="btn btn-danger" <?php 
             checkuserhidden();         
             ?>>Xóa</a></td>
         <?php

@@ -9,9 +9,6 @@ if (mysqli_connect_errno()) {
   }
  var_dump($_POST);
 
-
-
-
 if(isset($_POST["name"])){
     //Lay du lieu dean
     $create_by = strtoupper($_SESSION["username"]);
@@ -27,6 +24,7 @@ if(isset($_POST["name"])){
     $status = 'Khởi Tạo';
     date_default_timezone_set("Asia/Ho_Chi_Minh");
     $create_at = date("Y-m-d H:i:s");
+    $emailcc = array();     
 
     $query = "INSERT INTO item(create_by,display_name, block, department, type, name, 
     base, issue, status, create_at, field) 
@@ -41,6 +39,7 @@ if(isset($_POST["name"])){
             $department = $_SESSION["department"];
             $block = $_SESSION["block"];
             $employeeId = $_POST["employee"];
+            
             //Cap nhap phong ban va khoi
             $sqlupdate = "Update item set department = '$department', block = '$block' where id = $lastId";
             if(mysqli_query($con, $sqlupdate)){
@@ -60,9 +59,9 @@ if(isset($_POST["name"])){
         }   
 
         //Gui email tao moi dean         
-        $all_display_name = array();       
-        $emailcc = array();     
-        
+        $all_display_name = array();    
+        $all_department_new = array();
+        $all_block_new = array();   
         //Lay danh sach nhan vien tham gia de an
         $sql_item_id = "select *from user_item where item_id = '$lastId'";
         $result_itemid = mysqli_query($con, $sql_item_id);
@@ -80,18 +79,34 @@ if(isset($_POST["name"])){
                 while($row_user_info= mysqli_fetch_array($result_user_info)){
                     $emailcc[] = $row_user_info['email'];;
                     $all_display_name[] = $row_user_info['display_name'];
+                    $all_department_new[] = $row_user_info['department'];
+                    $all_block_new[] = $row_user_info['block'];
                 }
             }
           }
         }
+        $department_array_new = array_unique($all_department_new);
+        //Lay mail truong phong ban
+        if(!empty($department_array_new)){
+            foreach($department_array_new as $value_department){
+                if($value_department == "NMPE"){
+                    $emailcc[] = "longpvh@nhuatienphong.net";
+                }
+                if($value_department == "NSCL"){
+                    $emailcc[] = "locpd@nhuatienphong.net";
+                }
+            }
+        }
+        
+
         //end Lay danh sach nhan vien tham gia de an
         // $emailcc[] = "tuantt@nhuatienphong.net";
         var_dump($emailcc);
-        $nguoithamgia = implode(" ", $all_display_name);
-        $noidungthu = file_get_contents("mail_temp_addproject.txt");
+        $nguoithamgia = implode(", ", $all_display_name);
+        $noidungthu = file_get_contents("mail_temp_add_project.txt");
         $noidungthu = str_replace(
-            [ '{create_by}', '{tieu_de}','{type}','{base}','{issue}','{employee}','{thoigiankt}'],
-            ["$create_by", "$name", "$type", 
+            [ '{create_by}', '{sid}', '{status}','{tieu_de}','{type}','{base}','{issue}','{employee}','{thoigiankt}'],
+            ["$create_by", "$lastId", "$status", "$name", "$type", 
             "$base",
             "$issue",              
             "$nguoithamgia",
@@ -106,80 +121,6 @@ if(isset($_POST["name"])){
         echo 'Thêm Đề Án thất bại';
         echo '<a class="login" href="http://localhost/dean/index.php">Trở lại trang chủ</a>';
     }
-
-
-//     //Lấy dữ liệu từ session
-//     $email = $_SESSION["email"];
-//     $create_by = strtoupper($_SESSION["username"]);
-//     $jobTitle = $_SESSION["jobTitle"];
-//     $department = $_SESSION["department"];
-//     $block = $_SESSION["block"];
-//     $display_name = $_SESSION["display_name"];
-
-
-//     $type = $_POST["type"];
-//     $name = mysqli_real_escape_string($con, $_POST['name']);
-//     $base = mysqli_real_escape_string($con, $_POST['base']);
-//     $issue = mysqli_real_escape_string($con, $_POST['issue']);
-//     $status = 'Khởi Tạo';
-//     $note = mysqli_real_escape_string($con, $_POST['note']);
-//     // $field_values_array = $_POST['field_name'];
-    // date_default_timezone_set("Asia/Ho_Chi_Minh");
-    // $create_at = date("Y-m-d H:i:s");
-//     $department_approve = 0;
-    // $query = "INSERT INTO item(create_by, display_name, block, department, jobTitle, department_approve, type, 
-    // name, base, issue, status, note, create_at) 
-    // VALUES ('$create_by',
-    // '$display_name','$block','$department','$jobTitle', '$department_approve',
-    // '$type', '$name',
-    // '$base','$issue',
-    // '$status','$note','
-    // $create_at')";
-//     $employee = "";
-//     if(mysqli_query($con,$query)){
-//         //Thêm nhân viên vào chuỗi
-//         //  foreach($field_values_array as $value){
-//         //    $employee = $employee."  ".$value;
-//         // }
-//         //Thêm nhân viên vào danh sách tham gia
-//         $query1 = "INSERT INTO user_item(employeeNumber, 
-//         item_name, create_at) 
-//         VALUES ('$create_by','$name','$create_at')";
-//         mysqli_query($con,$query1);
-
-//         //mail
-        
-//         $sql3 = "SELECT * FROM item WHERE name='$name' LIMIT 1";
-//         $query3 = mysqli_query($con,$sql3);
-//         $row3 = mysqli_fetch_assoc($query3);
-//         $item_id = $row3['id'];
-        
-        // $noidungthu = file_get_contents("mail_temp_addproject.txt");
-        // $noidungthu = str_replace(
-        //     [ '{create_by}', '{tieu_de}','{type}','{base}','{issue}','{note}','{employee}','{thoigiankt}'],
-        //     ["$create_by", "$name", "$type", 
-        //     "$base",
-        //     "$issue",
-        //     "$note",                 
-        //     "$create_by",
-        //     "$create_at"],
-        //     $noidungthu);
-
-
-        // GuiMail($email, $create_by, $noidungthu, "");
-//         // echo $email;
-//         if(mysqli_query($con,$sql3)){
-        // $url = "Location: http://localhost/dean/project_add.php?sid=".$item_id;
-        // header("$url");
-//         }else{
-//             header("Location: http://localhost/dean/index.php");
-//         }
-//     }
-//     else{
-        // echo $query;
-        // echo 'Thêm Đề Án thất bại';
-        // echo '<a class="login" href="http://localhost/dean/index.php">Trở lại trang chủ</a>';
-//     }
     $con -> close();
 }
 
