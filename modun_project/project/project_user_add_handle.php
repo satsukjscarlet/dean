@@ -64,7 +64,7 @@ if(mysqli_query($con,$sql)){
     
     
     
-    //Gui email tao moi dean         
+    //Gui email       
     $all_display_name_new = array();
     $all_department_new = array();
     $all_block_new = array();       
@@ -118,56 +118,19 @@ if(mysqli_query($con,$sql)){
     $department_new = implode(",", $department_array_new);
     $sql_update_department_block = "UPDATE item SET department = '$department_new', block = '$block_new' WHERE id='$item_id'";
     mysqli_query($con,$sql_update_department_block);
-    //lay danh sach phong ban hien tai
-    // $explode_department = explode(',', $department);
-    // $explode_block = explode(',', $block);
-    // $check_department = 1;
-    // $check_block = 1;
-    // if(!empty($explode_department)){
-    //   foreach($explode_department as $department_value)
-    //   {
-    //     if($department_user == $department_value){
-    //     $check_department = 0;
-    //     }
-    //   }
-    //   if($check_department==1){
-    //     $update_department = $department . "," . $department_user;
-        // $sql_department = "UPDATE item SET department = '$update_department' WHERE id='$item_id'";
-        // $query_new = mysqli_query($con,$sql_department);
-    //   }
-    // }else{
-    //     $sql_department = "UPDATE item SET department = '$department_user' WHERE id='$item_id'";
-    //     $query_new = mysqli_query($con,$sql_department);
-    // }
-
-
-    // if(!empty($explode_block)){
-    //   foreach($explode_block as $block_value)
-    //   {
-    //     if($block_user == $block_value){
-    //     $check_block = 0;
-    //     }
-    //   }
-    // echo "block".$check_block;
-    //   if($check_block == 1){
-    //     $update_block = $block . "," . $block_user;
-    //     $sql_block = "UPDATE item SET block = '$update_block' WHERE id='$item_id'";
-    //     $query_block = mysqli_query($con,$sql_block);
-    //   }
-    // }else{
-    //   $sql_block = "UPDATE item SET block = '$block_user' WHERE id='$item_id'";
-    //     $query_block = mysqli_query($con,$sql_block);
-    // }
-
-    // var_dump($explode_department);
-    
+   
     //Lay mail truong phong ban
-    foreach($department_array_new as $value_department){
-        if($value_department == "NMPE"){
-            $emailcc[] = "longpvh@nhuatienphong.net";
-        }
-        if($value_department == "NSCL"){
-            $emailcc[] = "locpd@nhuatienphong.net";
+    if(!empty($department_array_new)){
+        foreach($department_array_new as $value_department){
+            $sql_department = "SELECT * FROM derpartment";
+            $result_department = mysqli_query($con, $sql_department);
+            if (mysqli_num_rows($result_department) > 0) {
+                while ($row_department = mysqli_fetch_array($result_department)) {
+                    if($value_department == $row_department['name']){
+                        $emailcc[] = $row_department['email_head_of_department'];
+                    }
+                }
+            }
         }
     }
 
@@ -188,7 +151,7 @@ if(mysqli_query($con,$sql)){
         "$create_by_old", "$status_old", "$name_old","$type_old",
         "$base_old", "$issue_old", "$nguoithamgia_old", "$update_at_old"],
         $noidungthu);
-    GuiMail($email, $display_name, $noidungthu, $emailcc);
+    GuiMail($email, $display_name, $noidungthu, array_unique($emailcc));
   var_dump($emailcc);
     echo 'Thêm nhân viên vào đề án thành công';
     $url = "Location: http://localhost/dean/project_add_screen.php?sid=".$item_id;

@@ -52,8 +52,8 @@ function checkuserhidden(){
 
 <div class="container">
   <h2>CHỈNH SỬA ĐỀ ÁN</h2>
-  <form action = "modun_project/project/project_add_handle.php" method = "post">
-
+  <form action = "modun_project/project/project_edit_handle.php" method = "post">
+    <input type="hidden" name="id" id="id" <?php echo 'value = "'.$row['id'].'"' ?>>
     <div class="form-group">
         <label>Trạng thái đề án:</label>
         <br/>

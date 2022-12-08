@@ -85,18 +85,22 @@ if(isset($_POST["name"])){
             }
           }
         }
-        $department_array_new = array_unique($all_department_new);
         //Lay mail truong phong ban
+        $department_array_new = array_unique($all_department_new);
         if(!empty($department_array_new)){
             foreach($department_array_new as $value_department){
-                if($value_department == "NMPE"){
-                    $emailcc[] = "longpvh@nhuatienphong.net";
-                }
-                if($value_department == "NSCL"){
-                    $emailcc[] = "locpd@nhuatienphong.net";
+                $sql_department = "SELECT * FROM derpartment";
+                $result_department = mysqli_query($con, $sql_department);
+                if (mysqli_num_rows($result_department) > 0) {
+                    while ($row_department = mysqli_fetch_array($result_department)) {
+                        if($value_department == $row_department['name']){
+                            $emailcc[] = $row_department['email_head_of_department'];
+                        }
+                    }
                 }
             }
         }
+       
         
 
         //end Lay danh sach nhan vien tham gia de an
@@ -112,14 +116,14 @@ if(isset($_POST["name"])){
             "$nguoithamgia",
             "$create_at"],
             $noidungthu);
-        GuiMail($email, $create_by, $noidungthu, $emailcc);  
+        GuiMail($email, $create_by, $noidungthu, array_unique($emailcc));  
         $url = "Location: http://localhost/dean/project_add_screen.php?sid=".$lastId;
         header("$url");         
     }
     else{
         echo $query;
         echo 'Thêm Đề Án thất bại';
-        echo '<a class="login" href="http://localhost/dean/index.php">Trở lại trang chủ</a>';
+        echo '<a href="http://localhost/dean/index.php">Trở lại trang chủ</a>';
     }
     $con -> close();
 }

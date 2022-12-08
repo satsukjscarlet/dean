@@ -49,40 +49,41 @@ $all_display_name_old = array();
     //end Lay danh sach nhan vien tham gia de an cu
 //end Lấy dữ liệu cũ
 
+//Gui email    
+$all_display_name_new = array();
+$all_department_new = array();
+$all_block_new = array();   
+$emailcc = array();
+
+//Lay danh sach nhan vien tham gia de an
+$sql_item_id = "select *from user_item where item_id = '$item_id'";
+$result_itemid = mysqli_query($con, $sql_item_id);
+if (mysqli_num_rows($result_itemid) > 0) 
+{
+  while($row_user_item = mysqli_fetch_array($result_itemid))
+  {
+    $id_employee = $row_user_item['employee_id'];
+    echo "Đây là số nhân viên".$row_user_item['employee_id'];
+    //Lấy thông tin nhân viên tham gia
+    $sql_checkinfo = "select *from users where id = '$id_employee' LIMIT 1";
+    $result_user_info = mysqli_query($con, $sql_checkinfo);
+    if (mysqli_num_rows($result_user_info) > 0)
+    {
+        while($row_user_info= mysqli_fetch_array($result_user_info)){
+            $emailcc[] = $row_user_info['email'];
+            $all_display_name_new[] = $row_user_info['display_name'];
+            $all_department_new[] = $row_user_info['department'];
+            $all_block_new[] = $row_user_info['block'];
+        }
+    }
+  }
+}
+//end Lay danh sach nhan vien tham gia de an
 
 $sql_delete = "DELETE FROM user_item WHERE item_id='$item_id' And employee_id = '$employee_id' LIMIT 1";
 if(mysqli_query($con,$sql_delete)){ 
 
-    //Gui email cập nhập thông tin đề án       
-    $all_display_name_new = array();
-    $all_department_new = array();
-    $all_block_new = array();   
-    $emailcc = array();
     
-    //Lay danh sach nhan vien tham gia de an
-    $sql_item_id = "select *from user_item where item_id = '$item_id'";
-    $result_itemid = mysqli_query($con, $sql_item_id);
-    if (mysqli_num_rows($result_itemid) > 0) 
-    {
-      while($row_user_item = mysqli_fetch_array($result_itemid))
-      {
-        $id_employee = $row_user_item['employee_id'];
-        echo "Đây là số nhân viên".$row_user_item['employee_id'];
-        //Lấy thông tin nhân viên tham gia
-        $sql_checkinfo = "select *from users where id = '$id_employee' LIMIT 1";
-        $result_user_info = mysqli_query($con, $sql_checkinfo);
-        if (mysqli_num_rows($result_user_info) > 0)
-        {
-            while($row_user_info= mysqli_fetch_array($result_user_info)){
-                $emailcc[] = $row_user_info['email'];
-                $all_display_name_new[] = $row_user_info['display_name'];
-                $all_department_new[] = $row_user_info['department'];
-                $all_block_new[] = $row_user_info['block'];
-            }
-        }
-      }
-    }
-    //end Lay danh sach nhan vien tham gia de an
     // $emailcc[] = "tuantt@nhuatienphong.net";
 
     //lay du lieu moi
@@ -120,12 +121,17 @@ if(mysqli_query($con,$sql_delete)){
         echo $sql_update_department_block;
     }
     //Lay mail truong phong ban
-    foreach($explode_department_old as $value_department){
-        if($value_department == "NMPE"){
-            $emailcc[] = "longpvh@nhuatienphong.net";
-        }
-        if($value_department == "NSCL"){
-            $emailcc[] = "locpd@nhuatienphong.net";
+    if (!empty($explode_department_old)) {
+        foreach ($explode_department_old as $value_department) {
+            $sql_department = "SELECT * FROM derpartment";
+            $result_department = mysqli_query($con, $sql_department);
+            if (mysqli_num_rows($result_department) > 0) {
+                while ($row_department = mysqli_fetch_array($result_department)) {
+                    if($value_department == $row_department['name']){
+                        $emailcc[] = $row_department['email_head_of_department'];
+                    }
+                }
+            }
         }
     }
     //gui mail
@@ -147,12 +153,15 @@ if(mysqli_query($con,$sql_delete)){
         "$base_old", "$issue_old", "$nguoithamgia_old", "$update_at_old"],
         $noidungthu);
 
-        GuiMail($email, $display_name, $noidungthu, $emailcc);
+        GuiMail($email, $display_name, $noidungthu, array_unique($emailcc));
     $url = "Location: http://localhost/dean/project_add_screen.php?sid=".$item_id;
     header($url);
     }
     else{
+        $url = "http://localhost/dean/project_add_screen.php?sid=".$item_id;
         echo 'Xóa nhân viên thất bại';
+        echo '<br/>';
+        echo '<a class="login" href="'.$url.'">Trở lại đề án</a>';
     }
     $con -> close();
 

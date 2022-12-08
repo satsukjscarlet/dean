@@ -1,0 +1,93 @@
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>Học Web Chuẩn</title>
+<style>
+* { /* reset lại margin và padding cho các tag */
+    margin: 0;
+    padding: 0;
+}
+.tableStyle {
+    border: none;
+    width: 100%;
+}
+.tableStyle th {
+    background-color: #cad8fa;
+    padding: 5px;
+}
+.tableStyle td {
+    background-color: #f0e7da;
+    padding: 5px;
+}
+</style>
+</head>
+<body>
+
+<H2 style="background-color:none;">Công ty CP Nhựa Thiếu Niên Tiền Phong - Hệ thống đăng ký đề án</H2>
+
+<p>Một đề án đã được chỉnh sửa bởi {update_name}: đây là chi tiết</p>
+<a href="http://localhost/dean/project_add_screen.php?sid={sid}">Thông tin đề án</a>
+
+<table class="tableStyle">
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>Mới</th>
+<th>(Cũ)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr style='word-wrap:break-word; '>
+<td>Được tạo bởi: </td>
+<td>{create_by_new}</td>
+<td>{create_by_old}</td>
+</tr>
+
+<tr style='word-wrap:break-word; '>
+<td>Trạng thái: </td>
+<td>{status_new}</td>
+<td>{status_old}</td>
+</tr>
+
+<tr style='word-wrap:break-word; '>
+<td>Tên đề án: </td>
+<td>{name_new}</td>
+<td>{name_old}</td>
+</tr>
+
+<tr style='word-wrap:break-word; '>
+<td>Loại đề án: </td>
+<td>{type_new}</td>
+<td>{type_old}</td>
+</tr>
+
+<tr style='word-wrap:break-word; '>
+<td>Cơ sở thực trạng: </td>
+<td>{base_new}</td>
+<td>{base_old}</td>
+</tr>
+
+<tr style='word-wrap:break-word; '>
+<td>Ý tưởng, đề xuất: </td>
+<td>{issue_new}</td>
+<td>{issue_old}</td>
+</tr>
+
+<tr style='word-wrap:break-word; '>
+<td>Nhân viên tham gia: </td>
+<td>{employee_new}</td>
+<td>{employee_old}</td>
+</tr>
+
+<tr style='word-wrap:break-word; '>
+<td>Thời gian cập nhập: </td>
+<td>{update_at_new}</td>
+<td>{update_at_old}</td>
+</tr>
+
+</table>
+</tbody>
+</body>
+<html>
