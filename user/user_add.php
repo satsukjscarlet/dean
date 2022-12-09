@@ -16,7 +16,7 @@ if(isset($_POST["employeeNumber"])){
     $create_at = date("Y-m-d H:i:s");
 
     //Thêm khối
-    if($department == 'NMPE' || $department == 'NMPVC'|| $department == 'NMPT1'|| $department == 'NMPT2'){
+    if($department == 'NMPE' || $department == 'NMPVC'|| $department == 'NMPT1'|| $department == 'NMPT2' || $department == 'CNCL'){
         $block = "SX";
     }elseif($department == 'NCPT'|| $department == 'NMCK'){
         $block = "KT";

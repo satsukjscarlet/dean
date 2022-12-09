@@ -2,12 +2,12 @@
 
 <style>
     table td {
-        /* word-break: break-word;
-        vertical-align: top; */
-        /* white-space: normal !important; */
-        /* min-width: 10px;
-        max-width: 150px; */
+        word-break: break-word;
+        vertical-align: top;
+        /* white-space: normal !important;
         /* text-overflow: ellipsis; */
+         min-width: 10px;
+        max-width: 150px;
         
     }
     table tr td:nth-child(4) {
@@ -15,7 +15,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 40ch;
+    max-width: 20ch;
     }
 </style>
   <div class="container-fluid">
@@ -30,13 +30,13 @@
           <div class="col-md-12">
             <table id="example" class="table">
               <thead>
-                <th>Id</th>
+                <th>Được tạo bởi</th>
                 <th>Tên Đề Án</th>
                 <th>Lĩnh Vực</th>
                 <th>Ý tưởng, đề xuất</th>
-                <th>Tình Trạng Đề Án</th>
+                <th>Trạng thái</th>
                 <th>Thời gian tạo</th>
-                <th>Thông tin</th>
+                <th>Thao tác</th>
               </thead>
               <tbody>
               </tbody>

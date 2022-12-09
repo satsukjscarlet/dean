@@ -30,8 +30,9 @@
     <br/>
         <select class="custom-select" name = 'level' value="1">
         <option selected value="1">Nhân viên</option>
-        <!-- <option value="2">Phòng ban</option> -->
-        <option value="3">Quản trị viên</option>
+        <option value="2">Trưởng Phòng/Ban</option>
+        <option value="3">Lãnh đạo</option>
+        <option value="4">Quản trị viên</option>
         </select>
     </div>
     

@@ -1,0 +1,31 @@
+
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>Học Web Chuẩn</title>
+<style>
+* { /* reset lại margin và padding cho các tag */
+    margin: 0;
+    padding: 0;
+}
+.tableStyle {
+    border: none;
+    width: 100%;
+}
+.tableStyle th {
+    background-color: #cad8fa;
+    padding: 5px;
+}
+.tableStyle td {
+    background-color: #f0e7da;
+    padding: 5px;
+}
+</style>
+</head>
+<body>
+<H2 style="background-color:none;">Công ty CP Nhựa Thiếu Niên Tiền Phong - Hệ thống đăng ký đề án</H2>
+<H2 style="background-color:none;">Xác nhận đề án</H2>
+<p>Đề án đã được xác nhận bởi {create_by}: đây là chi tiết</p>
+<a href="http://localhost/dean/project_add_screen.php?sid={sid}">Thông tin đề án</a>
+

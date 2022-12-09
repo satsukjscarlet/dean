@@ -1,4 +1,4 @@
-<?php require '../../header.php';?>
+<?php require 'header.php';?>
 
 
 
@@ -12,7 +12,7 @@
        >
 
 
-      <?php require 'project_formlist.php';?>
+      <?php require 'modun_project/project_lanhdao/project_formlist_chopheduyet.php';?>
       
       
       </div>  
@@ -21,5 +21,5 @@
 
 
 
-<?php require '../../footer.php';?>
+<?php require 'footer.php';?>
        

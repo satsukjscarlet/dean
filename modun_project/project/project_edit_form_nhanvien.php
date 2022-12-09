@@ -51,7 +51,7 @@ function checkuserhidden(){
 ?>
 
 <div class="container">
-  <h2>CHỈNH SỬA ĐỀ ÁN</h2>
+  <h1 class = "d-flex justify-content-center">THÔNG TIN ĐỀ ÁN</h1>
   <form action = "modun_project/project/project_edit_handle.php" method = "post">
     <input type="hidden" name="id" id="id" <?php echo 'value = "'.$row['id'].'"' ?>>
     <div class="form-group">
@@ -122,15 +122,12 @@ function checkuserhidden(){
       <textarea class="form-control" aria-label="With textarea" name = "issue"<?php checkuserdisable();?>><?php echo $row['issue']; ?></textarea>
     </div>
     
-    <!-- <div class="form-group">
-      <label>Nhân viên tham gia:</label>
-      <div class="field_wrapper">
-            <div>
-            <input type="text" name="field_name[]" value="" placeholder="Bạn cần nhập mã nhân viên" required=""/>
-            <a href="javascript:void(0);" class="add_button" title="Add field"><i class="fa fa-plus"></i></a>
-            </div>
-        </div>
-    </div> -->
+    <div class="form-group">
+      <label>Phòng ban tham gia:</label>
+      <input type="text" name = "department" class="form-control" placeholder="Username" 
+      value = "<?php echo $row['department']; ?>" disabled/>
+    </div>
+
 
     <input type ="submit" class = "btn btn-block btn-info" value="CẬP NHẬP"  <?php checkuserhidden();?> />
   </form>

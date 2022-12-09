@@ -113,13 +113,24 @@ if(mysqli_query($con,$sql_delete)){
     echo "<br>";
     echo $block_new;
     //update phong ban va khoi
-    $sql_update_department_block = "UPDATE item SET department = '$department_new', block = '$block_new' WHERE id='$item_id'";
-    if(mysqli_query($con,$sql_update_department_block)){
-        echo "Cập nhập phòng ban và khối thành công";
+    if(count($department_array_new)>1){
+        $sql_update_department_block = "UPDATE item SET department = '$department_new', block = '$block_new' WHERE id='$item_id'";
+        if(mysqli_query($con,$sql_update_department_block)){
+            echo "Cập nhập phòng ban và khối thành công";
+        }else{
+            echo "Cập nhập phòng ban và khối thất bại";
+            echo $sql_update_department_block;
+        }
     }else{
-        echo "Cập nhập phòng ban và khối thất bại";
-        echo $sql_update_department_block;
+        $sql_update_department_block = "UPDATE item SET department = '', block = '' WHERE id='$item_id'";
+        if(mysqli_query($con,$sql_update_department_block)){
+            echo "Cập nhập phòng ban và khối thành công";
+        }else{
+            echo "Cập nhập phòng ban và khối thất bại";
+            echo $sql_update_department_block;
+        }
     }
+    
     //Lay mail truong phong ban
     if (!empty($explode_department_old)) {
         foreach ($explode_department_old as $value_department) {
