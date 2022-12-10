@@ -101,5 +101,174 @@
       var username = <?php echo json_encode($_SESSION["username"]) ?>;
       window.location = "project_add_screen.php?sid="+id;
     });
+    
+    $(document).on('click', '.pheduyetBtn', function(event) {
+      var table = $('#example').DataTable();
+      event.preventDefault();
+      var id = $(this).data('id');
+      if (confirm("Bạn muốn phê duyệt đề án này? ")) {
+
+        $.ajax({
+          url: "modun_project/project_lanhdao/pheduyet.php",
+          data: {
+            id: id
+          },
+          type: "post",
+          beforeSend: function(){
+            $('#exampleModal_loading').modal('show');
+          },
+          success: function(data) {
+            var json = JSON.parse(data);
+            status = json.status;            
+            if (status == 'success') {
+              mytable = $('#example').DataTable();
+              mytable.draw();
+              $('#exampleModal_loading').modal('hide');
+              //table.fnDeleteRow( table.$('#' + id)[0] );
+              //$("#example tbody").find(id).remove();
+              //table.row($(this).closest("tr")) .remove();
+              // $("#" + id).closest('tr').remove();
+            } else {
+              $('#loadingIcon').hide();
+              alert('Failed');
+              return;
+            }
+          }
+        });
+      } else {
+        return null;
+      }
+    });
+
+
+    $('#example').on('click', '.tuchoiBtn', function(event) {
+      var table = $('#example').DataTable();
+      var trid = $(this).closest('tr').attr('id');
+      // console.log(selectedRow);
+      var id = $(this).data('id');
+      if(confirm("Bạn muốn từ chối đề án này? ")) 
+      {
+        $('#exampleModal_tuchoi').modal('show');
+          $.ajax({
+          url: "modun_project/project_lanhdao/tuchoi.php",
+          data: {
+            id: id
+          },
+          type: 'post',
+          success: function(data) {
+            var json = JSON.parse(data);
+            $('#nameField').val(json.name);
+            $('#noteField').val(json.note);
+            $('#id').val(id);
+            $('#trid').val(trid);
+          }
+        })
+      }else 
+      {
+        return null;
+      }    
+    });
+
+    $('#example').on('click', '.themthongtinBtn', function(event) {
+      var table = $('#example').DataTable();
+      var trid = $(this).closest('tr').attr('id');
+      // console.log(selectedRow);
+      var id = $(this).data('id');
+      if (confirm("Bạn muốn yêu cầu bổ sung thông tin đề án này? ")) {
+        $('#exampleModal_themthongtin').modal('show');
+        $.ajax({
+        url: "modun_project/project_lanhdao/themthongtin.php",
+        data: {
+          id: id
+        },
+        type: 'post',
+        success: function(data) {
+          var json = JSON.parse(data);
+          $('#nameField').val(json.name);
+          $('#noteField').val(json.note);
+          $('#id').val(id);
+          $('#trid').val(trid);
+        }
+      })
+      } else {
+        return null;
+      }    
+    });
   </script>
   
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal_tuchoi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Từ chối đề án</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="updateUser">
+            <input type="hidden" name="id" id="id" value="">
+            <input type="hidden" name="trid" id="trid" value="">
+            <input type="hidden" name="create_at" id="create_at" value="">
+            <div class="mb-3 row">
+              <label for="nameField" class="col-md-3 form-label">Lý do từ chối</label>
+              <div class="col-md-9">
+                <textarea class="form-control" aria-label="With textarea" name = "note" required=""></textarea>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Xác nhận</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal_themthongtin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Yêu cầu bổ sung thông tin</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="updateUser">
+            <input type="hidden" name="id" id="id" value="">
+            <input type="hidden" name="trid" id="trid" value="">
+            <input type="hidden" name="create_at" id="create_at" value="">
+            <div class="mb-3 row">
+              <label class="col-md-3 form-label">Thông tin cần bổ sung</label>
+              <div class="col-md-9">
+                <textarea class="form-control" aria-label="With textarea" name = "note" required=""></textarea>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Xác nhận</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- loading -->
+  <div class="modal fade" id="exampleModal_loading" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+        <img id ="loadingIcon" src = "build/images/loading.gif" />
+          <h5 class="modal-title" id="exampleModalLabel">Đang xử lý xin vui lòng đợi một chút...</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>

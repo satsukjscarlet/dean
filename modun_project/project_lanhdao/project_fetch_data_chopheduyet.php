@@ -84,7 +84,7 @@ while($row = mysqli_fetch_assoc($query))
 		}
 		$sub_array[] = $row['create_at'];
 		$sub_array[] = 
-				'<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-success btn-sm editbtn fa fa-check" data-toggle="tooltip" data-placement="top" title="Xác nhận"></a>
+				'<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-success btn-sm pheduyetBtn fa fa-check" data-toggle="tooltip" data-placement="top" title="Phê duyệt"></a>
 				<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-danger btn-sm tuchoiBtn fa fa-times" data-toggle="tooltip" data-placement="top" title="Từ chối"></a>
 				<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-info btn-sm themthongtinBtn fa fa-search" data-toggle="tooltip" data-placement="top" title="Yêu cầu bổ sung thông tin"></a>';	
 		$data[] = $sub_array; 
