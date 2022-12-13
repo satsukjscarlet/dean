@@ -36,7 +36,7 @@
                 <th>Ý tưởng, đề xuất</th>
                 <th>Trạng thái</th>
                 <th>Thời gian tạo</th>
-                <th>Thao tác</th>
+                <!-- <th>Thao tác</th> -->
               </thead>
               <tbody>
               </tbody>
@@ -82,17 +82,17 @@
         'paging': 'true',
         'order': [],
         'ajax': {
-          'url': 'modun_project/project_fetch_data.php',
+          'url': 'modun_project/project_list_tuchoi/project_fetch_data_tuchoi.php',
           'type': 'post',
         },
         "aoColumnDefs": [{
             "bSortable": false,
-            "aTargets": [6]
+            "aTargets": [5]
           },
         ]
       });
     });
-  
+   
     $('#example').on('click', '.editbtn ', function(event) {
       var table = $('#example').DataTable();
       var trid = $(this).closest('tr').attr('id');

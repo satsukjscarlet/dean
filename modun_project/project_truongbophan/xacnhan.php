@@ -8,7 +8,7 @@ $id = $_POST['id'];
 
    
 
-$sql = "UPDATE item SET status = 'Xác Nhận' WHERE id='$id'";
+$sql = "UPDATE item SET status = 3 WHERE id='$id'";
 $XNQuery =mysqli_query($con,$sql);
 if($XNQuery==true)
 {
@@ -63,14 +63,14 @@ if($XNQuery==true)
                  }
              }
          }
-     }
- 
+    }
+    $subject = "Đề án Id = ".$id." đã được xác nhận";
     $noidungthu = file_get_contents("mail_temp_xacnhan.txt");
     $noidungthu = str_replace(
         [ '{create_by}', '{sid}'],
         ["$display_name", "$id"],
         $noidungthu);
-    GuiMail($email, $update_name, $noidungthu, array_unique($emailcc)); 
+    GuiMail($email, $update_name, $noidungthu, array_unique($emailcc),$subject); 
 
 	$data = array(
         'status'=>'success',

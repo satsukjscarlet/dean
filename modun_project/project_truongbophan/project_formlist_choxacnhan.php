@@ -121,7 +121,7 @@
           },
           type: "post",
           beforeSend: function(){
-            $('#exampleModal_xacnhan').modal('show');
+            $('#exampleModal_loading').modal('show');
           },
           success: function(data) {
             var json = JSON.parse(data);
@@ -129,11 +129,7 @@
             if (status == 'success') {
               mytable = $('#example').DataTable();
               mytable.draw();
-              $('#exampleModal_xacnhan').modal('hide');
-              //table.fnDeleteRow( table.$('#' + id)[0] );
-              //$("#example tbody").find(id).remove();
-              //table.row($(this).closest("tr")) .remove();
-              // $("#" + id).closest('tr').remove();
+              $('#exampleModal_loading').modal('hide');
             } else {
               $('#loadingIcon').hide();
               alert('Failed');
@@ -145,34 +141,98 @@
         return null;
       }
     });
-
-
-    $('#example').on('click', '.tuchoiBtn', function(event) {
-      var table = $('#example').DataTable();
-      var trid = $(this).closest('tr').attr('id');
-      // console.log(selectedRow);
-      var id = $(this).data('id');
-      if(confirm("Bạn muốn từ chối đề án này? ")) 
-      {
-        $('#exampleModal_tuchoi').modal('show');
-          $.ajax({
+    //tu choi
+    $(document).on('submit', '#cancel', function(e) {
+      e.preventDefault();
+      var note = $('#note_cancel').val();
+      var id = $('#id').val();
+      if (note != '') {
+        $.ajax({
           url: "modun_project/project_truongbophan/tuchoi.php",
+          type: "post",
           data: {
+            note: note,
             id: id
           },
-          type: 'post',
+          beforeSend: function(){
+            $('#exampleModal_loading').modal('show');
+          },
           success: function(data) {
             var json = JSON.parse(data);
-            $('#nameField').val(json.name);
-            $('#noteField').val(json.note);
-            $('#id').val(id);
-            $('#trid').val(trid);
+            var status = json.status;
+            if (status == 'success') {
+              mytable = $('#example').DataTable();
+              mytable.draw();
+              $("input[type=text]").val("");
+              $("textarea").val("");
+              $('#exampleModal_loading').modal('hide');
+              $('#exampleModal_tuchoi').modal('hide');
+            } else {
+              alert('Cập nhập lỗi');
+            }
           }
-        })
-      }else 
-      {
+        });
+      } else {
+        alert('Fill all the required fields');
+      }
+    });
+
+    $('#example').on('click', '.tuchoiBtn ', function(event) {
+      var table = $('#example').DataTable();
+      // console.log(selectedRow);
+      var id = $(this).data('id');
+      if (confirm("Bạn muốn từ chối đề án này? ")) {
+      $('#exampleModal_tuchoi').modal('show');
+
+      $.ajax({
+        url: "modun_project/project_truongbophan/item_get_single_data.php",
+        data: {
+          id: id
+        },
+        type: 'post',
+        success: function(data) {
+          var json = JSON.parse(data);
+          $('#id').val(id);
+        }
+      })
+    } else {
         return null;
-      }    
+      }   
+    });
+
+    $(document).on('submit', '#info', function(e) {
+      e.preventDefault();
+      var note = $('#note_info').val();
+      var id = $('#id').val();
+      if (note != '') {
+        $.ajax({
+          url: "modun_project/project_truongbophan/themthongtin.php",
+          type: "post",
+          data: {
+            note: note,
+            id: id
+          },
+          beforeSend: function(){
+            $('#exampleModal_loading').modal('show');
+          },
+          success: function(data) {
+            var json = JSON.parse(data);
+            var status = json.status;
+            if (status == 'success') {
+              mytable = $('#example').DataTable();
+              mytable.draw();
+              $("input[type=text]").val("");
+              $("textarea").val("");
+              $('#exampleModal_loading').modal('hide');
+              $('#exampleModal_themthongtin').modal('hide');
+            } else {
+              alert('Cập nhập lỗi');
+            }
+          }
+        });
+      } else {
+        alert('Fill all the required fields');
+      }
     });
 
     $('#example').on('click', '.themthongtinBtn', function(event) {
@@ -183,26 +243,24 @@
       if (confirm("Bạn muốn yêu cầu bổ sung thông tin đề án này? ")) {
         $('#exampleModal_themthongtin').modal('show');
         $.ajax({
-        url: "modun_project/project_truongbophan/themthongtin.php",
+        url: "modun_project/project_truongbophan/item_get_single_data.php",
         data: {
           id: id
         },
         type: 'post',
         success: function(data) {
           var json = JSON.parse(data);
-          $('#nameField').val(json.name);
-          $('#noteField').val(json.note);
           $('#id').val(id);
-          $('#trid').val(trid);
         }
       })
-      } else {
+    } else {
         return null;
-      }    
+      }   
     });
+
   </script>
   
-   <!-- Modal -->
+   <!-- Modal- Tu choi -->
    <div class="modal fade" id="exampleModal_tuchoi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -211,17 +269,14 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form id="updateUser">
+          <form id="cancel">
             <input type="hidden" name="id" id="id" value="">
-            <input type="hidden" name="trid" id="trid" value="">
-            <input type="hidden" name="create_at" id="create_at" value="">
             <div class="mb-3 row">
-              <label for="nameField" class="col-md-3 form-label">Lý do từ chối</label>
+              <label for="note_cancel" class="col-md-3 form-label">Lý do từ chối</label>
               <div class="col-md-9">
-                <textarea class="form-control" aria-label="With textarea" name = "note" required=""></textarea>
+                <textarea class="form-control" aria-label="With textarea" id = "note_cancel" name = "note_cancel" required=""></textarea>
               </div>
             </div>
-
             <div class="text-center">
               <button type="submit" class="btn btn-primary">Xác nhận</button>
             </div>
@@ -243,14 +298,12 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form id="updateUser">
+          <form id="info">
             <input type="hidden" name="id" id="id" value="">
-            <input type="hidden" name="trid" id="trid" value="">
-            <input type="hidden" name="create_at" id="create_at" value="">
             <div class="mb-3 row">
               <label class="col-md-3 form-label">Thông tin cần bổ sung</label>
               <div class="col-md-9">
-                <textarea class="form-control" aria-label="With textarea" name = "note" required=""></textarea>
+                <textarea class="form-control" aria-label="With textarea" id = "note_info" name = "note_info" required=""></textarea>
               </div>
             </div>
 
@@ -267,12 +320,12 @@
   </div>
 
   <!-- loading -->
-  <div class="modal fade" id="exampleModal_xacnhan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModal_loading" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
         <img id ="loadingIcon" src = "build/images/loading.gif" />
-          <h5 class="modal-title" id="exampleModalLabel">Đang xác nhận đề án xin vui lòng đợi một chút</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Đang xử lý xin vui lòng đợi một chút</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
       </div>

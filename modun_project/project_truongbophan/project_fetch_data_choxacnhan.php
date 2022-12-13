@@ -12,7 +12,7 @@ $output= array();
 $sql = "SELECT * FROM item";
 
 $totalQuery = mysqli_query($con,$sql);
-$total_all_rows = mysqli_num_rows($totalQuery);
+// $total_all_rows = mysqli_num_rows($totalQuery);
 
 $columns = array(
 	0 => 'id',
@@ -64,7 +64,7 @@ while($row = mysqli_fetch_assoc($query))
 			$check_department = 1;
 		}
 	}
-	if($level == 2 && $check_department == 1){
+	if($level == 2 && $check_department == 1 && $row['status'] != 4){
 		$sub_array = array();
 		$sub_array[] = $row['create_by'];
 		$sub_array[] = '<a style="word-wrap:break-word;" href="javascript:void();" data-id="'.$row['id'].'"  class= "editbtn" >'.$row['name'].'</a>';
@@ -77,23 +77,31 @@ while($row = mysqli_fetch_assoc($query))
 		$sub_array[] = $row['issue'];
 	
 		
-		if($row['status'] == "Chấp Thuận"){
-			$sub_array[] = '<a class="bg-success text-white" >'.$row['status'].'</a>';
-		}elseif($row['status'] == "Từ Chối"){
-			$sub_array[] = '<a class="bg-danger text-white" >'.$row['status'].'</a>';
+		if($row['status'] == 1){
+			$sub_array[] = '<a class="badge badge-secondary text-white">Khởi Tạo</a>';
+		}elseif($row['status'] == 2){
+			$sub_array[] = '<a class="badge badge-warning text-white">Chờ Bổ Sung</a>';
+		}elseif($row['status'] == 3){
+			$sub_array[] = '<a class="badge badge-primary text-white">Xác Nhận</a>';
+		}elseif($row['status'] == 4){
+			$sub_array[] = '<a class="badge badge-success text-white">Phê Duyệt</a>';
+		}elseif($row['status'] == 5){
+			$sub_array[] = '<a class="badge badge-danger text-white">Từ Chối</a>';
 		}else{
 			$sub_array[] = $row['status'];
 		}
+
 		$sub_array[] = $row['create_at'];
 		$sub_array[] = 
-				'<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-success btn-sm xacnhanBtn fa fa-check" data-toggle="tooltip" data-placement="top" title="Xác nhận"></a>
-				<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-danger btn-sm tuchoiBtn fa fa-times" data-toggle="tooltip" data-placement="top" title="Từ chối"></a>
-				<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-info btn-sm themthongtinBtn fa fa-search" data-toggle="tooltip" data-placement="top" title="Yêu cầu bổ sung thông tin"></a>';	
+			'<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-success btn-sm xacnhanBtn fa fa-check" data-toggle="tooltip" data-placement="top" title="Xác nhận"></a>
+			<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-danger btn-sm tuchoiBtn fa fa-times" data-toggle="tooltip" data-placement="top" title="Từ chối"></a>
+			<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-info btn-sm themthongtinBtn fa fa-search" data-toggle="tooltip" data-placement="top" title="Yêu cầu bổ sung thông tin"></a>';	
+		
 		$data[] = $sub_array;
 	}
 
 }
-
+$total_all_rows = count($data);
 $output = array(
 	'draw'=> intval($_POST['draw']),
 	'recordsTotal' =>$count_rows ,

@@ -1,4 +1,4 @@
-<?php include('../connection.php');
+<?php include('../../connection.php');
 session_start();
 $username = strtoupper($_SESSION["username"]);
 $email = $_SESSION["email"];
@@ -7,7 +7,7 @@ $level = $_SESSION["level"];
 
 
 $output= array();
-$sql = "SELECT * FROM item ";
+$sql = "SELECT * FROM item where status = 5";
 
 $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
@@ -25,12 +25,12 @@ $columns = array(
 if(isset($_POST['search']['value']))
 {
 	$search_value = $_POST['search']['value'];
-	$sql .= " WHERE create_by like '%".$search_value."%'";
-	$sql .= " OR name like '%".$search_value."%'";
-	$sql .= " OR field like '%".$search_value."%'";
-	$sql .= " OR issue like '%".$search_value."%'";
-	$sql .= " OR status like '%".$search_value."%'";
-	$sql .= " OR create_at like '%".$search_value."%'";
+	$sql .= " AND create_by like '%".$search_value."%'";
+	$sql .= " OR (name like '%".$search_value."%' AND status = 5)";
+	$sql .= " OR (field like '%".$search_value."%' AND status = 5)";
+	$sql .= " OR (issue like '%".$search_value."%' AND status = 5)";
+	$sql .= " OR (status like '%".$search_value."%'AND status = 5)";
+	$sql .= " OR (create_at like '%".$search_value."%'AND status = 5)";
 }
 
 if(isset($_POST['order']))
@@ -59,7 +59,7 @@ while($row = mysqli_fetch_assoc($query))
 	$sub_array = array();
 	$sub_array[] = $row['create_by'];
 	$sub_array[] = '<a style="word-wrap:break-word;" href="javascript:void();" data-id="'.$row['id'].'"  class= "editbtn" >'.$row['name'].'</a>';
-    //Lay field truong phong ban
+	//Lay field truong phong ban
 	$sql_field = "SELECT * FROM category WHERE id='".$row['field']."' LIMIT 1";
 	$query_field = mysqli_query($con,$sql_field);
 	$row_field = mysqli_fetch_assoc($query_field);
@@ -82,13 +82,8 @@ while($row = mysqli_fetch_assoc($query))
 		$sub_array[] = $row['status'];
 	}
 	$sub_array[] = $row['create_at'];
-	if($username == $row['create_by'] && $row['status'] == 1){
-		$sub_array[] = 
-	'<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-info btn-sm editbtn" >Cập nhập</a>';
-	}else{
-		$sub_array[] = "";
-	}
 	$data[] = $sub_array;
+	
 }
 
 $output = array(

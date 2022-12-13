@@ -1,44 +1,42 @@
-<?php include('connection.php'); 
-session_start();
-if(!isset($_SESSION["username"]))
-{
-    header("location: http://localhost/dean/login.php");  
-}
-$id_item = $_GET["sid"];
-?>
-<!doctype html>
-<html lang="en">
+<?php require('connection.php'); ?>
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Bootstrap CSS -->
-  <link href="css/bootstrap5.0.1.min.css" rel="stylesheet" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="css/datatables-1.10.25.min.css" />
-  <title>Chọn nhân viên tham gia</title>
-</head>
-
-
-<body>
+<style>
+    table td {
+        word-break: break-word;
+        vertical-align: top;
+        /* white-space: normal !important;
+        /* text-overflow: ellipsis; */
+         min-width: 10px;
+        max-width: 150px;
+        
+    }
+    table tr td:nth-child(4) {
+    /* background: #ccc; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 20ch;
+    }
+</style>
   <div class="container-fluid">
-    <h1 class="text-center">Chọn nhân viên tham gia</h1>
+    <h1 class="text-center">DANH SÁCH ĐỀ ÁN</h1>
     <div class="row">
       <div class="container">
+      <div class="btnAdd">
+          <a href="project_add_screen.php"  class="btn btn-success btn-sm" >THÊM MỚI ĐỀ ÁN</a>
+        </div>
         <div class="row">
           <div class="col-md-0"></div>
           <div class="col-md-12">
             <table id="example" class="table">
               <thead>
-                <th>Id</th>
-                <th>Mã nhân viên</th>
-                <th>Tên hiển thị</th>
-                <th>Email</th>
-                <th>Chức vụ</th>
-                <th>Phòng ban</th>
-                <th>Options</th>
-                <!-- <th>City</th>
-                <th>Options</th> -->
+                <th>Được tạo bởi</th>
+                <th>Tên Đề Án</th>
+                <th>Lĩnh Vực</th>
+                <th>Ý tưởng, đề xuất</th>
+                <th>Trạng thái</th>
+                <th>Thời gian tạo</th>
+                <!-- <th>Thao tác</th> -->
               </thead>
               <tbody>
               </tbody>
@@ -54,12 +52,8 @@ $id_item = $_GET["sid"];
   <script src="js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
   <!-- <script src="js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
   <script type="text/javascript" src="js/dt-1.10.25datatables.min.js"></script>
-  <!-- Option 2: Separate Popper and Bootstrap JS -->
-  <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-  -->
   <script type="text/javascript">
+    
     $(document).ready(function() {
       $('#example').DataTable({
         "fnCreatedRow": function(nRow, aData, iDataIndex) {
@@ -85,31 +79,27 @@ $id_item = $_GET["sid"];
         "processing": true, // tiền xử lý trước
         "aLengthMenu": [[10, 20, 50], [10, 20, 50]], // danh sách số trang trên 1 lần hiển thị bảng
         'serverSide': 'true',
-        'processing': 'true',
         'paging': 'true',
         'order': [],
         'ajax': {
-          'data': {
-          id: <?php echo json_encode($id_item) ?>},
-          'url': 'project_user_add_fetch_data.php',
+          'url': 'modun_project/project_list_pheduyet/project_fetch_data_pheduyet.php',
           'type': 'post',
         },
         "aoColumnDefs": [{
             "bSortable": false,
-            "aTargets": [6]
+            "aTargets": [5]
           },
-
         ]
       });
     });
+   
     $('#example').on('click', '.editbtn ', function(event) {
       var table = $('#example').DataTable();
       var trid = $(this).closest('tr').attr('id');
       // console.log(selectedRow);
       var id = $(this).data('id');
       var username = <?php echo json_encode($_SESSION["username"]) ?>;
-      var id_item = <?php echo json_encode($id_item) ?>;
-      window.location = "modun_project/project/project_user_add_handle.php?sid="+id+","+id_item;
-
+      window.location = "project_add_screen.php?sid="+id;
     });
   </script>
+  

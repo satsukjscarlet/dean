@@ -14,7 +14,7 @@ $username = strtoupper($_SESSION["username"]);
 $display_name = $_SESSION["display_name"];
 $leve = $_SESSION["level"];
 $email = $_SESSION["email"];
-$username_id = $_SESSION["username_id"];
+$user_id = $_SESSION["user_id"];
 function checkuserdisable(){
   include('connection.php');
   $id_item = $_GET["sid"];
@@ -24,7 +24,7 @@ function checkuserdisable(){
   $username = strtoupper($_SESSION["username"]);
   $leve_user = $_SESSION["level"];
 
-  $username_id = $_SESSION["username_id"];
+  $user_id = $_SESSION["user_id"];
   if($username != $row_item['create_by'] || $row_item['status'] != "Khởi Tạo"){         
     echo "disabled";
   }else{
@@ -41,7 +41,7 @@ function checkuserhidden(){
   $username = strtoupper($_SESSION["username"]);
   $leve_user = $_SESSION["level"];
 
-  $username_id = $_SESSION["username_id"];
+  $user_id = $_SESSION["user_id"];
   if($username != $row_item['create_by'] || $row_item['status'] != "Khởi Tạo"){         
     echo "hidden";
   }else{
@@ -67,9 +67,11 @@ function checkuserhidden(){
         } 
         ?>            
         "  disabled name="status" <?php if($level != 3) {echo "disabled";} else{ echo 'value = "'.$row['status'].'"';} ?>>
-            <option <?php if($row['status'] == 'Khởi Tạo') echo"selected"; ?>  value="Khởi Tạo">Khởi Tạo</option>
-            <option <?php if($row['status'] == 'Chấp Thuận') echo"selected"; ?> value="Chấp Thuận">Chấp Thuận</option>
-            <option <?php if($row['status'] == 'Từ Chối') echo"selected"; ?> value="Từ Chối">Từ Chối</option>
+            <option <?php if($row['status'] == 1) echo"selected"; ?>  value="1">Khởi Tạo</option>
+            <option <?php if($row['status'] == 2) echo"selected"; ?>  value="2">Chờ bổ sung thông tin</option>
+            <option <?php if($row['status'] == 3) echo"selected"; ?>  value="3">Xác Nhận</option>
+            <option <?php if($row['status'] == 4) echo"selected"; ?>  value="4">Chấp Thuận</option>
+            <option <?php if($row['status'] == 5) echo"selected"; ?>  value="5">Từ Chối</option>
         </select>
     </div>
 

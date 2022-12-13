@@ -1,5 +1,5 @@
 <?php
-function GuiMail($email_receive,$name_reveive, $noidungthu, $emailcc){   
+function GuiMail($email_receive,$name_reveive, $noidungthu, $emailcc, $subject){   
     require "../../PHPMailer-master/src/PHPMailer.php"; 
     require "../../PHPMailer-master/src/SMTP.php"; 
     require '../../PHPMailer-master/src/Exception.php'; 
@@ -23,7 +23,7 @@ function GuiMail($email_receive,$name_reveive, $noidungthu, $emailcc){
             }           
         } 
         $mail->isHTML(true);  // Set email format to HTML
-        $mail->Subject = 'Xác nhận đề án';
+        $mail->Subject = $subject;
         // $noidungthu = file_get_contents("Test.txt");
         // $noidungthu = str_replace(
         //     [ '{name_receive}'], 

@@ -7,7 +7,7 @@ $username = $_SESSION["username"];
 $display_name = $_SESSION["display_name"];
 $leve = $_SESSION["level"];
 $email = $_SESSION["email"];
-$username_id = $_SESSION["username_id"];
+$user_id = $_SESSION["user_id"];
 ?>
 <div class="container">
   <h2>TẠO ĐỀ ÁN, Ý TƯỞNG</h2>
@@ -43,8 +43,8 @@ $username_id = $_SESSION["username_id"];
     <div class="form-group">
         <label>Đề án được tạo bởi:</label>
         <br/>
-        <select class="custom-select" name="employee" value = '<?php echo $username_id; ?>'>
-            <option selected value="<?php echo $username_id; ?>"><?php echo $display_name ?></option>
+        <select class="custom-select" name="employee" value = '<?php echo $user_id; ?>'>
+            <option selected value="<?php echo $user_id; ?>"><?php echo $display_name ?></option>
             <option value="cancel">Cho người khác</option>
         </select>
     </div>

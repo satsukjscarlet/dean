@@ -21,7 +21,7 @@ if(isset($_POST["name"])){
     $field = $_POST["field"];
     $base = mysqli_real_escape_string($con, $_POST['base']);
     $issue = mysqli_real_escape_string($con, $_POST['issue']);
-    $status = 'Khởi Tạo';
+    $status = 1;
     date_default_timezone_set("Asia/Ho_Chi_Minh");
     $create_at = date("Y-m-d H:i:s");
     $emailcc = array();     
@@ -36,8 +36,14 @@ if(isset($_POST["name"])){
         echo $lastId;
          //Neu nhap cho ban than
         if($_POST["employee"] != "cancel"){
-            $department = $_SESSION["department"];
-            $block = $_SESSION["block"];
+            //Lấy thông tin nhân viên từ sql
+            $user_id = $_SESSION('user_id');
+            $sql_single_user = "SELECT * FROM users WHERE id='$user_id' LIMIT 1";
+            $query_single_user = mysqli_query($con,$sql_single_user);
+            $row_single_user = mysqli_fetch_assoc($query_single_user);
+
+            $department = $row_single_user["department"];
+            $block = $row_single_user["block"];
             $employeeId = $_POST["employee"];
             
             //Cap nhap phong ban va khoi

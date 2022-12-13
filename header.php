@@ -1,4 +1,5 @@
 <?php
+require 'connection.php';
 session_start();
 if(!isset($_SESSION["username"]))
 {
@@ -6,6 +7,11 @@ if(!isset($_SESSION["username"]))
 }
 $display_name = $_SESSION["display_name"];
 $level = $_SESSION["level"];
+
+$user_id = $_SESSION["user_id"];
+$sql_user = "SELECT * FROM users WHERE id= '$user_id' LIMIT 1";
+$query_user = mysqli_query($con,$sql_user);
+$row_user = mysqli_fetch_assoc($query_user);
 ?>
 
 <!DOCTYPE html>
@@ -68,11 +74,18 @@ $level = $_SESSION["level"];
                   <li><a><i class="fa fa-home"></i> DANH SÁCH ĐỀ ÁN <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="project_list.php">Danh sách đề án</a></li>
-                      <li><a href="project_list_choxacnhan.php">Đề án chờ xác nhận</a></li>
-                      <li><a href="project_list_chopheduyet.php">Đề án chờ phê duyệt</a></li>
-                      <!-- <li><a href="project_list_chapthuan.php">Đề án đã được duyệt</a></li>
-                      <li><a href="project_list_khoitao.php">Đề án đang chờ duyệt</a></li>
-                      <li><a href="project_list_tuchoi.php">Đề án không được duyệt</a></li> -->
+                      <?php 
+                        if($row_user["level"] == 2){
+                        echo '<li><a href="project_list_choxacnhan_screen.php">Đề án chờ xác nhận</a></li>';
+                        }
+                      ?>
+                      <?php 
+                        if($row_user["level"] == 3){
+                        echo '<li><a href="project_list_chopheduyet_screen.php">Đề án chờ phê duyệt</a></li>';
+                        }
+                      ?>
+                      <li><a href="project_list_pheduyet_screen.php">Đề án đã được duyệt</a></li>
+                      <li><a href="project_list_tuchoi_screen.php">Đề án không được duyệt</a></li>
                     </ul>
                   </li>
                  
@@ -80,12 +93,11 @@ $level = $_SESSION["level"];
                   if($level == 1){
                     echo "hidden";
                   } 
-                  ?>>
-                  
+                  ?>>              
                   
                   <a><i class="fa fa-desktop"></i> QUẢN LÝ TÀI KHOẢN <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="user_list.php">Danh sách tài khoản</a></li>
+                      <li><a href="user_list_screen.php">Danh sách tài khoản</a></li>
                       <!-- <li><a href="general_elements.html">Tài khoản</a></li> -->
                       <li><a href="#">Đổi mật khẩu</a></li>
                     </ul>

@@ -12,7 +12,7 @@
        >
 
 
-      <?php require 'project_formlist_tuchoi.php';?>
+      <?php require 'modun_project/project_list_pheduyet/project_formlist_pheduyet.php';?>
       
       
       </div>  

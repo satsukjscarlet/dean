@@ -19,7 +19,7 @@ if(isset($_POST['username'])){
         if(password_verify($password, $row["password_hash"]))
             {
                 $_SESSION["username"] = $username;
-                $_SESSION["username_id"] = $row["id"];
+                $_SESSION["user_id"] = $row["id"];
                 $_SESSION["level"] = $row["level"];
                 $_SESSION["email"] = $row["email"];
                 $_SESSION["display_name"] = $row["display_name"];
