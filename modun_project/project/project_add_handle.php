@@ -3,10 +3,6 @@ require 'send_email_add.php';
 include('../../connection.php');
 session_start();
 
-if (mysqli_connect_errno()) {
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-    exit(); 
-  }
  var_dump($_POST);
 
 if(isset($_POST["name"])){
@@ -37,7 +33,7 @@ if(isset($_POST["name"])){
          //Neu nhap cho ban than
         if($_POST["employee"] != "cancel"){
             //Lấy thông tin nhân viên từ sql
-            $user_id = $_SESSION('user_id');
+            $user_id = $_SESSION['user_id'];
             $sql_single_user = "SELECT * FROM users WHERE id='$user_id' LIMIT 1";
             $query_single_user = mysqli_query($con,$sql_single_user);
             $row_single_user = mysqli_fetch_assoc($query_single_user);
