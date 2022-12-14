@@ -53,7 +53,7 @@ if(isset($_POST["employeeNumber"])){
         mysqli_query($con,$query5);
         
 
-    header("Location: http://localhost/dean/user_list.php");
+    header("Location: http://localhost/dean/user_list_screen.php");
     }
     else{
         echo 'Thêm thành viên thất bại';

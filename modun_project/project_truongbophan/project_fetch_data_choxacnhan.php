@@ -92,10 +92,29 @@ while($row = mysqli_fetch_assoc($query))
 		}
 
 		$sub_array[] = $row['create_at'];
-		$sub_array[] = 
+
+		if($row['status'] == 1){
+			$sub_array[] = 
 			'<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-success btn-sm xacnhanBtn fa fa-check" data-toggle="tooltip" data-placement="top" title="Xác nhận"></a>
 			<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-danger btn-sm tuchoiBtn fa fa-times" data-toggle="tooltip" data-placement="top" title="Từ chối"></a>
 			<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-info btn-sm themthongtinBtn fa fa-search" data-toggle="tooltip" data-placement="top" title="Yêu cầu bổ sung thông tin"></a>';	
+		}elseif($row['status'] == 2){
+			$sub_array[] =
+				'<a href="javascript:void();" data-id="' . $row['id'] . '"  class="btn btn-success btn-sm xacnhanBtn fa fa-check" data-toggle="tooltip" data-placement="top" title="Xác nhận"></a>
+			<a href="javascript:void();" data-id="' . $row['id'] . '"  class="btn btn-danger btn-sm tuchoiBtn fa fa-times" data-toggle="tooltip" data-placement="top" title="Từ chối"></a>';
+		}elseif($row['status'] == 3){
+			$sub_array[] = 
+			'<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-danger btn-sm tuchoiBtn fa fa-times" data-toggle="tooltip" data-placement="top" title="Từ chối"></a>
+			<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-info btn-sm themthongtinBtn fa fa-search" data-toggle="tooltip" data-placement="top" title="Yêu cầu bổ sung thông tin"></a>';	
+		}elseif($row['status'] == 5){
+			$sub_array[] = 
+			'<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-success btn-sm xacnhanBtn fa fa-check" data-toggle="tooltip" data-placement="top" title="Xác nhận"></a>
+			<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-info btn-sm themthongtinBtn fa fa-search" data-toggle="tooltip" data-placement="top" title="Yêu cầu bổ sung thông tin"></a>';	
+		}else{
+			$sub_array[] = "";
+		}
+
+		
 		
 		$data[] = $sub_array;
 	}

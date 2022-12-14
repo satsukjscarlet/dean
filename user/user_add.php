@@ -35,7 +35,7 @@ if(isset($_POST["employeeNumber"])){
     VALUES ('$level', '$employeeNumber','$display_name',
     '$password', '$email', '$employeeNumber', '$jobTitle', '$department', '$create_at', '$block')";
     if(mysqli_query($con,$query)){
-    header("Location: http://localhost/dean/user_list.php");
+    header("Location: http://localhost/dean/user_list_screen.php");
     }
     else{
         echo 'Thêm thành viên thất bại';

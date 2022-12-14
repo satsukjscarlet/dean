@@ -25,7 +25,7 @@ function checkuserdisable(){
   $leve_user = $_SESSION["level"];
 
   $user_id = $_SESSION["user_id"];
-  if($username != $row_item['create_by'] || $row_item['status'] != "Khởi Tạo"){         
+  if($username != $row_item['create_by'] || $row_item['status'] != 1){         
     echo "disabled";
   }else{
     echo "";
@@ -42,7 +42,7 @@ function checkuserhidden(){
   $leve_user = $_SESSION["level"];
 
   $user_id = $_SESSION["user_id"];
-  if($username != $row_item['create_by'] || $row_item['status'] != "Khởi Tạo"){         
+  if($username != $row_item['create_by'] || $row_item['status'] != 1){         
     echo "hidden";
   }else{
     echo "";
@@ -140,7 +140,7 @@ function checkuserhidden(){
     <div class="row">
       <div class="container">
       <div class="btnAdd">
-          <a href="project_user_add_form.php?sid=<?php echo $id?>"  class="btn btn-success btn-sm"
+          <a href="project_user_add_form_screen.php?sid=<?php echo $id?>"  class="btn btn-success btn-sm"
           <?php checkuserhidden();?> 
           >THÊM NHÂN VIÊN</a>
         </div>
