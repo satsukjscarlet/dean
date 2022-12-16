@@ -28,17 +28,47 @@ if(isset($_SESSION["username"]))
     <!-- Animate.css -->
     <link href="vendors/animate.css/animate.min.css" rel="stylesheet">
     
-    <H1 class="text-center">CÔNG TY CỔ PHẦN NHỰA THIẾU NIÊN TIỀN PHONG</H1>
+    <!-- <H1 class="text-center">CÔNG TY CỔ PHẦN NHỰA THIẾU NIÊN TIỀN PHONG</H1> -->
     <!-- Custom Theme Style -->
     <link href="build/css/custom.min.css" rel="stylesheet">
   </head>
-
+  <style>
+  body.login {
+    background-image: url('images/homepage1.jpg');
+    background-size:100% auto;
+    background: no-repeat center center cover;
+    background-color: ;
+  }
+  .login_content{
+    background: rgba(51, 59, 62, 0.4);
+    
+  }
+  h1, h2, h3, h4, h5, h6, ul, a, img, p {
+    color: white;
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+    -webkit-transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    transition: all ease 0.3s;
+}
+  html {
+      display: block;
+  }
+  .logo{
+    padding-top: 10pt;
+  }
+  </style>
   <body class="login">
-    <div>
+    <div class = "logo">
+    <div class="text-center">
+      <img src="images/logo.png" class="rounded" alt="...">
+    </div>
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-         
             <form action = "form/login_handle.php" method = "post">
               <h1>ĐĂNG NHẬP</h1>
               <div>

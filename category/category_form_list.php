@@ -155,7 +155,7 @@
           }
         });
       } else {
-        alert('Fill all the required fields');
+        alert('Bạn cần điền đầy đủ các trường');
       }
     });
 
