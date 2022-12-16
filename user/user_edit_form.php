@@ -1,10 +1,11 @@
 <script src="js/jquery-3.6.0.min.js"></script>
 <?php
 include('connection.php');
-if($_SESSION["level"] != 3)
-{
-    header("location: http://localhost/dean/index.php");  
-}
+
+// if($_SESSION["level"] != 4)
+// {
+//     header("location: http://localhost/dean/index.php");  
+// }
 $id = $_GET["sid"];
 $sql = "SELECT * FROM users WHERE id='$id' LIMIT 1";
 $query = mysqli_query($con,$sql);
@@ -48,10 +49,10 @@ $row = mysqli_fetch_assoc($query);
     <br/>
         <select class="custom-select" name = 'level' <?php echo 'value = "'.$row['level'].'"' ?>>
         <option <?php if($row['level'] == '1') echo"selected"; ?> value="1">Nhân viên</option>
-        <option <?php if($row['level'] == '2') echo"selected"; ?> value="1">Trưởng Phòng/Ban</option>
-        <option <?php if($row['level'] == '3') echo"selected"; ?> value="1">Lãnh đạo</option>
+        <option <?php if($row['level'] == '2') echo"selected"; ?> value="2">Trưởng Phòng/Ban</option>
+        <option <?php if($row['level'] == '3') echo"selected"; ?> value="3">Lãnh đạo</option>
         <!-- <option value="2">Phòng ban</option> -->
-        <option <?php if($row['level'] == '4') echo"selected"; ?> value="3">Quản trị viên</option>
+        <option <?php if($row['level'] == '4') echo"selected"; ?> value="4">Quản trị viên</option>
         </select>
     </div>
     

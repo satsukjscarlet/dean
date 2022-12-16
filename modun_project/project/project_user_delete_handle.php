@@ -49,41 +49,41 @@ $all_display_name_old = array();
     //end Lay danh sach nhan vien tham gia de an cu
 //end Lấy dữ liệu cũ
 
-//Gui email    
-$all_display_name_new = array();
-$all_department_new = array();
-$all_block_new = array();   
-$emailcc = array();
-
-//Lay danh sach nhan vien tham gia de an
-$sql_item_id = "select *from user_item where item_id = '$item_id'";
-$result_itemid = mysqli_query($con, $sql_item_id);
-if (mysqli_num_rows($result_itemid) > 0) 
-{
-  while($row_user_item = mysqli_fetch_array($result_itemid))
-  {
-    $id_employee = $row_user_item['employee_id'];
-    echo "Đây là số nhân viên".$row_user_item['employee_id'];
-    //Lấy thông tin nhân viên tham gia
-    $sql_checkinfo = "select *from users where id = '$id_employee' LIMIT 1";
-    $result_user_info = mysqli_query($con, $sql_checkinfo);
-    if (mysqli_num_rows($result_user_info) > 0)
-    {
-        while($row_user_info= mysqli_fetch_array($result_user_info)){
-            $emailcc[] = $row_user_info['email'];
-            $all_display_name_new[] = $row_user_info['display_name'];
-            $all_department_new[] = $row_user_info['department'];
-            $all_block_new[] = $row_user_info['block'];
-        }
-    }
-  }
-}
-//end Lay danh sach nhan vien tham gia de an
 
 $sql_delete = "DELETE FROM user_item WHERE item_id='$item_id' And employee_id = '$employee_id' LIMIT 1";
 if(mysqli_query($con,$sql_delete)){ 
 
     
+    //Gui email    
+    $all_display_name_new = array();
+    $all_department_new = array();
+    $all_block_new = array();   
+    $emailcc = array();
+
+    //Lay danh sach nhan vien tham gia de an
+    $sql_item_id = "select *from user_item where item_id = '$item_id'";
+    $result_itemid = mysqli_query($con, $sql_item_id);
+    if (mysqli_num_rows($result_itemid) > 0) 
+    {
+    while($row_user_item = mysqli_fetch_array($result_itemid))
+    {
+        $id_employee = $row_user_item['employee_id'];
+        echo "Đây là số nhân viên".$row_user_item['employee_id'];
+        //Lấy thông tin nhân viên tham gia
+        $sql_checkinfo = "select *from users where id = '$id_employee' LIMIT 1";
+        $result_user_info = mysqli_query($con, $sql_checkinfo);
+        if (mysqli_num_rows($result_user_info) > 0)
+        {
+            while($row_user_info= mysqli_fetch_array($result_user_info)){
+                $emailcc[] = $row_user_info['email'];
+                $all_display_name_new[] = $row_user_info['display_name'];
+                $all_department_new[] = $row_user_info['department'];
+                $all_block_new[] = $row_user_info['block'];
+            }
+        }
+    }
+    }
+    //end Lay danh sach nhan vien tham gia de an
     // $emailcc[] = "tuantt@nhuatienphong.net";
 
     //lay du lieu moi
@@ -113,9 +113,10 @@ if(mysqli_query($con,$sql_delete)){
     echo "<br>";
     echo $block_new;
     //update phong ban va khoi
-    if(count($department_array_new)>1){
+    if(count($all_display_name_old)>1){
         $sql_update_department_block = "UPDATE item SET department = '$department_new', block = '$block_new' WHERE id='$item_id'";
         if(mysqli_query($con,$sql_update_department_block)){
+            echo $sql_update_department_block;
             echo "Cập nhập phòng ban và khối thành công";
         }else{
             echo "Cập nhập phòng ban và khối thất bại";
@@ -124,9 +125,9 @@ if(mysqli_query($con,$sql_delete)){
     }else{
         $sql_update_department_block = "UPDATE item SET department = '', block = '' WHERE id='$item_id'";
         if(mysqli_query($con,$sql_update_department_block)){
-            echo "Cập nhập phòng ban và khối thành công";
+            echo "Cập nhập xóa phòng ban và khối thành công";
         }else{
-            echo "Cập nhập phòng ban và khối thất bại";
+            echo "Cập nhập xóa phòng ban và khối thất bại";
             echo $sql_update_department_block;
         }
     }

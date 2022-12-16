@@ -126,7 +126,7 @@
               mytable.draw();
               $('#exampleModal_loading').modal('hide');
             } else {
-              $('#loadingIcon').hide();
+              $('#exampleModal_loading').modal('hide');
               alert('Failed');
               return;
             }

@@ -93,8 +93,7 @@ $row_user = mysqli_fetch_assoc($query_user);
                   if($level == 1){
                     echo "hidden";
                   } 
-                  ?>>              
-                  
+                  ?>>                         
                   <a><i class="fa fa-desktop"></i> QUẢN LÝ TÀI KHOẢN <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="user_list_screen.php">Danh sách tài khoản</a></li>

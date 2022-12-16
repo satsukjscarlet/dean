@@ -3,19 +3,19 @@ include('../../connection.php');
 require 'send_email_ld.php';
 session_start();
 
+date_default_timezone_set("Asia/Ho_Chi_Minh");
+$end_at = date("Y-m-d H:i:s");
 
 $id = $_POST['id'];
 
-   
-
-$sql = "UPDATE item SET status = 4 WHERE id='$id'";
+$sql = "UPDATE item SET status = 4, end_at = '$end_at'  WHERE id='$id'";
 $XNQuery =mysqli_query($con,$sql);
 if($XNQuery==true)
 {
     $update_name = strtoupper($_SESSION["username"]);
     $email = $_SESSION["email"];
     $display_name = $_SESSION["display_name"];
-
+    $reward = 0;
 
      //Gui email       
      $all_display_name_new = array();
@@ -26,11 +26,32 @@ if($XNQuery==true)
      //Lay danh sach nhan vien tham gia de an
      $sql_item_id = "select *from user_item where item_id = '$id'";
      $result_itemid = mysqli_query($con, $sql_item_id);
+     //Số người tham gia dự án
+     $total_user_join = mysqli_num_rows($result_itemid);
      if (mysqli_num_rows($result_itemid) > 0) 
      {
        while($row_user_item = mysqli_fetch_array($result_itemid))
        {
-         $id_employee = $row_user_item['employee_id'];
+        $id_employee = $row_user_item['employee_id'];
+        //Cập nhập số tiền
+        //Kiểm tra số lần tham gia dự án của 1 người
+        $sql_check_user_join = "select * from user_item where employee_id = $id_employee;";
+        $result_check_user_join = mysqli_query($con, $sql_check_user_join);
+        $total_join = mysqli_num_rows($result_check_user_join);
+        $reward_join = 100;
+        if($total_join == 2){
+            $reward_join = 120;
+        }elseif($total_join == 3){
+            $reward_join = 150;
+        }elseif($total_join == 4){
+            $reward_join = 180;
+        }elseif($total_join > 4){
+            $reward_join = 200;
+        }
+        $reward_user = round($reward_join / $total_user_join);
+        $sql_update_reward = "update user_item set reward = '$reward_user' where employee_id = '$id_employee' and item_id = '$id';";
+        mysqli_query($con, $sql_update_reward);
+
          //Lấy thông tin nhân viên tham gia
          $sql_checkinfo = "select *from users where id = '$id_employee' LIMIT 1";
          $result_user_info = mysqli_query($con, $sql_checkinfo);
