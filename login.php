@@ -32,17 +32,21 @@ if(isset($_SESSION["username"]))
     <!-- Custom Theme Style -->
     <link href="build/css/custom.min.css" rel="stylesheet">
   </head>
+
   <style>
   body.login {
     background-image: url('images/homepage1.jpg');
-    background-size:100% auto;
-    background: no-repeat center center cover;
-    background-color: ;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
   }
+
   .login_content{
     background: rgba(51, 59, 62, 0.4);
     
   }
+
   h1, h2, h3, h4, h5, h6, ul, a, img, p {
     color: white;
     font-size: 30px;
@@ -54,6 +58,7 @@ if(isset($_SESSION["username"]))
     -o-transition: all ease 0.3s;
     transition: all ease 0.3s;
 }
+
   html {
       display: block;
   }
