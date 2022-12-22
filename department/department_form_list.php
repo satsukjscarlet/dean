@@ -15,7 +15,6 @@
           <div class="col-md-12">
             <table id="example" class="table">
               <thead>
-                <th>Id</th>
                 <th>Mã Phòng Ban</th>
                 <th>Tên Phòng Ban</th>
                 <th>Khối</th>
@@ -79,142 +78,11 @@
             "bSortable": false,
             "aTargets": [5]
           },
-
         ]
       });
     });
 
-    $(document).on('submit', '#addUser', function(e) {
-      e.preventDefault();
-      var name = $('#addNameField').val();
-      var note = $('#addNoteField').val();
-      var create_by = <?php echo json_encode($_SESSION["username"]) ?>;
-      if (name != '' && note != '') {
-        $.ajax({
-          url: "department/department_add.php",
-          type: "post",
-          data: {
-            name: name,
-            note: note,
-            create_by: create_by,
-          },
-          success: function(data) {
-            var json = JSON.parse(data);
-            var status = json.status;
-            if (status == 'true') {
-              mytable = $('#example').DataTable();
-              mytable.draw();
-              $('#addUserModal').modal('hide');
-            } else {
-              alert('failed');
-            }
-          }
-        });
-      } else {
-        alert('Fill all the required fields');
-      }
-    });
-
-
-    $(document).on('submit', '#updateUser', function(e) {
-      e.preventDefault();
-      var tr = $(this).closest('tr');
-      var name = $('#nameField').val();
-      var note = $('#noteField').val();
-      // var mobile = $('#mobileField').val();
-      // var email = $('#emailField').val();
-      var trid = $('#trid').val();
-      var id = $('#id').val();
-      var create_by = <?php echo json_encode($_SESSION["username"]) ?>;
-      var create_at = $('#create_at').val();
-      if (name != '' && note != '') {
-        $.ajax({
-          url: "department/department_update.php",
-          type: "post",
-          data: {
-            name: name,
-            note: note,
-            id: id
-          },
-          success: function(data) {
-            var json = JSON.parse(data);
-            var status = json.status;
-            if (status == 'true') {
-              table = $('#example').DataTable();
-              // table.cell(parseInt(trid) - 1,0).data(id);
-              // table.cell(parseInt(trid) - 1,1).data(username);
-              // table.cell(parseInt(trid) - 1,2).data(email);
-              // table.cell(parseInt(trid) - 1,3).data(mobile);
-              // table.cell(parseInt(trid) - 1,4).data(city);
-              var button = '<td><a href="javascript:void();" data-id="' + id + '" class="btn btn-info btn-sm editbtn">Cập nhập</a>  <a href="#!"  data-id="' + id + '"  class="btn btn-danger btn-sm deleteBtn">Xóa</a></td>';
-              var row = table.row("[id='" + trid + "']");
-              row.row("[id='" + trid + "']").data([id, name, note, create_by, create_at, button]);
-              $('#exampleModal').modal('hide');
-            } else {
-              alert('Cập nhập lỗi');
-            }
-          }
-        });
-      } else {
-        alert('Fill all the required fields');
-      }
-    });
-
-
-    $('#example').on('click', '.editbtn ', function(event) {
-      var table = $('#example').DataTable();
-      var trid = $(this).closest('tr').attr('id');
-      // console.log(selectedRow);
-      var id = $(this).data('id');
-      $('#exampleModal').modal('show');
-
-      $.ajax({
-        url: "department/department_get_single_data.php",
-        data: {
-          id: id
-        },
-        type: 'post',
-        success: function(data) {
-          var json = JSON.parse(data);
-          $('#nameField').val(json.name);
-          $('#noteField').val(json.note);
-          $('#id').val(id);
-          $('#trid').val(trid);
-        }
-      })
-    });
-
-    $(document).on('click', '.deleteBtn', function(event) {
-      var table = $('#example').DataTable();
-      event.preventDefault();
-      var id = $(this).data('id');
-      if (confirm("Xác nhận xóa lĩnh vực ? ")) {
-        $.ajax({
-          url: "department/department_delete.php",
-          data: {
-            id: id
-          },
-          type: "post",
-          success: function(data) {
-            var json = JSON.parse(data);
-            status = json.status;
-            if (status == 'success') {
-              //table.fnDeleteRow( table.$('#' + id)[0] );
-              //$("#example tbody").find(id).remove();
-              //table.row($(this).closest("tr")) .remove();
-              $("#" + id).closest('tr').remove();
-            } else {
-              alert('Failed');
-              return;
-            }
-          }
-        });
-      } else {
-        return null;
-      }
-
-
-    });
+    
   </script>
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

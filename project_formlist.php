@@ -1,217 +1,92 @@
-<?php require('connection.php'); ?>
+<?php
 
+//action.php
 
-  <div class="container-fluid">
-    <h1 class="text-center">DANH SÁCH ĐỀ ÁN</h1>
-    <div class="row">
-      <div class="container">
-      <div class="btnAdd">
-          <a href="project_add.php"  class="btn btn-success btn-sm" >THÊM MỚI ĐỀ ÁN</a>
-        </div>
-        <div class="row">
-          <div class="col-md-0"></div>
-          <div class="col-md-12">
-            <table id="example" class="table">
-              <thead>
-                <th>Id</th>
-                <th>Người tạo</th>
-                <th>Tên đề án</th>
-                <th>Tên người tạo</th>
-                <th>Phòng ban</th>
-                <th>Khối</th>
-                <th>Trạng thái</th>
-                <th>Thời gian tạo</th>
-                <th>Thông tin</th>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-          </div>
-          <div class="col-md-0"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Optional JavaScript; choose one of the two! -->
-  <!-- Option 1: Bootstrap Bundle with Popper -->
-  <script src="js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-  <!-- <script src="js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
-  <script type="text/javascript" src="js/dt-1.10.25datatables.min.js"></script>
-  <script type="text/javascript">
-    
-    $(document).ready(function() {
-      $('#example').DataTable({
-        "fnCreatedRow": function(nRow, aData, iDataIndex) {
-          $(nRow).attr('id', aData[0]);
-        },
-        "language": {
-            "sProcessing":   "Đang xử lý...",
-            "sLengthMenu":   "Xem _MENU_ mục",
-            "sZeroRecords":  "Không tìm thấy dòng nào phù hợp",
-            "sInfo":         "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-            "sInfoEmpty":    "Đang xem 0 đến 0 trong tổng số 0 mục",
-            "sInfoFiltered": "(được lọc từ _MAX_ mục)",
-            "sInfoPostFix":  "",
-            "sSearch":       "Tìm:",
-            "sUrl":          "",
-            "oPaginate": {
-                "sFirst":    "Đầu",
-                "sPrevious": "Trước",
-                "sNext":     "Tiếp",
-                "sLast":     "Cuối"
-            }
-        },
-        "processing": true, // tiền xử lý trước
-        "aLengthMenu": [[10, 20, 50], [10, 20, 50]], // danh sách số trang trên 1 lần hiển thị bảng
-        'serverSide': 'true',
-        'paging': 'true',
-        'order': [],
-        'ajax': {
-          'url': 'project_fetch_data.php',
-          'type': 'post',
-        },
-        "aoColumnDefs": [{
-            "bSortable": false,
-            "aTargets": [8]
-          },
-        ]
-      });
-    });
-    // $(document).on('submit', '#addUser', function(e) {
-    //   e.preventDefault();
-    //   var city = $('#addCityField').val();
-    //   var username = $('#addUserField').val();
-    //   var mobile = $('#addMobileField').val();
-    //   var email = $('#addEmailField').val();
-    //   if (city != '' && username != '' && mobile != '' && email != '') {
-    //     $.ajax({
-    //       url: "add_user.php",
-    //       type: "post",
-    //       data: {
-    //         city: city,
-    //         username: username,
-    //         mobile: mobile,
-    //         email: email
-    //       },
-    //       success: function(data) {
-    //         var json = JSON.parse(data);
-    //         var status = json.status;
-    //         if (status == 'true') {
-    //           mytable = $('#example').DataTable();
-    //           mytable.draw();
-    //           $('#addUserModal').modal('hide');
-    //         } else {
-    //           alert('failed');
-    //         }
-    //       }
-    //     });
-    //   } else {
-    //     alert('Fill all the required fields');
-    //   }
-    // });
-    // $(document).on('submit', '#updateUser', function(e) {
-    //   e.preventDefault();
-    //   //var tr = $(this).closest('tr');
-    //   var city = $('#cityField').val();
-    //   var username = $('#nameField').val();
-    //   var mobile = $('#mobileField').val();
-    //   var email = $('#emailField').val();
-    //   var trid = $('#trid').val();
-    //   var id = $('#id').val();
-    //   if (city != '' && username != '' && mobile != '' && email != '') {
-    //     $.ajax({
-    //       url: "update_user.php",
-    //       type: "post",
-    //       data: {
-    //         city: city,
-    //         username: username,
-    //         mobile: mobile,
-    //         email: email,
-    //         id: id
-    //       },
-    //       success: function(data) {
-    //         var json = JSON.parse(data);
-    //         var status = json.status;
-    //         if (status == 'true') {
-    //           table = $('#example').DataTable();
-    //           // table.cell(parseInt(trid) - 1,0).data(id);
-    //           // table.cell(parseInt(trid) - 1,1).data(username);
-    //           // table.cell(parseInt(trid) - 1,2).data(email);
-    //           // table.cell(parseInt(trid) - 1,3).data(mobile);
-    //           // table.cell(parseInt(trid) - 1,4).data(city);
-    //           var button = '<td><a href="javascript:void();" data-id="' 
-    //           + id + '" class="btn btn-info btn-sm editbtn">Edit</a>  <a href="#!"  data-id="' 
-    //           + id + '"  class="btn btn-danger btn-sm deleteBtn">Delete</a></td>';
-    //           var row = table.row("[id='" + trid + "']");
-    //           row.row("[id='" + trid + "']").data([id, username, email, mobile, city, button]);
-    //           $('#exampleModal').modal('hide');
-    //         } else {
-    //           alert('failed');
-    //         }
-    //       }
-    //     });
-    //   } else {
-    //     alert('Fill all the required fields');
-    //   }
-    // });
-    $('#example').on('click', '.editbtn ', function(event) {
-      var table = $('#example').DataTable();
-      var trid = $(this).closest('tr').attr('id');
-      // console.log(selectedRow);
-      var id = $(this).data('id');
-      var username = <?php echo json_encode($_SESSION["username"]) ?>;
-      window.location = "project_add.php?sid="+id;
-      // $('#exampleModal').modal('show');
-      // $.
-      // $.ajax({
-      //   url: "get_single_data.php",
-      //   data: {
-      //     id: id
-      //   },
-      //   type: 'post',
-      //   success: function(data) {
-      //     var json = JSON.parse(data);
-      //     $('#nameField').val(json.username);
-      //     $('#emailField').val(json.email);
-      //     $('#mobileField').val(json.mobile);
-      //     $('#cityField').val(json.city);
-      //     $('#id').val(id);
-      //     $('#trid').val(trid);
-      //   }
-      // })
-    });
+$connect = new PDO("mysql:host=localhost;dbname=testing", "root", "");
 
-    // $(document).on('click', '.deleteBtn', function(event) {
-    //   var table = $('#example').DataTable();
-    //   event.preventDefault();
-    //   var id = $(this).data('id');
-    //   if (confirm("Are you sure want to delete this User ? ")) {
-    //     $.ajax({
-    //       url: "delete_user.php",
-    //       data: {
-    //         id: id
-    //       },
-    //       type: "post",
-    //       success: function(data) {
-    //         var json = JSON.parse(data);
-    //         status = json.status;
-    //         if (status == 'success') {
-    //           //table.fnDeleteRow( table.$('#' + id)[0] );
-    //           //$("#example tbody").find(id).remove();
-    //           //table.row($(this).closest("tr")) .remove();
-    //           $("#" + id).closest('tr').remove();
-    //         } else {
-    //           alert('Failed');
-    //           return;
-    //         }
-    //       }
-    //     });
-    //   } else {
-    //     return null;
-    //   }
+if(isset($_POST["action"]))
+{
+	if($_POST["action"] == 'fetch')
+	{
+		$order_column = array('order_number', 'order_total', 'order_date');
+
+		$main_query = "
+		SELECT order_number, SUM(order_total) AS order_total, order_date 
+		FROM test_order_table 
+		";
+
+		$search_query = 'WHERE order_date <= "'.date('Y-m-d').'" AND ';
+
+		if(isset($_POST["start_date"], $_POST["end_date"]) && $_POST["start_date"] != '' && $_POST["end_date"] != '')
+		{
+			$search_query .= 'order_date >= "'.$_POST["start_date"].'" AND order_date <= "'.$_POST["end_date"].'" AND ';
+		}
+
+		if(isset($_POST["search"]["value"]))
+		{
+			$search_query .= '(order_number LIKE "%'.$_POST["search"]["value"].'%" OR order_total LIKE "%'.$_POST["search"]["value"].'%" OR order_date LIKE "%'.$_POST["search"]["value"].'%")';
+		}
 
 
 
-    // })
-  </script>
-  
+		$group_by_query = " GROUP BY order_date ";
+
+		$order_by_query = "";
+
+		if(isset($_POST["order"]))
+		{
+			$order_by_query = 'ORDER BY '.$order_column[$_POST['order']['0']['column']].' '.$_POST['order']['0']['dir'].' ';
+		}
+		else
+		{
+			$order_by_query = 'ORDER BY order_date DESC ';
+		}
+
+		$limit_query = '';
+
+		if($_POST["length"] != -1)
+		{
+			$limit_query = 'LIMIT ' . $_POST['start'] . ', ' . $_POST['length'];
+		}
+
+		$statement = $connect->prepare($main_query . $search_query . $group_by_query . $order_by_query);
+
+		$statement->execute();
+
+		$filtered_rows = $statement->rowCount();
+
+		$statement = $connect->prepare($main_query . $group_by_query);
+
+		$statement->execute();
+
+		$total_rows = $statement->rowCount();
+
+		$result = $connect->query($main_query . $search_query . $group_by_query . $order_by_query . $limit_query, PDO::FETCH_ASSOC);
+
+		$data = array();
+
+		foreach($result as $row)
+		{
+			$sub_array = array();
+
+			$sub_array[] = $row['order_number'];
+
+			$sub_array[] = $row['order_total'];
+
+			$sub_array[] = $row['order_date'];
+
+			$data[] = $sub_array;
+		}
+
+		$output = array(
+			"draw"			=>	intval($_POST["draw"]),
+			"recordsTotal"	=>	$total_rows,
+			"recordsFiltered" => $filtered_rows,
+			"data"			=>	$data
+		);
+
+		echo json_encode($output);
+	}
+}
+
+?>

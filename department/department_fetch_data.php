@@ -1,7 +1,7 @@
 <?php include('../connection.php');
 
 $output= array();
-$sql = "SELECT * FROM category ";
+$sql = "SELECT * FROM department";
 
 $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
@@ -9,18 +9,18 @@ $total_all_rows = mysqli_num_rows($totalQuery);
 $columns = array(
 	0 => 'id',
 	1 => 'name',
-	2 => 'note',
-	3 => 'create_by',
-	4 => 'create_at',
+	2 => 'display_name',
+	3 => 'block',
+	4 => 'head_of_department',
+	5 => 'manager',
 );
 
 if(isset($_POST['search']['value']))
 {
 	$search_value = $_POST['search']['value'];
 	$sql .= " WHERE name like '%".$search_value."%'";
-	$sql .= " OR note like '%".$search_value."%'";
-	$sql .= " OR create_by like '%".$search_value."%'";
-	$sql .= " OR create_at like '%".$search_value."%'";
+	$sql .= " OR display_name like '%".$search_value."%'";
+	$sql .= " OR block like '%".$search_value."%'";
 }
 
 if(isset($_POST['order']))
@@ -47,11 +47,24 @@ $data = array();
 while($row = mysqli_fetch_assoc($query))
 {
 	$sub_array = array();
-	$sub_array[] = $row['id'];
 	$sub_array[] = $row['name'];
-	$sub_array[] = $row['note'];
-    $sub_array[] = $row['create_by'];
-	$sub_array[] = $row['create_at'];
+	$sub_array[] = $row['display_name'];
+	$sub_array[] = $row['block'];
+	
+	//Lấy tên truong ban
+	$id_head_of_department = $row['head_of_department'];
+	$sql_head_of_department = "SELECT * FROM users WHERE id='$id_head_of_department' LIMIT 1";
+	$query_head_of_department = mysqli_query($con,$sql_head_of_department);
+	$row_head_of_department = mysqli_fetch_assoc($query_head_of_department);
+	$sub_array[] = $row_head_of_department['display_name'];
+
+	//Lấy tên lanhdao
+	$id_manager = $row['manager'];
+	$sql_manager = "SELECT * FROM users WHERE id='$id_manager' LIMIT 1";
+	$query_manager = mysqli_query($con,$sql_manager);
+	$row_manager = mysqli_fetch_assoc($query_manager);
+	$sub_array[] = $row_manager['display_name'];
+
 	$sub_array[] = 
 	'<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-info btn-sm editbtn" >Cập nhập</a> 
 	 <a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-danger btn-sm deleteBtn" >Xóa</a>';

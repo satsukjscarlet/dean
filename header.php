@@ -94,7 +94,7 @@ $row_user = mysqli_fetch_assoc($query_user);
                     echo "hidden";
                   } 
                   ?>>                         
-                  <a><i class="fa fa-desktop"></i> QUẢN LÝ TÀI KHOẢN <span class="fa fa-chevron-down"></span></a>
+                  <a><i class="fa fa-user"></i> QUẢN LÝ TÀI KHOẢN <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="user_list_screen.php">Danh sách tài khoản</a></li>
                       <!-- <li><a href="general_elements.html">Tài khoản</a></li> -->
@@ -108,12 +108,26 @@ $row_user = mysqli_fetch_assoc($query_user);
                     echo "hidden";
                   } 
                   ?>
-                  ><a><i class="fa fa-plus"></i> DANH MỤC <span class="fa fa-chevron-down"></span></a>
+                  ><a><i class="fa fa-book"></i>BÁO CÁO<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="category_list.php">Lĩnh vực</a></li>
+                      <li><a href="report_project_by_year_list_screen.php">Số lượng đề án theo năm</a></li>
+                      <li><a href="#">Số lượng đề án theo đơn vị</a></li>
+                      <li><a href="#">Số lượng đề án theo cá nhân</a></li>
                     </ul>
                   </li>
 
+                  <li
+                  <?php 
+                  if($level == 1){
+                    echo "hidden";
+                  } 
+                  ?>
+                  ><a><i class="fa fa-plus"></i>DANH MỤC<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="department_list_screen.php">Phòng Ban</a></li>
+                      <li><a href="category_list_screen.php">Lĩnh Vực</a></li>
+                    </ul>
+                  </li>
                 </ul>
               </div>
             </div>

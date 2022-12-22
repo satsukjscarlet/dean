@@ -91,7 +91,7 @@ if(isset($_POST["name"])){
         $department_array_new = array_unique($all_department_new);
         if(!empty($department_array_new)){
             foreach($department_array_new as $value_department){
-                $sql_department = "SELECT * FROM derpartment";
+                $sql_department = "SELECT * FROM department";
                 $result_department = mysqli_query($con, $sql_department);
                 if (mysqli_num_rows($result_department) > 0) {
                     while ($row_department = mysqli_fetch_array($result_department)) {

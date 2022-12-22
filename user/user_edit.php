@@ -38,7 +38,7 @@ if(isset($_POST["employeeNumber"])){
 
     if($_POST['password'] != ""){
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $query = "UPDATE users SET level='$level',username='$username',password='$password',display_name='$display_name', 
+        $query = "UPDATE users SET level='$level',username='$username',password_hash='$password',display_name='$display_name', 
         email='$email',employeeNumber='$employeeNumber',jobTitle='$jobTitle',department='$department', block = '$block',
         update_at='$update_at' WHERE id = $id";
     }else{
@@ -57,6 +57,7 @@ if(isset($_POST["employeeNumber"])){
     }
     else{
         echo 'Thêm thành viên thất bại';
+        echo $query;
         echo '<a class="login" href="http://localhost/dean/index.php">Trở lại trang chủ</a>';
     }
     $con -> close();

@@ -89,7 +89,7 @@ if(isset($_POST["name"])){
         //Lay mail truong phong ban
         if(!empty($department_array_new)){
             foreach($department_array_new as $value_department){
-                $sql_department = "SELECT * FROM derpartment";
+                $sql_department = "SELECT * FROM department";
                 $result_department = mysqli_query($con, $sql_department);
                 if (mysqli_num_rows($result_department) > 0) {
                     while ($row_department = mysqli_fetch_array($result_department)) {
