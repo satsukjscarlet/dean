@@ -31,12 +31,14 @@ if(isset($_POST['username'])){
                 echo '<script>alert("Bạn nhập sai mật khẩu")</script>';
                 echo 'Bạn nhập sai mật khẩu, Bạn cần đăng nhập lại ';
                 echo '<a class="login" href="http://localhost/dean/login.php">Trở lại đăng nhập</a>';
+                header("Location: http://localhost/dean/login.php");
             }
     }
     else{
         echo '<script>alert("Bạn nhập sai thông tin tài khoản")</script>';
         echo 'Bạn nhập sai thông tin tài khoản, Bạn cần đăng nhập lại ';
         echo '<a class="login" href="http://localhost/dean/login.php">Trở lại đăng nhập</a>';
+        header("Location: http://localhost/dean/login.php");
     }
 }else{
     header("Location: http://localhost/dean/login.php");

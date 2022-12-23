@@ -50,9 +50,9 @@
 
   <div>
     <label>Bắt Đầu</label>
-    <input type="text" name="start_date" id="start_date" class="datepicker" />
+    <input type="text" name="start_date" id="start_date" class="datepicker" value ="today() />
     <label>Kết thúc</label>
-    <input type="text" name="end_date" id="end_date" class="datepicker" />
+    <input type="text" name="end_date" id="end_date" class="datepicker"  value ="today()/>
     <input type="button" name="search" id="search" value="Lọc" class="btn btn-sm btn-info" />
   </div>
 
@@ -86,16 +86,10 @@
 <!-- Optional JavaScript; choose one of the two! -->
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-<!-- <script src="js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
 <script type="text/javascript" src="js/dt-1.10.25datatables.min.js"></script>
 <link rel="stylesheet" href="js/DatePicker/themes/jquery-ui.css">
 <script src="js/DatePicker/jquery-ui.js"></script>
 <script src="js/DatePicker/jquery.ui.datepicker-vi.js"></script>
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
-<!-- <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
-<script src="https://cdn.datatables.net/datetime/1.2.0/js/dataTables.dateTime.min.js"></script> -->
-
 
 <script type="text/javascript">
 
@@ -104,11 +98,19 @@
     $('.datepicker').datepicker({
       dateFormat: "yy-mm-dd",
       autoclose: true,
-      todayBtn: true,
       todayHighlight: true
     },
       $.datepicker.regional['vi']
     );
+
+    $('#datepicker').datepicker();
+    function today(){
+    var d = new Date();
+    var curr_date = d.getDate();
+    var curr_month = d.getMonth() + 1;
+    var curr_year = d.getFullYear();
+    document.write(curr_date + "-" + curr_month + "-" + curr_year);
+    }
     // $('.input-daterange').datepicker({
     //   todayBtn: 'linked',
     //   format: "yyyy-mm-dd",

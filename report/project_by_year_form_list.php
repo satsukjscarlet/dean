@@ -47,9 +47,9 @@
 
   <div>
     <label>Bắt Đầu</label>
-    <input type="text" name="start_date" id="start_date" class="datepicker" />
+    <input type="text" name="start_date" id="start_date" class="datepicker"/>
     <label>Kết thúc</label>
-    <input type="text" name="end_date" id="end_date" class="datepicker" />
+    <input type="text" name="end_date" id="end_date" class="datepicker"/>
     <input type="button" name="search" id="search" value="Lọc" class="btn btn-sm btn-info" />
   </div>
 
@@ -101,11 +101,12 @@
     $('.datepicker').datepicker({
       dateFormat: "yy-mm-dd",
       autoclose: true,
-      todayBtn: true,
-      todayHighlight: true
+      todayHighlight: true    
     },
       $.datepicker.regional['vi']
-    );
+    ).datepicker("setDate",'now');
+
+    
     // $('.input-daterange').datepicker({
     //   todayBtn: 'linked',
     //   format: "yyyy-mm-dd",
@@ -166,7 +167,7 @@
         },
         dom: 'Blfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+          'pdf', 'excel',  'print'
         ],
         "language": {
           "sProcessing": "Đang xử lý...",
@@ -209,8 +210,8 @@
       var start_date = $('#start_date').val();
       var end_date = $('#end_date').val();
       if (start_date != '' && end_date != '' && start_date < end_date) {
-        console.log(start_date);
-        console.log(end_date);
+        // console.log(start_date);
+        // console.log(end_date);
         $('#example').DataTable().destroy();
         fetch_data_search('yes', start_date, end_date);
       }
