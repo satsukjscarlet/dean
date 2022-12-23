@@ -121,12 +121,14 @@
         success: function (data) {
           var json = JSON.parse(data);
           status = json.status;
+          setTimeout(function(){
+                            $('#demo-ajax').html(data);
+                        },3000);
           if (status == 'success') {
             mytable = $('#example').DataTable();
             mytable.draw();
             $('#exampleModal_loading').modal('hide');
-          } else {
-            
+          } else {          
             $('#exampleModal_loading').modal('hide');
             mytable = $('#example').DataTable();
             mytable.draw();

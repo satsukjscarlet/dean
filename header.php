@@ -111,7 +111,7 @@ $row_user = mysqli_fetch_assoc($query_user);
                   ><a><i class="fa fa-book"></i>BÁO CÁO<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="report_project_by_year_list_screen.php">Số lượng đề án theo năm</a></li>
-                      <li><a href="#">Số lượng đề án theo đơn vị</a></li>
+                      <li><a href="report_project_by_department_list_screen.php">Số lượng đề án theo đơn vị</a></li>
                       <li><a href="#">Số lượng đề án theo cá nhân</a></li>
                     </ul>
                   </li>

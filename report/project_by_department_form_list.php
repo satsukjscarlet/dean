@@ -19,43 +19,55 @@
     max-width: 20ch;
   }
 
-
-
-
-.buttons-excel
- {
+  .buttons-excel {
     margin-left: 2px;
     margin-right: 2px;
     padding: 2px;
     background-color: green;
-}
-.buttons-print
- {
+  }
+
+  .buttons-print {
     margin-left: 2px;
     margin-right: 2px;
     padding: 2px;
     /* background-color: green; */
-}
-.buttons-pdf
- {
+  }
+
+  .buttons-pdf {
     margin-left: 2px;
     margin-right: 2px;
     padding: 2px;
     background-color: orange;
-}
-
+  }
 </style>
 <div class="container-fluid">
   <h1 class="text-center">DANH SÁCH ĐỀ ÁN</h1>
-
   <div>
-    <label>Bắt Đầu</label>
-    <input type="text" name="start_date" id="start_date" class="datepicker" value ="today() />
-    <label>Kết thúc</label>
-    <input type="text" name="end_date" id="end_date" class="datepicker"  value ="today()/>
-    <input type="button" name="search" id="search" value="Lọc" class="btn btn-sm btn-info" />
+    <select class="custom-select" name="department" id ="department" value="">
+      <option selected value="">Chọn phòng ban</option>
+      <option value="NSCL">Nhân sự chiến lược</option>
+      <option value="CNCL">Công nghệ chất lượng</option>
+      <option value="DVKH">Dịch vụ khách hàng</option>
+      <option value="KTNB">Kế toán nội bộ</option>
+      <option value="MKT">Marketing</option>
+      <option value="NCPT">Nghiên cứu phát triển</option>
+      <option value="NMCK">Nhà máy cơ khí</option>
+      <option value="NMPE">Nhà máy PE</option>
+      <option value="NMPT1">Nhà máy phụ tùng 1</option>
+      <option value="NMPT2">Nhà máy phụ tùng 2</option>
+      <option value="NMPVC">Nhà máy PVC</option>
+      <option value="PTTT1">Phát triển thị trường 1</option>
+      <option value="PTTT2">Phát triển thị trường 2</option>
+      <option value="QLDA">Quản lý dự án</option>
+      <option value="TCKT">Tài chính kế toán</option>
+      <option value="VT">Vật tư</option>
+      <option value="VPCT">Văn phòng công ty</option>
+    </select>
   </div>
-
+  <div>
+     <input type ="button" class = "btn btn-block btn-info searchBtn" value="Lọc dữ liệu" />
+  </div>
+  </br>
 </div>
 <div class="container-fluid">
 
@@ -104,74 +116,23 @@
     );
 
     $('#datepicker').datepicker();
-    function today(){
-    var d = new Date();
-    var curr_date = d.getDate();
-    var curr_month = d.getMonth() + 1;
-    var curr_year = d.getFullYear();
-    document.write(curr_date + "-" + curr_month + "-" + curr_year);
+    function today() {
+      var d = new Date();
+      var curr_date = d.getDate();
+      var curr_month = d.getMonth() + 1;
+      var curr_year = d.getFullYear();
+      document.write(curr_date + "-" + curr_month + "-" + curr_year);
     }
-    // $('.input-daterange').datepicker({
-    //   todayBtn: 'linked',
-    //   format: "yyyy-mm-dd",
-    //   autoclose: true
-    // });
-    fetch_data_all("no");
+    var department = json
 
-    function fetch_data_all(is_date_search, start_date = '', end_date = '') {
-      var a = $('#example').DataTable({
-        "fnCreatedRow": function (nRow, aData, iDataIndex) {
-          $(nRow).attr('id', aData[0]);
-        },
-        dom: 'Blfrtip',
-        buttons: [
-          { extend: 'pdf', className: 'btn-succes' },
-          { extend: 'excel', className: 'btn-primary' },
-          { extend: 'print', className: 'btn-primary' }
-        ],
-        "language": {
-          "sProcessing": "Đang xử lý...",
-          "sLengthMenu": "Xem _MENU_ mục",
-          "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
-          "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-          "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
-          "sInfoFiltered": "(được lọc từ _MAX_ mục)",
-          "sInfoPostFix": "",
-          "sSearch": "Tìm:",
-          "sUrl": "",
-          "oPaginate": {
-            "sFirst": "Đầu",
-            "sPrevious": "Trước",
-            "sNext": "Tiếp",
-            "sLast": "Cuối"
-          }
-        },
-        "processing": true, // tiền xử lý trước
-        "aLengthMenu": [[10, 20, 50, 100, 500], [10, 20, 50, 100, 500]], // danh sách số trang trên 1 lần hiển thị bảng
-        'serverSide': 'true',
-        'paging': 'true',
-        'order': [],
-        'ajax': {
-          'url': 'report/project_by_year_fetch_data.php',
-          'type': 'post',
-        },
-        "aoColumnDefs": [{
-          "bSortable": false,
-          "aTargets": [5]
-        },
-        ]
-      });
-      
-    }
-
-    function fetch_data_search(is_date_search, start_date, end_date) {
+    function fetch_data_search(is_search, department) {
       $('#example').DataTable({
         "fnCreatedRow": function (nRow, aData, iDataIndex) {
           $(nRow).attr('id', aData[0]);
         },
         dom: 'Blfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+          'excel', 'pdf', 'print'
         ],
         "language": {
           "sProcessing": "Đang xử lý...",
@@ -196,10 +157,10 @@
         'paging': 'true',
         'order': [],
         'ajax': {
-          'url': 'report/search_project_by_year_fetch_data.php',
+          'url': 'report/search_project_by_department_fetch_data.php',
           'type': 'post',
           'data': {
-            is_date_search: is_date_search, start_date: start_date, end_date: end_date
+            is_search: is_search, department: department
           }
         },
         "aoColumnDefs": [{
@@ -239,9 +200,9 @@
 </script>
 
 <!-- <script src="report/assets/js/bootstrap.bundle.min.js"></script> -->
-    <!-- <script src="report/assets/js/jquery-3.6.0.min.js"></script> -->
-    <script src="report/assets/js/datatables.min.js"></script>
-    <script src="report/assets/js/pdfmake.min.js"></script>
-    <script src="report/assets/js/vfs_fonts.js"></script>
-    
-    <!-- <script src="report/assets/js/custom.js"></script> -->
+<!-- <script src="report/assets/js/jquery-3.6.0.min.js"></script> -->
+<script src="report/assets/js/datatables.min.js"></script>
+<script src="report/assets/js/pdfmake.min.js"></script>
+<script src="report/assets/js/vfs_fonts.js"></script>
+
+<!-- <script src="report/assets/js/custom.js"></script> -->
