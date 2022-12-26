@@ -36,7 +36,7 @@ if ($row_check_status['status'] == 3) {
                 $id_employee = $row_user_item['employee_id'];
                 //Cập nhập số tiền
                 //Kiểm tra số lần tham gia dự án của 1 người
-                $sql_check_user_join = "select * from user_item where employee_id = $id_employee;";
+                $sql_check_user_join = "select * from user_item where employee_id = $id_employee and reward > 0;";
                 $result_check_user_join = mysqli_query($con, $sql_check_user_join);
                 $total_join = mysqli_num_rows($result_check_user_join);
                 $reward_join = 100;

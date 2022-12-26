@@ -90,7 +90,7 @@ $row_user = mysqli_fetch_assoc($query_user);
                   </li>
                  
                   <li <?php 
-                  if($level == 1){
+                  if($level == 1 || $level == 2 || $level == 3){
                     echo "hidden";
                   } 
                   ?>>                         

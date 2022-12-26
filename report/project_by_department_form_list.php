@@ -65,7 +65,7 @@
     </select>
   </div>
   <div>
-     <input type ="button" class = "btn btn-block btn-info searchBtn" value="Lọc dữ liệu" />
+     <input type ="button" name="searchbtn" id="searchbtn" class = "btn btn-block btn-info" value="Lọc dữ liệu" />
   </div>
   </br>
 </div>
@@ -107,23 +107,23 @@
 
   $(document).ready(function () {
     // $( ".datepicker" ).datepicker( $.datepicker.regional[ "vi" ] );
-    $('.datepicker').datepicker({
-      dateFormat: "yy-mm-dd",
-      autoclose: true,
-      todayHighlight: true
-    },
-      $.datepicker.regional['vi']
-    );
+    // $('.datepicker').datepicker({
+    //   dateFormat: "yy-mm-dd",
+    //   autoclose: true,
+    //   todayHighlight: true
+    // },
+    //   $.datepicker.regional['vi']
+    // );
 
-    $('#datepicker').datepicker();
-    function today() {
-      var d = new Date();
-      var curr_date = d.getDate();
-      var curr_month = d.getMonth() + 1;
-      var curr_year = d.getFullYear();
-      document.write(curr_date + "-" + curr_month + "-" + curr_year);
-    }
-    var department = json
+    // $('#datepicker').datepicker();
+    // function today() {
+    //   var d = new Date();
+    //   var curr_date = d.getDate();
+    //   var curr_month = d.getMonth() + 1;
+    //   var curr_year = d.getFullYear();
+    //   document.write(curr_date + "-" + curr_month + "-" + curr_year);
+    // }
+    // var department = json_encode();
 
     function fetch_data_search(is_search, department) {
       $('#example').DataTable({
@@ -157,7 +157,7 @@
         'paging': 'true',
         'order': [],
         'ajax': {
-          'url': 'report/search_project_by_department_fetch_data.php',
+          'url': 'report/project_by_department_fetch_data.php',
           'type': 'post',
           'data': {
             is_search: is_search, department: department
@@ -171,20 +171,18 @@
       });
     }
 
-    $('#search').click(function () {
-      var start_date = $('#start_date').val();
-      var end_date = $('#end_date').val();
-      if (start_date != '' && end_date != '' && start_date < end_date) {
-        console.log(start_date);
-        console.log(end_date);
+    $('#searchbtn').click(function () {
+      var department = $('#department').val();
+      if (department != '') {
+        console.log(department);
+        // console.log(end_date);
         $('#example').DataTable().destroy();
-        fetch_data_search('yes', start_date, end_date);
+        fetch_data_search('yes', department);
       }
       else {
-        alert("Bạn chưa chọn thời gian hoặc thời gian kết thúc lớn hơn thời gian bắt đầu");
+        alert("Bạn chưa chọn phòng ban");
       }
     });
-
 
   });
 

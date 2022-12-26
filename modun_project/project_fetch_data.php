@@ -83,10 +83,12 @@ while($row = mysqli_fetch_assoc($query))
 	}
 	$sub_array[] = $row['create_at'];
 	if($username == $row['create_by'] && $row['status'] == 1){
-		$sub_array[] = 
-	'<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-info btn-sm editbtn" >Cập nhập</a>';
+		$sub_array[] =
+			'<a href="javascript:void();" data-id="' . $row['id'] . '"  class="btn btn-info btn-sm editbtn fa fa-eye" data-toggle="tooltip" data-placement="top" title="Xem"></a>
+	<a href="javascript:void();" data-id="' . $row['id'] . '"  class="btn btn-warning btn-sm editbtn fa fa-pencil-square-o" data-toggle="tooltip" data-placement="top" title="Cập nhập"></a>';
 	}else{
-		$sub_array[] = "";
+		$sub_array[] =
+		'<a href="javascript:void();" data-id="'.$row['id'].'"  class="btn btn-info btn-sm editbtn fa fa-eye" data-toggle="tooltip" data-placement="top" title="Xem"></a>';
 	}
 	$data[] = $sub_array;
 }

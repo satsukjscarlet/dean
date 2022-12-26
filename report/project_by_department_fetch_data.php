@@ -5,9 +5,11 @@ $email = $_SESSION["email"];
 $display_name = $_SESSION["display_name"];
 $level = $_SESSION["level"];
 
+
+$department = $_POST['department'];
 // if ($_POST['is_date_search'] == "no") {
 	$output = array();
-	$sql = "SELECT * FROM item where status = 4 ";
+	$sql = "SELECT * FROM item where status = 4 AND department like '%$department%'";
 
 	$totalQuery = mysqli_query($con, $sql);
 	$total_all_rows = mysqli_num_rows($totalQuery);
@@ -25,11 +27,11 @@ $level = $_SESSION["level"];
 	if (isset($_POST['search']['value'])) {
 		$search_value = $_POST['search']['value'];
 		$sql .= " AND create_by like '%" . $search_value . "%'";
-		$sql .= " OR (name like '%" . $search_value . "%' AND status = 4)";
-		$sql .= " OR (field like '%" . $search_value . "%' AND status = 4)";
-		$sql .= " OR (issue like '%" . $search_value . "%' AND status = 4)";
-		$sql .= " OR (status like '%" . $search_value . "%'AND status = 4)";
-		$sql .= " OR (create_at like '%" . $search_value . "%'AND status = 4)";
+		$sql .= " OR (name like '%" . $search_value . "%' AND status = 4 AND department like '%$department%')";
+		$sql .= " OR (field like '%" . $search_value . "%' AND status = 4 AND department like '%$department%')";
+		$sql .= " OR (issue like '%" . $search_value . "%' AND status = 4 AND department like '%$department%')";
+		$sql .= " OR (status like '%" . $search_value . "%'AND status = 4 AND department like '%$department%')";
+		$sql .= " OR (create_at like '%" . $search_value . "%'AND status = 4 AND department like '%$department%')";
 	}
 
 	if (isset($_POST['order'])) {
