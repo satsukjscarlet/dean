@@ -41,7 +41,7 @@
   }
 </style>
 <div class="container-fluid">
-  <h1 class="text-center">DANH SÁCH ĐỀ ÁN</h1>
+  <h1 class="text-center">DANH SÁCH ĐỀ ÁN THEO PHÒNG BAN</h1>
   <div>
     <select class="custom-select" name="department" id ="department" value="">
       <option selected value="">Chọn phòng ban</option>

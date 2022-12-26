@@ -58,6 +58,14 @@ while($row = mysqli_fetch_assoc($query))
 {
 	$sub_array = array();
 	$sub_array[] = $row['create_by'];
+
+	//Lấy tên nv
+	$name_search = $row['create_by'];
+	$sql_get_display_name = "SELECT * FROM users WHERE username='$name_search' LIMIT 1";
+	$query_get_display_name = mysqli_query($con,$sql_get_display_name);
+	$row_get_display_name = mysqli_fetch_assoc($query_get_display_name);
+	$sub_array[] = $row_get_display_name['display_name'];
+
 	$sub_array[] = '<a style="word-wrap:break-word;" href="javascript:void();" data-id="'.$row['id'].'"  class= "editbtn" >'.$row['name'].'</a>';
     //Lay field truong phong ban
 	$sql_field = "SELECT * FROM category WHERE id='".$row['field']."' LIMIT 1";

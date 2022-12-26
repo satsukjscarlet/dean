@@ -82,6 +82,7 @@ while($row = mysqli_fetch_assoc($query))
 		$sub_array[] = $row['status'];
 	}
 	$sub_array[] = $row['create_at'];
+	$sub_array[] = $row['end_at'];
 	$data[] = $sub_array;
 	
 }

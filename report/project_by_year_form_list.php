@@ -43,7 +43,7 @@
 
 </style>
 <div class="container-fluid">
-  <h1 class="text-center">DANH SÁCH ĐỀ ÁN</h1>
+  <h1 class="text-center">DANH SÁCH ĐỀ ÁN THEO THỜI GIAN</h1>
 
   <div>
     <label>Bắt Đầu</label>

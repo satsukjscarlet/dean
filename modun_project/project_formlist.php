@@ -30,7 +30,8 @@
           <div class="col-md-12">
             <table id="example" class="table">
               <thead>
-                <th>Được tạo bởi</th>
+                <th>Mã người tạo</th>
+                <th>Tên người tạo</th>
                 <th>Tên Đề Án</th>
                 <th>Lĩnh Vực</th>
                 <th>Ý tưởng, đề xuất</th>
@@ -87,7 +88,7 @@
         },
         "aoColumnDefs": [{
             "bSortable": false,
-            "aTargets": [6]
+            "aTargets": [7]
           },
         ]
       });

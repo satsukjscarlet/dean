@@ -32,13 +32,14 @@
         <div class="col-md-12">
           <table id="example" class="table">
             <thead>
-              <th>Được tạo bởi</th>
+              <th>Mã người tạo</th>
+              <th>Tên người tạo</th>
               <th>Tên Đề Án</th>
               <th>Lĩnh Vực</th>
               <th>Ý tưởng, đề xuất</th>
               <th>Trạng thái</th>
               <th>Thời gian tạo</th>
-              <th>Thông tin</th>
+              <th>Thao tác</th>
             </thead>
             <tbody>
             </tbody>
@@ -121,14 +122,14 @@
         success: function (data) {
           var json = JSON.parse(data);
           status = json.status;
-          setTimeout(function(){
-                            $('#demo-ajax').html(data);
-                        },3000);
+          setTimeout(function () {
+            $('#demo-ajax').html(data);
+          }, 3000);
           if (status == 'success') {
             mytable = $('#example').DataTable();
             mytable.draw();
             $('#exampleModal_loading').modal('hide');
-          } else {          
+          } else {
             $('#exampleModal_loading').modal('hide');
             mytable = $('#example').DataTable();
             mytable.draw();

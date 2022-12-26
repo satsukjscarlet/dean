@@ -11,12 +11,19 @@
 
   }
 
-  table tr td:nth-child(4) {
+  table tr td:nth-child(6) {
     /* background: #ccc; */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 20ch;
+    max-width: 8ch;
+  }
+  table tr td:nth-child(7) {
+    /* background: #ccc; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 8ch;
   }
 </style>
 <div class="container-fluid">
@@ -37,6 +44,7 @@
               <th>Ý tưởng, đề xuất</th>
               <th>Trạng thái</th>
               <th>Thời gian tạo</th>
+              <th>Thời gian phê duyệt</th>
               <!-- <th>Thao tác</th> -->
             </thead>
             <tbody>
