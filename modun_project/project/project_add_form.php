@@ -24,7 +24,7 @@ $user_id = $_SESSION["user_id"];
         <select class="custom-select" name="field" required="">
             <option value = "">Chọn lĩnh vực</option>
             <?php
-            $sql = "select *from category";
+            $sql = "select *from category ORDER BY name ASC";
             $result = mysqli_query($con, $sql);
             if (mysqli_num_rows($result) > 0) 
             {

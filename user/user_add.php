@@ -14,20 +14,20 @@ if(isset($_POST["employeeNumber"])){
     $department = $_POST['department'];
     date_default_timezone_set("Asia/Ho_Chi_Minh");
     $create_at = date("Y-m-d H:i:s");
-
+    $block = $_POST['block'];
     //Thêm khối
-    if($department == 'NMPE' || $department == 'NMPVC'|| $department == 'NMPT1'|| $department == 'NMPT2' || $department == 'CNCL'){
-        $block = "SX";
-    }elseif($department == 'NCPT'|| $department == 'NMCK'){
-        $block = "KT";
-    }elseif($department == 'VPCT'|| $department == 'NSCL'){
-        $block = "NC";
-    }elseif($department == 'MKT'|| $department == 'PTTT1'|| $department == 'PTTT2'|| $department == 'DVKH'|| $department == 'VT'){
-        $block = "KD";
-    }else
-    {
-        $block = "TC";
-    }
+    // if($department == 'NMPE' || $department == 'NMPVC'|| $department == 'NMPT1'|| $department == 'NMPT2' || $department == 'CNCL'){
+    //     $block = "SX";
+    // }elseif($department == 'NCPT'|| $department == 'NMCK'){
+    //     $block = "KT";
+    // }elseif($department == 'VPCT'|| $department == 'NSCL'){
+    //     $block = "NC";
+    // }elseif($department == 'MKT'|| $department == 'PTTT1'|| $department == 'PTTT2'|| $department == 'DVKH'|| $department == 'VT'){
+    //     $block = "KD";
+    // }else
+    // {
+    //     $block = "TC";
+    // }
 
     $query = "INSERT INTO users (level, username, display_name, 
     password_hash, email, employeeNumber, jobTitle, 

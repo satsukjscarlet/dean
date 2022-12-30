@@ -64,23 +64,23 @@ $row = mysqli_fetch_assoc($query);
       <label>Phòng Ban:</label>
       <br/>
       <select class="custom-select" name="department" <?php echo 'value = "'.$row['department'].'"' ?>>
-        <option <?php if($row['department'] == 'NSCL') echo"selected"; ?> value="NSCL">NSCL</option>
-        <option <?php if($row['department'] == 'CNCL') echo"selected"; ?> value="CNCL">CNCL</option>
-        <option <?php if($row['department'] == 'DVKH') echo"selected"; ?> value="DVKH">DVKH</option>
-        <option <?php if($row['department'] == 'KTNB') echo"selected"; ?> value="KTNB">KTNB</option>
-        <option <?php if($row['department'] == 'MKT') echo"selected"; ?> value="MKT">MKT</option>
-        <option <?php if($row['department'] == 'NCPT') echo"selected"; ?> value="NCPT">NCPT</option>
-        <option <?php if($row['department'] == 'NMCK') echo"selected"; ?> value="NMCK">NMCK</option>
-        <option <?php if($row['department'] == 'NMPE') echo"selected"; ?> value="NMPE">NMPE</option>
-        <option <?php if($row['department'] == 'NMPT1') echo"selected"; ?> value="NMPT1">NMPT1</option>
-        <option <?php if($row['department'] == 'NMPT2') echo"selected"; ?> value="NMPT2">NMPT2</option>
-        <option <?php if($row['department'] == 'NMPVC') echo"selected"; ?> value="NMPVC">NMPVC</option>
-        <option <?php if($row['department'] == 'PTTT1') echo"selected"; ?> value="PTTT1">PTTT1</option>
-        <option <?php if($row['department'] == 'PTTT2') echo"selected"; ?> value="PTTT2">PTTT2</option>
-        <option <?php if($row['department'] == 'QLDA') echo"selected"; ?> value="QLDA">QLDA</option>
-        <option <?php if($row['department'] == 'TCKT') echo"selected"; ?> value="TCKT">TCKT</option>
-        <option <?php if($row['department'] == 'VT') echo"selected"; ?> value="VT">VT</option>
-        <option <?php if($row['department'] == 'VPCT') echo"selected"; ?> value="VPCT">VPCT</option>
+        <option <?php if($row['department'] == 'BĐH') echo"selected"; ?> value="BĐH">Ban Điều Hành</option>
+        <option <?php if($row['department'] == 'NSCL') echo"selected"; ?> value="NSCL">Nhân Sự Chiến Lược</option>
+        <option <?php if($row['department'] == 'CNCL') echo"selected"; ?> value="CNCL">Công Nghệ Chất Lượng</option>
+        <option <?php if($row['department'] == 'DVKH') echo"selected"; ?> value="DVKH">Dịch Vụ Khách Hàng</option>
+        <option <?php if($row['department'] == 'KTNB') echo"selected"; ?> value="KTNB">Ké Toán Nội Bộ</option>
+        <option <?php if($row['department'] == 'MKT') echo"selected"; ?> value="MKT">Marketing</option>
+        <option <?php if($row['department'] == 'NCPT') echo"selected"; ?> value="NCPT">Nghiên Cứu Phát Triển</option>
+        <option <?php if($row['department'] == 'NMCK') echo"selected"; ?> value="NMCK">Nhà Máy Cơ Khí</option>
+        <option <?php if($row['department'] == 'NMPE') echo"selected"; ?> value="NMPE">Nhà Máy PE-PP</option>
+        <option <?php if($row['department'] == 'NMPT') echo"selected"; ?> value="NMPT">Nhà Máy Phụ Tùng </option>
+        <option <?php if($row['department'] == 'NMPVC') echo"selected"; ?> value="NMPVC">Nhà Máy PVC</option>
+        <option <?php if($row['department'] == 'PTTT1') echo"selected"; ?> value="PTTT1">Phát Triển Thị Trường 1</option>
+        <option <?php if($row['department'] == 'PTTT2') echo"selected"; ?> value="PTTT2">Phát Triển Thị Trường 2</option>
+        <option <?php if($row['department'] == 'QLDA') echo"selected"; ?> value="QLDA">Quản Lý Dự Án</option>
+        <option <?php if($row['department'] == 'TCKT') echo"selected"; ?> value="TCKT">Tài Chính Kế Toán</option>
+        <option <?php if($row['department'] == 'VT') echo"selected"; ?> value="VT">Vật Tư</option>
+        <option <?php if($row['department'] == 'VPCT') echo"selected"; ?> value="VPCT">Văn Phòng Công Ty</option>    
     </select>
     </div>
     <div class="form-group">
@@ -91,9 +91,13 @@ $row = mysqli_fetch_assoc($query);
     </div>
     <div class="form-group">
       <label>Khối:</label>
-      <input type="text" name = "block" class="form-control" placeholder="Bạn cần nhập thông tin" disabled
-      <?php if($row['block']) echo 'value = "'.$row['block'].'"' ?>
-      />
+      <select class="custom-select" name="block" <?php echo 'value = "'.$row['block'].'"' ?>>
+        <option <?php if($row['block'] == 'NC') echo"selected"; ?> value="NC">Khối Nội Chính</option>
+        <option <?php if($row['block'] == 'KT') echo"selected"; ?> value="KT">Khối Kỹ Thuật</option>
+        <option <?php if($row['block'] == 'SX') echo"selected"; ?> value="SX">Khối Sản Xuất</option>
+        <option <?php if($row['block'] == 'KD') echo"selected"; ?> value="KD">Khối Kinh Doanh</option>
+        <option <?php if($row['block'] == 'TC') echo"selected"; ?> value="TC">Khối Tài Chính</option>
+    </select>
     </div>
     <input type ="submit" class = "btn btn-block btn-info" value="Cập Nhập Tài Khoản" />
   </form>

@@ -86,7 +86,7 @@ $id_department = $_GET["sid"];
         'ajax': {
           'data': {
           id: <?php echo json_encode($id_department) ?>},
-          'url': 'deparment_change_head_of_department_fetch_data.php',
+          'url': 'deparment_change_manager_fetch_data.php',
           'type': 'post',
         },
         "aoColumnDefs": [{
@@ -104,7 +104,7 @@ $id_department = $_GET["sid"];
       var id = $(this).data('id');
       var username = <?php echo json_encode($_SESSION["username"]) ?>;
       var id_department = <?php echo json_encode($id_department) ?>;
-      window.location = "department_change_head_handle.php?sid="+id+","+id_department;
+      window.location = "department_change_manager_handle.php?sid="+id+","+id_department;
 
     });
   </script>

@@ -8,7 +8,7 @@ $query_department = mysqli_query($con,$sql_department);
 $row_department = mysqli_fetch_assoc($query_department);
 $department_block = $row_department['block'];
 
-$sql = "SELECT * FROM users Where block = '$department_block' AND status = 'NTP'";
+$sql = "SELECT * FROM users Where status = 'NTP'";
 
 $totalQuery = mysqli_query($con, $sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
@@ -26,10 +26,10 @@ if (isset($_POST['search']['value']))
 {
 	$search_value = $_POST['search']['value'];
 	$sql .= " AND username like '%" . $search_value . "%'";
-	$sql .= " OR (email like '%" . $search_value . "%' AND block = '$department_block' AND status = 'NTP')";
-	$sql .= " OR (display_name like '%" . $search_value . "%' AND block = '$department_block' AND status = 'NTP')";
-	$sql .= " OR (jobTitle like '%" . $search_value . "%' AND block = '$department_block' AND status = 'NTP')";
-	$sql .= " OR (department like '%" . $search_value . "%' AND block = '$department_block' AND status = 'NTP')";
+	$sql .= " OR (email like '%" . $search_value . "%' AND status = 'NTP')";
+	$sql .= " OR (display_name like '%" . $search_value . "%' AND status = 'NTP')";
+	$sql .= " OR (jobTitle like '%" . $search_value . "%'  AND status = 'NTP')";
+	$sql .= " OR (department like '%" . $search_value . "%'  AND status = 'NTP')";
 }
 
 if (isset($_POST['order'])) {

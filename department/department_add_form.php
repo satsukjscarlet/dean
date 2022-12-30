@@ -72,9 +72,13 @@ $row_manager = mysqli_fetch_assoc($query_manager);
 
 <script type="text/javascript">
   // $(document).ready(function () {
-    $('#edit_head_of_department').click(function () {
-      var id = <?php echo json_encode($row_info['id']) ?>;
-      window.location = "department/deparment_change_head_of_department.php?sid=" + id;
+  $('#edit_head_of_department').click(function () {
+    var id = <?php echo json_encode($row_info['id']) ?>;
+    window.location = "department/deparment_change_head_of_department.php?sid=" + id;
+  });
+  $('#edit_manager').click(function () {
+    var id = <?php echo json_encode($row_info['id']) ?>;
+    window.location = "department/deparment_change_manager.php?sid=" + id;
   });
   // });
 </script>
