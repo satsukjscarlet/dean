@@ -7,11 +7,10 @@
         
     <div class="right_col" role="main">
       <!-- top tiles -->
-      <div class="row" 
-      style="display: flex;"
+      <div
        >
        
-       <?php require 'department/department_add_form.php';?>
+       <?php require 'department/department_info.php';?>
       
       
       </div>  

@@ -14,9 +14,9 @@ if (mysqli_num_rows($result_check_user) > 0) {
 
 $id_nguoithamgia = implode(",", $alluser);
 if(!empty($alluser)){
-	$sql = "SELECT * FROM users Where id NOT IN ($id_nguoithamgia)";
+	$sql = "SELECT * FROM users Where id NOT IN ($id_nguoithamgia) and status = 'NTP'";
 }else{
-	$sql = "SELECT * FROM users";
+	$sql = "SELECT * FROM users where status = 'NTP'";
 }
 
 
@@ -37,16 +37,16 @@ if(isset($_POST['search']['value']))
 	$search_value = $_POST['search']['value'];
 	if (!empty($alluser)) {
 		$sql .= " AND username like '%" . $search_value . "%'";
-		$sql .= " OR (email like '%".$search_value."%' and id NOT IN ($id_nguoithamgia))";
-		$sql .= " OR (display_name like '%".$search_value."%' and id NOT IN ($id_nguoithamgia))";
-		$sql .= " OR (jobTitle like '%".$search_value."%' and id NOT IN ($id_nguoithamgia))";
-		$sql .= " OR (department like '%".$search_value."%' and id NOT IN ($id_nguoithamgia))";
+		$sql .= " OR (email like '%".$search_value."%' and id NOT IN ($id_nguoithamgia) and status = 'NTP')";
+		$sql .= " OR (display_name like '%".$search_value."%' and id NOT IN ($id_nguoithamgia) and status = 'NTP')";
+		$sql .= " OR (jobTitle like '%".$search_value."%' and id NOT IN ($id_nguoithamgia) and status = 'NTP')";
+		$sql .= " OR (department like '%".$search_value."%' and id NOT IN ($id_nguoithamgia) and status = 'NTP')";
 	}else{
-		$sql .= " Where username like '%".$search_value."%'";
-		$sql .= " OR email like '%".$search_value."%'";
-		$sql .= " OR display_name like '%".$search_value."%'";
-		$sql .= " OR jobTitle like '%".$search_value."%'";
-		$sql .= " OR department like '%".$search_value."%'";
+		$sql .= " And username like '%".$search_value."%' and status = 'NTP')";
+		$sql .= " OR (email like '%".$search_value."%' and status = 'NTP')";
+		$sql .= " OR (display_name like '%".$search_value."%' and status = 'NTP')";
+		$sql .= " OR (jobTitle like '%".$search_value."%' and status = 'NTP')";
+		$sql .= " OR (department like '%".$search_value."%' and status = 'NTP')";
 	}
 	
 }

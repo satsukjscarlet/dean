@@ -92,7 +92,7 @@ $row = mysqli_fetch_assoc($query);
     <div class="form-group">
       <label>Khối:</label>
       <input type="text" name = "block" class="form-control" placeholder="Bạn cần nhập thông tin" disabled
-      <?php echo 'value = "'.$row['block'].'"' ?>
+      <?php if($row['block']) echo 'value = "'.$row['block'].'"' ?>
       />
     </div>
     <input type ="submit" class = "btn btn-block btn-info" value="Cập Nhập Tài Khoản" />

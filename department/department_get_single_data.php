@@ -1,6 +1,5 @@
 <?php 
-
-$con  = mysqli_connect('localhost','root','','dean');
+include('../connection.php');
 if(mysqli_connect_errno())
 {
     echo 'Database Connection Error';

@@ -1,7 +1,7 @@
 <?php include('../connection.php');
 
 $output= array();
-$sql = "SELECT * FROM users ";
+$sql = "SELECT * FROM users where status = 'NTP'";
 
 $totalQuery = mysqli_query($con,$sql);
 $total_all_rows = mysqli_num_rows($totalQuery);
@@ -18,11 +18,11 @@ $columns = array(
 if(isset($_POST['search']['value']))
 {
 	$search_value = $_POST['search']['value'];
-	$sql .= " WHERE username like '%".$search_value."%'";
-	$sql .= " OR display_name like '%".$search_value."%'";
-	$sql .= " OR email like '%".$search_value."%'";
-	$sql .= " OR jobTitle like '%".$search_value."%'";
-	$sql .= " OR department like '%".$search_value."%'";
+	$sql .= " And username like '%".$search_value."%'";
+	$sql .= " OR (display_name like '%".$search_value."%' and status = 'NTP')";
+	$sql .= " OR (email like '%".$search_value."%' and status = 'NTP')";
+	$sql .= " OR (jobTitle like '%".$search_value."%' and status = 'NTP')";
+	$sql .= " OR (department like '%".$search_value."%' and status = 'NTP')";
 }
 
 if(isset($_POST['order']))

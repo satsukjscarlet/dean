@@ -82,7 +82,15 @@
       });
     });
 
-    
+    $('#example').on('click', '.editbtn ', function(event) {
+      var table = $('#example').DataTable();
+      var trid = $(this).closest('tr').attr('id');
+      // console.log(selectedRow);
+      var id = $(this).data('id');
+      var username = <?php echo json_encode($_SESSION["username"]) ?>;
+      window.location = "department_add_screen.php?sid="+id;
+    });
+
   </script>
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
