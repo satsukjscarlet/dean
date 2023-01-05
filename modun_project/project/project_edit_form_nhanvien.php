@@ -207,7 +207,7 @@ function checkuserlevel_pheduyet(){
     </div>
 
     <div class="form-group">
-      <label>Tên Đề Án:</label>
+      <label>Tên Ý Tưởng:</label>
       <input type="text" name = "name" class="form-control" placeholder="Bạn cần nhập thông tin" required="" 
        value ="<?php echo $row['name'] ?>" 
       <?php checkuserdisable();?>
@@ -237,14 +237,14 @@ function checkuserlevel_pheduyet(){
     </div>
     
     <div class="form-group">
-      <label>Cơ sở thực trạng:</label>
+      <label>Thực trạng hiện nay:</label>
       <textarea class="form-control" aria-label="With textarea" name = "base"
       <?php checkuserdisable();?>
       ><?php echo $row['base']; ?></textarea>
     </div>
 
     <div class="form-group">
-      <label>Ý tưởng, đề xuất:</label>
+      <label>Tóm tắt ý tưởng:</label>
       <textarea class="form-control" aria-label="With textarea" name = "issue"<?php checkuserdisable();?>><?php echo $row['issue']; ?></textarea>
     </div>
     

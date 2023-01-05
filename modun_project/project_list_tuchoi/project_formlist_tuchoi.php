@@ -23,7 +23,7 @@
     <div class="row">
       <div class="container">
       <div class="btnAdd">
-          <a href="project_add_screen.php"  class="btn btn-success btn-sm" >THÊM MỚI ĐỀ ÁN</a>
+          <a href="project_add_screen.php"  class="btn btn-success btn-sm" >THÊM MỚI Ý TƯỞNG</a>
         </div>
         <div class="row">
           <div class="col-md-0"></div>
@@ -33,7 +33,7 @@
                 <th>Được tạo bởi</th>
                 <th>Tên Đề Án</th>
                 <th>Lĩnh Vực</th>
-                <th>Ý tưởng, đề xuất</th>
+                <th>Tóm tắt ý tưởng</th>
                 <th>Trạng thái</th>
                 <th>Thời gian tạo</th>
                 <!-- <th>Thao tác</th> -->

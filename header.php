@@ -64,13 +64,13 @@ $row_user = mysqli_fetch_assoc($query_user);
 
             <div class="clearfix"></div>          
             <br />
-            <img class="img-fluid  ounded mx-auto d-block" src="https://dichvuvpct.nhuatienphong.vn/image/logo2.png" alt="logo" width="200" height="200" > 
+            <!-- <img class="img-fluid  ounded mx-auto d-block" src="https://dichvuvpct.nhuatienphong.vn/image/logo2.png" alt="logo" width="200" height="200" >  -->
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
              
                 <ul class="nav side-menu">
-                <li><a href="project_add_screen.php"><i class="fa fa-pencil-square-o"></i> TẠO MỚI ĐỀ ÁN </a>
+                <li><a href="project_add_screen.php"><i class="fa fa-pencil-square-o"></i> TẠO MỚI Ý TƯỞNG </a>
                   <li><a><i class="fa fa-home"></i> DANH SÁCH ĐỀ ÁN <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="project_list.php">Danh sách đề án</a></li>

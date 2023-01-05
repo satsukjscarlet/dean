@@ -10,11 +10,11 @@ $email = $_SESSION["email"];
 $user_id = $_SESSION["user_id"];
 ?>
 <div class="container">
-  <h2>TẠO ĐỀ ÁN, Ý TƯỞNG</h2>
+  <h2>TẠO Ý TƯỞNG</h2>
   <form action = "modun_project/project/project_add_handle.php" method = "post">
 
     <div class="form-group">
-      <label>Tên Đề Án:</label>
+      <label>Tên Ý Tưởng:</label>
       <input type="text" name = "name" class="form-control" placeholder="Bạn cần nhập thông tin" required="" />
     </div>
 
@@ -50,12 +50,12 @@ $user_id = $_SESSION["user_id"];
     </div>
     
     <div class="form-group">
-      <label>Cơ sở thực trạng:</label>
+      <label>Thực trạng hiện nay:</label>
       <textarea class="form-control" aria-label="With textarea" name = "base" required=""></textarea>
     </div>
 
     <div class="form-group">
-      <label>Ý tưởng, đề xuất:</label>
+      <label>Tóm tắt ý tưởng:</label>
       <textarea class="form-control" aria-label="With textarea" name = "issue" required=""></textarea>
     </div>
     

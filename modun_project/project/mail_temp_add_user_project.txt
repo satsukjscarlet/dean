@@ -64,13 +64,13 @@
 </tr>
 
 <tr style='word-wrap:break-word; '>
-<td>Cơ sở thực trạng: </td>
+<td>Thực trạng hiện nay: </td>
 <td>{base_new}</td>
 <td>{base_old}</td>
 </tr>
 
 <tr style='word-wrap:break-word; '>
-<td>Ý tưởng, đề xuất: </td>
+<td>Tóm tắt ý tưởng: </td>
 <td>{issue_new}</td>
 <td>{issue_old}</td>
 </tr>

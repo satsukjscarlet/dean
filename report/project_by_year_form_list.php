@@ -66,7 +66,7 @@
               <th>Được tạo bởi</th>
               <th>Tên Đề Án</th>
               <th>Lĩnh Vực</th>
-              <th>Ý tưởng, đề xuất</th>
+              <th>Tóm tắt ý tưởng</th>
               <th>Trạng thái</th>
               <th>Thời gian tạo</th>
               <!-- <th>Thao tác</th> -->

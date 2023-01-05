@@ -52,12 +52,12 @@
 </tr>
 
 <tr style='word-wrap:break-word; '>
-<td>Cơ sở thực trạng: </td>
+<td>Thực trạng hiện nay: </td>
 <td>{base}</td>
 </tr>
 
 <tr style='word-wrap:break-word; '>
-<td>Ý tưởng, đề xuất: </td>
+<td>Tóm tắt ý tưởng: </td>
 <td>{issue}</td>
 </tr>
 
