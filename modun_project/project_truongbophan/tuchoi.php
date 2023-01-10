@@ -62,7 +62,7 @@ if($XNQuery==true)
              }
          }
      }
-     $subject = "Đề án Id = ".$id." đã bị từ chối";
+     $subject = "Ý Tưởng Id = ".$id." đã bị từ chối";
     $noidungthu = file_get_contents("mail_temp_tuchoi.txt");
     $noidungthu = str_replace(
         [ '{create_by}', '{sid}', '{tu_choi}'],

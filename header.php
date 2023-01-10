@@ -24,7 +24,7 @@ $row_user = mysqli_fetch_assoc($query_user);
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <!-- <link rel="icon" href="images/favicon.ico" type="image/ico" /> -->
 
-    <title>QUẢN LÝ ĐỀ ÁN</title>
+    <title>QUẢN LÝ Ý TƯỞNG</title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -57,35 +57,35 @@ $row_user = mysqli_fetch_assoc($query_user);
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
               <a href="index.php" class="site_title">
-                <span>QUẢN LÝ ĐỀ ÁN</span>
+                <span>QUẢN LÝ Ý TƯỞNG</span>
                 <!-- <img class="img-fluid" src="https://dichvuvpct.nhuatienphong.vn/image/logo2.png" alt="logo"> -->
               </a>
             </div>
 
             <div class="clearfix"></div>          
             <br />
-            <!-- <img class="img-fluid  ounded mx-auto d-block" src="https://dichvuvpct.nhuatienphong.vn/image/logo2.png" alt="logo" width="200" height="200" >  -->
+            <img class="img-fluid  ounded mx-auto d-block" src="https://dichvuvpct.nhuatienphong.vn/image/logo2.png" alt="logo" width="200" height="200" > 
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
              
                 <ul class="nav side-menu">
                 <li><a href="project_add_screen.php"><i class="fa fa-pencil-square-o"></i> TẠO MỚI Ý TƯỞNG </a>
-                  <li><a><i class="fa fa-home"></i> DANH SÁCH ĐỀ ÁN <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-home"></i>Ý TƯỞNG <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="project_list.php">Danh sách đề án</a></li>
+                      <li><a href="project_list.php">Danh sách ý tưởng</a></li>
                       <?php 
                         if($row_user["level"] == 2){
-                        echo '<li><a href="project_list_choxacnhan_screen.php">Đề án chờ xác nhận</a></li>';
+                        echo '<li><a href="project_list_choxacnhan_screen.php">Ý Tưởng chờ xác nhận</a></li>';
                         }
                       ?>
                       <?php 
                         if($row_user["level"] == 3){
-                        echo '<li><a href="project_list_chopheduyet_screen.php">Đề án chờ phê duyệt</a></li>';
+                        echo '<li><a href="project_list_chopheduyet_screen.php">Ý Tưởng chờ phê duyệt</a></li>';
                         }
                       ?>
-                      <li><a href="project_list_pheduyet_screen.php">Đề án đã được duyệt</a></li>
-                      <li><a href="project_list_tuchoi_screen.php">Đề án không được duyệt</a></li>
+                      <li><a href="project_list_pheduyet_screen.php">Ý tưởng đã được duyệt</a></li>
+                      <li><a href="project_list_tuchoi_screen.php">Ý tưởng không được duyệt</a></li>
                     </ul>
                   </li>
                  
@@ -110,9 +110,9 @@ $row_user = mysqli_fetch_assoc($query_user);
                   ?>
                   ><a><i class="fa fa-book"></i>BÁO CÁO<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="report_project_by_year_list_screen.php">Số lượng đề án theo năm</a></li>
-                      <li><a href="report_project_by_department_list_screen.php">Số lượng đề án theo đơn vị</a></li>
-                      <li><a href="#">Số lượng đề án theo cá nhân</a></li>
+                      <li><a href="report_project_by_year_list_screen.php">Số lượng ý tưởng theo năm</a></li>
+                      <li><a href="report_project_by_department_list_screen.php">Số lượng ý tưởng theo đơn vị</a></li>
+                      <li><a href="#">Số lượng ý tưởng theo cá nhân</a></li>
                     </ul>
                   </li>
 

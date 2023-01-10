@@ -24,10 +24,10 @@
 </head>
 <body>
 
-<H2 style="background-color:none;">Công ty CP Nhựa Thiếu Niên Tiền Phong - Hệ thống đăng ký đề án</H2>
+<H2 style="background-color:none;">Công ty CP Nhựa Thiếu Niên Tiền Phong - Hệ thống đăng ký ý tưởng</H2>
 
-<p>Một thành viên đã được thêm vào đề án bởi {update_name}: đây là chi tiết</p>
-<a href="http://localhost/dean/project_add_screen.php?sid={sid}">Thông tin đề án</a>
+<p>Một thành viên đã được thêm vào ý tưởng bởi {update_name}: đây là chi tiết</p>
+<a href="http://localhost/dean/project_add_screen.php?sid={sid}">Thông tin ý tưởng</a>
 
 <table class="tableStyle">
 <thead>
@@ -52,13 +52,13 @@
 </tr>
 
 <tr style='word-wrap:break-word; '>
-<td>Tên đề án: </td>
+<td>Tên ý tưởng: </td>
 <td>{name_new}</td>
 <td>{name_old}</td>
 </tr>
 
 <tr style='word-wrap:break-word; '>
-<td>Loại đề án: </td>
+<td>Loại ý tưởng: </td>
 <td>{type_new}</td>
 <td>{type_old}</td>
 </tr>

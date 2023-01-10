@@ -21,7 +21,7 @@
   }
 </style>
 <div class="container-fluid">
-  <h1 class="text-center">DANH SÁCH ĐỀ ÁN</h1>
+  <h1 class="text-center">DANH SÁCH Ý TƯỞNG</h1>
   <div class="row">
     <div class="container">
       <div class="btnAdd">
@@ -34,7 +34,7 @@
             <thead>
               <th>Mã người tạo</th>
               <th>Tên người tạo</th>
-              <th>Tên Đề Án</th>
+              <th>Tên Ý Tưởng</th>
               <th>Lĩnh Vực</th>
               <th>Tóm tắt ý tưởng</th>
               <th>Trạng thái</th>
@@ -108,7 +108,7 @@
     var table = $('#example').DataTable();
     event.preventDefault();
     var id = $(this).data('id');
-    if (confirm("Bạn muốn phê duyệt đề án này? ")) {
+    if (confirm("Bạn muốn phê duyệt ý tưởng này? ")) {
 
       $.ajax({
         url: "modun_project/project_lanhdao/pheduyet.php",
@@ -133,7 +133,7 @@
             $('#exampleModal_loading').modal('hide');
             mytable = $('#example').DataTable();
             mytable.draw();
-            alert('Đề án đã bị chỉnh sửa, cần tải tại trang và kiểm tra lại');
+            alert('Ý tưởng đã bị chỉnh sửa, cần tải tại trang và kiểm tra lại');
             return;
           }
         }
@@ -183,7 +183,7 @@
     var table = $('#example').DataTable();
     // console.log(selectedRow);
     var id = $(this).data('id');
-    if (confirm("Bạn muốn từ chối đề án này? ")) {
+    if (confirm("Bạn muốn từ chối ý tưởng này? ")) {
       $('#exampleModal_tuchoi').modal('show');
 
       $.ajax({
@@ -242,7 +242,7 @@
     var trid = $(this).closest('tr').attr('id');
     // console.log(selectedRow);
     var id = $(this).data('id');
-    if (confirm("Bạn muốn yêu cầu bổ sung thông tin đề án này? ")) {
+    if (confirm("Bạn muốn yêu cầu bổ sung thông tin Ý Tưởng này? ")) {
       $('#exampleModal_themthongtin').modal('show');
       $.ajax({
         url: "modun_project/project_truongbophan/item_get_single_data.php",
@@ -267,7 +267,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Từ chối đề án</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Từ chối Ý Tưởng</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

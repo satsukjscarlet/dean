@@ -24,10 +24,10 @@
 </style>
 </head>
 <body>
-<H2 style="background-color:none;">Công ty CP Nhựa Thiếu Niên Tiền Phong - Hệ thống đăng ký đề án</H2>
+<H2 style="background-color:none;">Công ty CP Nhựa Thiếu Niên Tiền Phong - Hệ thống đăng ký Ý Tưởng</H2>
 <H2 style="background-color:none;">Yêu cầu thêm thông tin</H2>
-<p>Đề án được yêu cầu cập nhập thông tin bởi {create_by}: đây là chi tiết</p>
-<a href="http://localhost/dean/project_add_screen.php?sid={sid}">Thông tin đề án</a>
+<p>Ý Tưởng được yêu cầu cập nhập thông tin bởi {create_by}: đây là chi tiết</p>
+<a href="http://localhost/dean/project_add_screen.php?sid={sid}">Thông tin Ý Tưởng</a>
 <br/>
 <a>Lý do cập nhập thông tin: {note}</a>
 

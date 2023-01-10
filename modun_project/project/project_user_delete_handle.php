@@ -173,7 +173,7 @@ if(mysqli_query($con,$sql_delete)){
         $url = "http://localhost/dean/project_add_screen.php?sid=".$item_id;
         echo 'Xóa nhân viên thất bại';
         echo '<br/>';
-        echo '<a class="login" href="'.$url.'">Trở lại đề án</a>';
+        echo '<a class="login" href="'.$url.'">Trở lại ý tưởng</a>';
     }
     $con -> close();
 

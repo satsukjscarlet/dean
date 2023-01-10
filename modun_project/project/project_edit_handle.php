@@ -122,15 +122,15 @@ if(isset($_POST["name"])){
 
         GuiMail($email, $display_name, $noidungthu, array_unique($emailcc));
 
-        echo 'Cập nhập thông tin đề án thành công';
+        echo 'Cập nhập thông tin ý tưởng thành công';
         $url = "Location: http://localhost/dean/project_add_screen.php?sid=".$item_id;
         header($url);
         }else{
             $url = "http://localhost/dean/project_add_screen.php?sid=".$item_id;
             echo $query_update;
-            echo 'Cập nhập Đề Án thất bại';
+            echo 'Cập nhập Ý Tưởng thất bại';
             echo '<br/>';
-            echo '<a class="login" href="'.$url.'">Trở lại đề án</a>';
+            echo '<a class="login" href="'.$url.'">Trở lại Ý Tưởng</a>';
         }
     $con -> close();
 }

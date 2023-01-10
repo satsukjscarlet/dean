@@ -41,7 +41,7 @@
   }
 </style>
 <div class="container-fluid">
-  <h1 class="text-center">DANH SÁCH ĐỀ ÁN THEO PHÒNG BAN</h1>
+  <h1 class="text-center">DANH SÁCH Ý TƯỞNG THEO PHÒNG BAN</h1>
   <div>
     <select class="custom-select" name="department" id ="department" value="">
       <option selected value="">Chọn phòng ban</option>
@@ -79,7 +79,7 @@
           <table id="example" class="table">
             <thead>
               <th>Được tạo bởi</th>
-              <th>Tên Đề Án</th>
+              <th>Tên Ý Tưởng</th>
               <th>Lĩnh Vực</th>
               <th>Tóm tắt ý tưởng</th>
               <th>Trạng thái</th>

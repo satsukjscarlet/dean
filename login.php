@@ -87,7 +87,8 @@ if (isset($_SESSION["username"])) {
     <div class="login_wrapper">
       <div class="animate form login_form">
         <section class="login_content">
-          <form action="form/login_handle.php" method="post">
+          <!-- <form action="form/login_handle.php" id="login" method="post"> -->
+          <form  id="login" method="post">
             <h1>ĐĂNG NHẬP</h1>
             <div>
               <input type="text" name="username" class="form-control" placeholder="Tài Khoản" required="" />
@@ -119,3 +120,26 @@ if (isset($_SESSION["username"])) {
 </body>
 
 </html>
+
+<script src="js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+    $('#login').submit(function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: "POST",
+        url: 'form/login_handle.php',
+        data: $(this).serializeArray(),
+        success: function (response){
+          response = JSON.parse(response);
+          if(response.status == 0){
+            alert(response.message);
+          }else{
+            window.location.href = "http://localhost/dean"
+          }
+        }
+      })
+    });
+
+  </script>

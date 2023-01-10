@@ -14,7 +14,7 @@ function GuiMail($email_receive,$name_reveive, $noidungthu, $emailcc, $subject){
         $mail->Password = 'fndqcijmvpzwhpbn';   // SMTP password
         $mail->SMTPSecure = 'ssl';  // encryption TLS/SSL 
         $mail->Port = 465;  // port to connect to                
-        $mail->setFrom('thientuantest@gmail.com', 'Hệ thống đăng ký đề án' ); 
+        $mail->setFrom('thientuantest@gmail.com', 'Hệ thống đăng ký Ý Tưởng' ); 
         $mail->addAddress($email_receive, $name_reveive); //mail và tên người nhận
         $mail->addCC('thientuantest@gmail.com', 'admin' );
         if(!empty($emailcc)){

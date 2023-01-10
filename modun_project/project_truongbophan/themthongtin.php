@@ -62,7 +62,7 @@ if($XNQuery==true)
          }
      }
      
-    $subject = "Đề án Id = ".$id." cần bổ sung thêm thông tin";
+    $subject = "Ý Tưởng Id = ".$id." cần bổ sung thêm thông tin";
     $noidungthu = file_get_contents("mail_temp_themthongtin.txt");
     $noidungthu = str_replace(
         [ '{create_by}', '{sid}', '{note}'],

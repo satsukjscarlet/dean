@@ -13,7 +13,7 @@
         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
           aria-controls="nav-profile" aria-selected="false">Người dùng</a>
         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
-          aria-controls="nav-contact" aria-selected="false">Danh Sách Đề Án</a>
+          aria-controls="nav-contact" aria-selected="false">Danh Sách Ý Tưởng</a>
       </div>
     </nav>
 

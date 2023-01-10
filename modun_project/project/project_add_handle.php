@@ -3,7 +3,7 @@ require 'send_email_add.php';
 include('../../connection.php');
 session_start();
 
- var_dump($_POST);
+//  var_dump($_POST);
 
 if(isset($_POST["name"])){
     //Lay du lieu dean
@@ -26,10 +26,24 @@ if(isset($_POST["name"])){
     base, issue, status, create_at, field) 
     VALUES ('$create_by','$display_name', '$block', '$department','$type',
     '$name','$base','$issue','$status', '$create_at', '$field')";
+
+    //check_name
+    $sql_check_name = "Select * from item where name = '$name' AND field = '$field'";
+    $query_check_name = mysqli_query($con,$sql_check_name);
+    if(mysqli_fetch_assoc($query_check_name) > 0){
+        echo json_encode(
+            array(
+                'status' => 0,
+                'message' => 'Tên ý tưởng hiện đang trùng'
+            )
+        );
+        exit();        
+    }
+
     if (mysqli_query($con, $query)) {
         $lastId = mysqli_insert_id($con);
-        echo 'Thêm Đề Án Thành Công';
-        echo $lastId;
+        // echo 'Thêm Ý Tưởng Thành Công';
+        // echo $lastId;
          //Neu nhap cho ban than
         if($_POST["employee"] != "cancel"){
             //Lấy thông tin nhân viên từ sql
@@ -45,18 +59,18 @@ if(isset($_POST["name"])){
             //Cap nhap phong ban va khoi
             $sqlupdate = "Update item set department = '$department', block = '$block' where id = $lastId";
             if(mysqli_query($con, $sqlupdate)){
-                echo 'Cập nhập block và department thành công';
+                // echo 'Cập nhập block và department thành công';
             }else{
-                echo 'Cập nhập block và department thất bại';
+                // echo 'Cập nhập block và department thất bại';
             }
             //Thêm nhân viên vào danh sách tham gia
             $query_insert_user_item = "INSERT INTO user_item(employee_id, 
             item_id, create_at) 
             VALUES ('$employeeId','$lastId','$create_at')";
             if(mysqli_query($con, $query_insert_user_item)){
-                echo 'Cập nhập nhân viên vào đề án thành công';
+                // echo 'Cập nhập nhân viên vào Ý Tưởng thành công';
             }else{
-                echo 'Cập nhập nhân viên vào đề án thất bại';
+                // echo 'Cập nhập nhân viên vào Ý Tưởng thất bại';
             }          
         }   
 
@@ -72,7 +86,7 @@ if(isset($_POST["name"])){
           while($row_user_item = mysqli_fetch_array($result_itemid))
           {
             $id_employee = $row_user_item['employee_id'];
-            echo "Đây là số nhân viên".$row_user_item['employee_id'];
+            // echo "Đây là số nhân viên".$row_user_item['employee_id'];
             //Lấy thông tin nhân viên tham gia
             $sql_checkinfo = "select *from users where id = '$id_employee' LIMIT 1";
             $result_user_info = mysqli_query($con, $sql_checkinfo);
@@ -107,7 +121,7 @@ if(isset($_POST["name"])){
 
         //end Lay danh sach nhan vien tham gia de an
         // $emailcc[] = "tuantt@nhuatienphong.net";
-        var_dump($emailcc);
+        // var_dump($emailcc);
         $nguoithamgia = implode(", ", $all_display_name);
         $noidungthu = file_get_contents("mail_temp_add_project.txt");
         $noidungthu = str_replace(
@@ -119,13 +133,27 @@ if(isset($_POST["name"])){
             "$create_at"],
             $noidungthu);
         GuiMail($email, $create_by, $noidungthu, array_unique($emailcc));  
-        $url = "Location: http://localhost/dean/project_add_screen.php?sid=".$lastId;
-        header("$url");         
+        $url = "http://localhost/dean/project_add_screen.php?sid=".$lastId;
+        // header("$url");
+        echo json_encode(
+            array(
+                'status' => 1,
+                'url' => $url,
+                'message' => 'Đã tạo mới ý tưởng'
+            )
+        );        
     }
     else{
-        echo $query;
-        echo 'Thêm Đề Án thất bại';
-        echo '<a href="http://localhost/dean/index.php">Trở lại trang chủ</a>';
+        // echo $query;
+        // echo 'Thêm Ý Tưởng thất bại';
+        // echo '<a href="http://localhost/dean/index.php">Trở lại trang chủ</a>';
+        echo json_encode(
+            array(
+                'status' => 0,
+                'url' => $url,
+                'message' => 'Đã có lỗi xảy ra thêm ý tưởng thất bại'
+            )
+        );    
     }
     $con -> close();
 }

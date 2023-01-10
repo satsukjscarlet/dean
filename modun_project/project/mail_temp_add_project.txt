@@ -24,10 +24,10 @@
 </style>
 </head>
 <body>
-<H2 style="background-color:none;">Công ty CP Nhựa Thiếu Niên Tiền Phong - Hệ thống đăng ký đề án</H2>
+<H2 style="background-color:none;">Công ty CP Nhựa Thiếu Niên Tiền Phong - Hệ thống đăng ký ý tưởng, sáng kiến</H2>
 
-<p>Một đề án mới cần được duyệt đã được tạo bởi {create_by}: đây là chi tiết</p>
-<a href="http://localhost/dean/project_add_screen.php?sid={sid}">Thông tin đề án</a>
+<p>Một ý tưởng mới cần được duyệt đã được tạo bởi {create_by}: đây là chi tiết</p>
+<a href="http://localhost/dean/project_add_screen.php?sid={sid}">Thông tin ý tưởng</a>
 
 <table class="tableStyle">
 <tbody>
@@ -42,12 +42,12 @@
 </tr>
 
 <tr style='word-wrap:break-word; '>
-<td>Tên đề án: </td>
+<td>Tên ý tưởng: </td>
 <td>{tieu_de}</td>
 </tr>
 
 <tr style='word-wrap:break-word; '>
-<td>Loại đề án: </td>
+<td>Loại ý tưởng: </td>
 <td>{type}</td>
 </tr>
 
@@ -67,7 +67,7 @@
 </tr>
 
 <tr style='word-wrap:break-word; '>
-<td>Thời gian khởi tạo đề án: </td>
+<td>Thời gian khởi tạo ý tưởng: </td>
 <td>{thoigiankt}</td>
 </tr>
 

@@ -174,12 +174,12 @@ function checkuserlevel_pheduyet(){
 ?>
 
 <div class="container">
-  <h1 class = "d-flex justify-content-center">THÔNG TIN ĐỀ ÁN</h1>
+  <h1 class = "d-flex justify-content-center">THÔNG TIN Ý TƯỞNG</h1>
   <form action = "modun_project/project/project_edit_handle.php" method = "post">
     <input type="hidden" name="id" id="id" <?php echo 'value = "'.$row['id'].'"' ?>>
 
     <div class="form-group">
-        <label>Trạng thái đề án:</label>
+        <label>Trạng thái ý tưởng:</label>
         <br/>
         <select class="custom-select <?php 
         if($row['status'] == 'Chấp Thuận') 
@@ -327,7 +327,7 @@ $(document).on('click', '.pheduyetBtn', function(event) {
       var table = $('#example').DataTable();
       event.preventDefault();
       var id = $(this).data('id');
-      if (confirm("Bạn muốn phê duyệt đề án này? ")) {
+      if (confirm("Bạn muốn phê duyệt ý tưởng này? ")) {
 
         $.ajax({
           url: "modun_project/project_lanhdao/pheduyet.php",
@@ -360,7 +360,7 @@ $(document).on('click', '.pheduyetBtn', function(event) {
       var table = $('#example').DataTable();
       event.preventDefault();
       var id = $(this).data('id');
-      if (confirm("Bạn muốn xác nhận đề án này? ")) {
+      if (confirm("Bạn muốn xác nhận ý tưởng này? ")) {
 
         $.ajax({
           url: "modun_project/project_truongbophan/xacnhan.php",
@@ -427,7 +427,7 @@ $(document).on('click', '.pheduyetBtn', function(event) {
     $(document).on('click', '.tuchoiBtn', function(event)  {
       // console.log(selectedRow);
       var id = $(this).data('id');
-      if (confirm("Bạn muốn từ chối đề án này? ")) {
+      if (confirm("Bạn muốn từ chối ý tưởng này? ")) {
       $('#exampleModal_tuchoi').modal('show');
       $.ajax({
         url: "modun_project/project_truongbophan/item_get_single_data.php",
@@ -482,7 +482,7 @@ $(document).on('click', '.pheduyetBtn', function(event) {
     $(document).on('click', '.themthongtinBtn', function(event)  {
       
       var id = $(this).data('id');
-      if (confirm("Bạn muốn yêu cầu bổ sung thông tin đề án này? ")) {
+      if (confirm("Bạn muốn yêu cầu bổ sung thông tin ý tưởng này? ")) {
         $('#exampleModal_themthongtin').modal('show');
         $.ajax({
         url: "modun_project/project_truongbophan/item_get_single_data.php",
@@ -507,7 +507,7 @@ $(document).on('click', '.pheduyetBtn', function(event) {
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Từ chối đề án</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Từ chối ý tưởng</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">

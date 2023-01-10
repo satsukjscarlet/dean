@@ -42,7 +42,7 @@ $level = $_SESSION["level"];
 $email = $_SESSION["email"];
 ?>
 <div class="container">
-  <h2>PHÊ DUYỆT, CHỈNH SỬA ĐỀ ÁN, Ý TƯỞNG</h2>
+  <h2>PHÊ DUYỆT, CHỈNH SỬA Ý TƯỞNG, SÁNG KIẾN</h2>
   <form action = "form/project_edit_handle.php" method = "post">
 
     <div class="form-group">
@@ -53,7 +53,7 @@ $email = $_SESSION["email"];
     <input type="hidden" name="create_by" id="create_by" <?php echo 'value = "'.$row['create_by'].'"' ?>>
     <input type="hidden" name="id" id="id" <?php echo 'value = "'.$row['id'].'"' ?>>
     <div class="form-group">
-      <label>Tên Đề Án:</label>
+      <label>TÊN Ý TƯỞNG:</label>
       <input type="text" name = "name" class="form-control" placeholder="Bạn cần nhập thông tin" required="" 
       <?php echo 'value = "'.$row['name'].'"' ?> 
       <?php 

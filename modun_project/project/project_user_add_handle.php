@@ -153,7 +153,7 @@ if(mysqli_query($con,$sql)){
         $noidungthu);
     GuiMail($email, $display_name, $noidungthu, array_unique($emailcc));
   var_dump($emailcc);
-    echo 'Thêm nhân viên vào đề án thành công';
+    echo 'Thêm nhân viên vào ý tưởng thành công';
     $url = "Location: http://localhost/dean/project_add_screen.php?sid=".$item_id;
     header($url);
     }
@@ -161,7 +161,7 @@ if(mysqli_query($con,$sql)){
         $url = "http://localhost/dean/project_add_screen.php?sid=".$item_id;
         echo 'Thêm nhân viên thất bại';
         echo '<br/>';
-        echo '<a class="login" href="'.$url.'">Trở lại đề án</a>';
+        echo '<a class="login" href="'.$url.'">Trở lại ý tưởng</a>';
     }
   
 

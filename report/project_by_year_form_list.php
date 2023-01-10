@@ -43,7 +43,7 @@
 
 </style>
 <div class="container-fluid">
-  <h1 class="text-center">DANH SÁCH ĐỀ ÁN THEO THỜI GIAN</h1>
+  <h1 class="text-center">DANH SÁCH Ý TƯỞNG THEO THỜI GIAN</h1>
 
   <div>
     <label>Bắt Đầu</label>
@@ -64,7 +64,7 @@
           <table id="example" class="table">
             <thead>
               <th>Được tạo bởi</th>
-              <th>Tên Đề Án</th>
+              <th>Tên Ý Tưởng</th>
               <th>Lĩnh Vực</th>
               <th>Tóm tắt ý tưởng</th>
               <th>Trạng thái</th>

@@ -64,7 +64,7 @@ if($XNQuery==true)
              }
          }
     }
-    $subject = "Đề án Id = ".$id." đã được xác nhận";
+    $subject = "Ý Tưởng Id = ".$id." đã được xác nhận";
     $noidungthu = file_get_contents("mail_temp_xacnhan.txt");
     $noidungthu = str_replace(
         [ '{create_by}', '{sid}'],

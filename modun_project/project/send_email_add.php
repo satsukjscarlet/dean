@@ -14,7 +14,7 @@ function GuiMail($email_receive,$name_reveive, $noidungthu, $emailcc){
         $mail->Password = 'fndqcijmvpzwhpbn';   // SMTP password
         $mail->SMTPSecure = 'ssl';  // encryption TLS/SSL 
         $mail->Port = 465;  // port to connect to                
-        $mail->setFrom('thientuantest@gmail.com', 'Hệ thống đăng ký đề án' ); 
+        $mail->setFrom('thientuantest@gmail.com', 'Hệ thống đăng ký ý tưởng' ); 
         $mail->addAddress($email_receive, $name_reveive); //mail và tên người nhận
         $mail->addCC('thientuantest@gmail.com', 'admin' );
         if(!empty($emailcc)){
@@ -23,7 +23,7 @@ function GuiMail($email_receive,$name_reveive, $noidungthu, $emailcc){
             }           
         } 
         $mail->isHTML(true);  // Set email format to HTML
-        $mail->Subject = 'Hệ thống đăng ký đề án';
+        $mail->Subject = 'Hệ thống đăng ký ý tưởng';
         // $noidungthu = file_get_contents("Test.txt");
         // $noidungthu = str_replace(
         //     [ '{name_receive}'], 
@@ -38,10 +38,10 @@ function GuiMail($email_receive,$name_reveive, $noidungthu, $emailcc){
             )
         ));
         $mail->send();
-        echo 'Đã gửi mail xong';
+        // echo 'Đã gửi mail xong';
    
     } catch (Exception $e) {
-        echo 'Mail không gửi được. Lỗi: ', $mail->ErrorInfo;
+        // echo 'Mail không gửi được. Lỗi: ', $mail->ErrorInfo;
     }
     // header('Location: http://localhost/dean/');
     // header('Location: http://localhost/datphong/web/');

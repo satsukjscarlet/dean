@@ -19,7 +19,7 @@
     }
 </style>
   <div class="container-fluid">
-    <h1 class="text-center">DANH SÁCH ĐỀ ÁN</h1>
+    <h1 class="text-center">DANH SÁCH Ý TƯỞNG</h1>
     <div class="row">
       <div class="container">
       <div class="btnAdd">
@@ -32,7 +32,7 @@
               <thead>
                 <th>Mã người tạo</th>
                 <th>Tên người tạo</th>
-                <th>Tên Đề Án</th>
+                <th>Tên Ý Tưởng</th>
                 <th>Lĩnh Vực</th>
                 <th>Tóm tắt ý tưởng</th>
                 <th>Trạng thái</th>

@@ -86,7 +86,7 @@ if ($row_check_status['status'] == 3) {
             }
         }
 
-        $subject = "Đề án Id = " . $id . " đã được phê duyệt";
+        $subject = "Ý Tưởng Id = " . $id . " đã được phê duyệt";
         $noidungthu = file_get_contents("mail_temp_pheduyet.txt");
         $noidungthu = str_replace(
             ['{create_by}', '{sid}'],
