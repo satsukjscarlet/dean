@@ -98,7 +98,7 @@ $row_user = mysqli_fetch_assoc($query_user);
                     <ul class="nav child_menu">
                       <li><a href="user_list_screen.php">Danh sách tài khoản</a></li>
                       <!-- <li><a href="general_elements.html">Tài khoản</a></li> -->
-                      <li><a href="#">Đổi mật khẩu</a></li>
+                      <li><a href="user_change_password_screen.php">Đổi mật khẩu</a></li>
                     </ul>
                   </li>
 
